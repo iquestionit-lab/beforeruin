@@ -1,0 +1,1040 @@
+<!DOCTYPE html><html lang="en" data-qb-installed="true"><head><meta charset="utf-8">
+<!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2308FQ1PK4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-2308FQ1PK4');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Before Ruin</title>
+<meta name="description" content="You already know the words. Here is what they actually mean.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Before Ruin">
+<meta property="og:description" content="You already know the words. Here is what they actually mean.">
+<meta property="og:url" content="https://beforeruin.app">
+<meta property="og:site_name" content="Before Ruin">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&amp;family=Josefin+Sans:wght@300;400;600&amp;display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --void:       #0a0c10;
+  --deep:       #10131a;
+  --surface:    #181c26;
+  --surface-lt: #1e2330;
+  --ink:        #e2e8f0;
+  --ink-mid:    #94a3b8;
+  --ink-faint:  #475569;
+  --gold:       #f59e0b;
+  --gold-lt:    #fbbf24;
+  --gold-dk:    #d97706;
+  --gold-pale:  rgba(245,158,11,.08);
+  --rule:       rgba(245,158,11,.2);
+  --rule-lt:    rgba(245,158,11,.08);
+  --danger:     #ef4444;
+  --shadow:     rgba(0,0,0,.6);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--void);
+  color: var(--ink);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* GRAIN */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(10,12,16,.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule-lt);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 56px;
+}
+
+.nav-brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: .12em;
+  color: var(--gold);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 0;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
+  font-size: .62rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  text-decoration: none;
+  padding: 0 20px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid transparent;
+  transition: color .2s, border-color .2s;
+}
+
+.nav-links a:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+/* HERO */
+.hero {
+  position: relative;
+  padding: 120px 40px 80px;
+  max-width: 1040px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero-eyebrow {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
+  font-size: .62rem;
+  letter-spacing: .48em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 24px;
+  opacity: .7;
+}
+
+.hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4rem, 12vw, 9rem);
+  letter-spacing: .08em;
+  color: var(--ink);
+  line-height: .95;
+  margin-bottom: 8px;
+  text-shadow: 0 0 120px rgba(245,158,11,.1);
+}
+
+.hero h1 span {
+  color: var(--gold);
+  display: block;
+}
+
+.hero-rule {
+  width: 80px;
+  height: 2px;
+  background: var(--gold);
+  margin: 32px auto;
+  opacity: .5;
+}
+
+.hero-hook {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1.2rem, 3vw, 1.7rem);
+  font-weight: 300;
+  color: var(--ink-mid);
+  max-width: 560px;
+  margin: 0 auto 16px;
+  line-height: 1.7;
+}
+
+.hero-hook em {
+  font-style: normal;
+  color: var(--ink);
+}
+
+.hero-sub {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
+  font-size: .65rem;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 56px;
+}
+
+/* SCROLL CUE */
+.scroll-cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: .58rem;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  animation: pulse 2.4s ease-in-out infinite;
+  cursor: pointer;
+}
+
+.scroll-cue::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  opacity: .4;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: .3; }
+  50% { opacity: .8; }
+}
+
+/* DIVIDER */
+.section-divider {
+  max-width: 1040px;
+  margin: 0 auto;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--rule), transparent);
+}
+
+/* TOOLS SECTION */
+.tools-section {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 72px 40px;
+}
+
+.tools-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
+  font-size: .6rem;
+  letter-spacing: .4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 48px;
+  text-align: center;
+  opacity: .7;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: var(--rule-lt);
+}
+
+/* TOOL PANEL */
+.tool-panel {
+  background: var(--deep);
+  padding: 40px;
+  position: relative;
+}
+
+.tool-panel::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+
+.tool-panel.bible::before { background: linear-gradient(to right, var(--gold), transparent); }
+.tool-panel.agent::before { background: linear-gradient(to right, transparent, var(--gold)); }
+
+.tool-number {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
+  font-size: .58rem;
+  letter-spacing: .35em;
+  color: var(--gold);
+  opacity: .5;
+  margin-bottom: 12px;
+}
+
+.tool-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  letter-spacing: .1em;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.tool-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--ink-faint);
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+/* FORM ELEMENTS */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.field-row {
+  display: flex;
+  gap: 8px;
+}
+
+.field-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
+  font-size: .58rem;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 4px;
+}
+
+.field-input {
+  background: var(--surface);
+  border: 1px solid rgba(245,158,11,.15);
+  padding: 12px 16px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color .2s, background .2s;
+  width: 100%;
+}
+
+.field-input::placeholder { color: var(--ink-faint); font-style: italic; }
+.field-input:focus { border-color: var(--gold); background: var(--surface-lt); }
+
+textarea.field-input {
+  min-height: 80px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.tool-btn {
+  background: var(--gold);
+  color: var(--void);
+  border: none;
+  padding: 13px 28px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 600;
+  font-size: .62rem;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .2s, transform .1s;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.tool-btn:hover { background: var(--gold-lt); transform: translateY(-1px); }
+.tool-btn:active { transform: translateY(0); }
+.tool-btn:disabled { background: var(--ink-faint); cursor: default; transform: none; }
+
+/* RESULTS */
+.result-area {
+  margin-top: 24px;
+  min-height: 60px;
+}
+
+.result-card {
+  background: var(--surface);
+  border: 1px solid var(--rule-lt);
+  border-left: 3px solid var(--gold);
+  padding: 20px 20px 16px;
+  animation: fadeUp .35s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.result-ref {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 400;
+  font-size: .6rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.result-verse {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.08rem;
+  line-height: 1.85;
+  color: var(--ink);
+}
+
+.result-response {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--ink-mid);
+}
+
+.result-response strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.loading-dots {
+  display: flex;
+  gap: 6px;
+  padding: 16px 0;
+}
+
+.loading-dots span {
+  width: 6px; height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  animation: dot 1.4s ease-in-out infinite;
+  opacity: .3;
+}
+.loading-dots span:nth-child(2) { animation-delay: .2s; }
+.loading-dots span:nth-child(3) { animation-delay: .4s; }
+
+@keyframes dot {
+  0%, 80%, 100% { opacity: .2; transform: scale(.8); }
+  40% { opacity: 1; transform: scale(1); }
+}
+
+.error-msg {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: .65rem;
+  letter-spacing: .15em;
+  color: var(--danger);
+  padding: 12px 0;
+}
+
+/* TERMS SECTION */
+.terms-section {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 72px 40px;
+}
+
+.terms-header {
+  margin-bottom: 48px;
+}
+
+.terms-header h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  letter-spacing: .1em;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+
+.terms-header p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ink-mid);
+  max-width: 560px;
+  line-height: 1.7;
+}
+
+.terms-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  background: var(--rule-lt);
+}
+
+.term-card {
+  background: var(--deep);
+  padding: 32px 28px;
+  position: relative;
+  transition: background .2s;
+}
+
+.term-card:hover { background: var(--surface); }
+
+.term-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity .2s;
+}
+
+.term-card:hover::before { opacity: 1; }
+
+.term-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: .1em;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.term-pos {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
+  font-size: .55rem;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 14px;
+}
+
+.term-def {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.term-addendum {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: .95rem;
+  color: var(--ink-mid);
+  line-height: 1.75;
+}
+
+/* APP TEASER */
+.app-section {
+  background: var(--surface);
+  border-top: 1px solid var(--rule-lt);
+  border-bottom: 1px solid var(--rule-lt);
+  padding: 72px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.app-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+
+.app-section-inner {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.app-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
+  font-size: .6rem;
+  letter-spacing: .42em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: .7;
+  margin-bottom: 20px;
+}
+
+.app-section h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  letter-spacing: .1em;
+  color: var(--ink);
+  margin-bottom: 20px;
+  line-height: 1;
+}
+
+.app-section p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ink-mid);
+  line-height: 1.75;
+  margin-bottom: 32px;
+}
+
+/* YouTube placeholder */
+.video-placeholder {
+  background: var(--void);
+  border: 1px solid var(--rule);
+  aspect-ratio: 16/9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 32px;
+  cursor: default;
+}
+
+.video-icon {
+  width: 64px; height: 64px;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: .4;
+}
+
+.video-icon svg { margin-left: 4px; }
+
+.video-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
+  font-size: .6rem;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.notify-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.notify-form input {
+  background: var(--deep);
+  border: 1px solid var(--rule);
+  border-bottom: none;
+  padding: 13px 18px;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color .2s;
+}
+
+.notify-form input::placeholder { color: var(--ink-faint); }
+.notify-form input:focus { border-color: var(--gold); }
+
+.notify-form button {
+  background: var(--gold);
+  color: var(--void);
+  border: none;
+  padding: 13px 24px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 600;
+  font-size: .62rem;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .2s;
+}
+
+.notify-form button:hover { background: var(--gold-lt); }
+
+.notify-note {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: .55rem;
+  letter-spacing: .18em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+.notify-success {
+  display: none;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--gold);
+  padding: 12px 0;
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--rule-lt);
+  padding: 40px;
+  max-width: 1040px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: .1em;
+  color: var(--gold);
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+
+.footer-links a {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
+  font-size: .58rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  text-decoration: none;
+  transition: color .2s;
+}
+
+.footer-links a:hover { color: var(--gold); }
+
+.footer-copy {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: .55rem;
+  letter-spacing: .16em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  width: 100%;
+}
+
+/* FADE IN */
+.fade-in { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .hero { padding: 100px 20px 60px; }
+  .tools-section, .terms-section { padding: 56px 20px; }
+  .tools-grid, .terms-grid { grid-template-columns: 1fr; }
+  .tool-panel { padding: 28px 20px; }
+  .app-section { padding: 56px 20px; }
+  footer { padding: 32px 20px; }
+}
+</style>
+</head>
+<body dir="ltr" spellcheck="false" style="direction: ltr; min-height: 901px;" data-new-gr-c-s-check-loaded="14.1134.0" data-gr-ext-installed="" data-new-gr-c-s-loaded="14.1134.0">
+
+<nav>
+  <a class="nav-brand" href="#">Before Ruin</a>
+  <ul class="nav-links">
+    <li><a href="#tools">The Tools</a></li>
+    <li><a href="#terms">Key Terms</a></li>
+    <li><a href="#app">The App</a></li>
+    <li><a href="https://www.robertlangan.com" target="_blank" rel="noopener">robertlangan.com</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Before Ruin</div>
+  <h1>Before<span>Ruin.</span></h1>
+  <div class="hero-rule"><br></div>
+  <p class="hero-hook">You already know the words.<br><em>Here is what they actually mean.</em></p>
+  <p class="hero-sub">Direction from the one agency that has never produced the wrong outcome</p>
+  <div class="scroll-cue" onclick="document.getElementById('tools').scrollIntoView({behavior:'smooth'})">
+    Enter
+  </div>
+</section>
+
+<div class="section-divider"><br></div>
+
+<!-- TOOLS -->
+<section class="tools-section" id="tools">
+  <div class="tools-label">Two Ways In</div>
+  <div class="tools-grid">
+
+    <!-- BIBLE LOOKUP -->
+    <div class="tool-panel bible fade-in">
+      <div class="tool-number">01</div>
+      <div class="tool-title">Scripture Lookup</div>
+      <p class="tool-desc">Enter a book and reference. Receive the verse from the King James text.</p>
+
+      <div class="field-group">
+        <div class="field-label">Book</div>
+        <input class="field-input" type="text" id="bible-book" placeholder="e.g. Romans, John, Genesis…" autocomplete="off">
+      </div>
+      <div class="field-group">
+        <div class="field-label">Reference</div>
+        <input class="field-input" type="text" id="bible-ref" placeholder="e.g. 10:2, 3:16, 1:1-3…" autocomplete="off">
+      </div>
+      <button class="tool-btn" onclick="lookupVerse()">Retrieve</button>
+
+      <div class="result-area" id="verse-result"><br></div>
+    </div>
+
+    <!-- AGENT -->
+    <div class="tool-panel agent fade-in">
+      <div class="tool-number">02</div>
+      <div class="tool-title">Ask the Agency</div>
+      <p class="tool-desc">Ask about sin, evil, faith, repentance — or any term whose meaning has been obscured. Receive direction, not argument.</p>
+
+      <div class="field-group">
+        <div class="field-label">Your Question</div>
+        <textarea class="field-input" id="agent-question" placeholder="What is sin? What is evil? What does repentance actually require?…"></textarea>
+      </div>
+      <button class="tool-btn" onclick="askAgent()">Ask</button>
+      <div id="query-counter" style="font-size:0.72rem;color:#5a5248;letter-spacing:0.1em;text-transform:uppercase;margin-top:0.75rem;text-align:right;"></div>
+
+      <div class="result-area" id="agent-result"><br></div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"><br></div>
+
+<!-- KEY TERMS -->
+<section class="terms-section" id="terms">
+  <div class="terms-header fade-in">
+    <div class="tools-label">Key Terms &amp; Concepts</div>
+    <h2>The words you were given<br>were not the whole picture.</h2>
+    <p>These definitions are drawn from observable creation principles — not from institutional theology. Read them slowly. They will not match what you were taught. That is the point.</p>
+  </div>
+
+  <div class="terms-grid">
+
+    <div class="term-card fade-in">
+      <div class="term-name">Faith</div>
+      <div class="term-pos">noun</div>
+      <div class="term-def">The adoption of information, observation, and practice compiled to provide favorable outcomes for past, present, and future events.</div>
+      <div class="term-addendum">Faith operates through direct recognition and mimicry of patterns embedded in creation's framework. The bee gathering nectar does not theorize about pollination — it acts according to creation's design, and systemic benefit follows. Faith is foundational: all subsequent processes rest upon this bedrock of pattern recognition and application.</div>
+    </div>
+
+    <div class="term-card fade-in">
+      <div class="term-name">Sin</div>
+      <div class="term-pos">noun</div>
+      <div class="term-def">Any thought or action whose collateral effect results in an end.</div>
+      <div class="term-addendum">Sin produces entropy — outcomes that terminate with the initiator, creating no generative loops or systemic benefit. Where obedience generates endless reciprocal waves of value, sin creates closed loops: effects stop with the person who initiated them. Sin is the natural consequence of disobedience, the observable result when thoughts or actions defy the frameworks embedded in creation.</div>
+    </div>
+
+    <div class="term-card fade-in">
+      <div class="term-name">Belief</div>
+      <div class="term-pos">verb — past/future tense only</div>
+      <div class="term-def">The compilation of information, observation, and practice through an ongoing process that works toward a favorable outcome.</div>
+      <div class="term-addendum">One who remains in belief never arrives at commitment — always "believed" or "will believe," but never present-tense "believe." Perpetual belief indicates perpetual uncertainty, never crossing the threshold to committed conclusion.</div>
+    </div>
+
+    <div class="term-card fade-in">
+      <div class="term-name">Obedience</div>
+      <div class="term-pos">verb</div>
+      <div class="term-def">Any thought or action that aligns with the frameworks depicted in creation and whose collateral effect follows negentropy.</div>
+      <div class="term-addendum">Obedience is alignment with creation's observable patterns, producing outcomes that benefit both initiator and system indefinitely. This is not blind submission to arbitrary rules but intelligent mimicry of what demonstrably works in creation's design.</div>
+    </div>
+
+    <div class="term-card fade-in">
+      <div class="term-name">Negentropy</div>
+      <div class="term-pos">noun</div>
+      <div class="term-def">A measure of order or complexity in a localized system, representing a decrease in disorder and an increase in benefit for all in the system.</div>
+      <div class="term-addendum">Negentropy describes thoughts or actions that initiate collateral effects without end — generative loops that benefit both initiator and system indefinitely. Negentropy is the signature of obedience to creation's frameworks.</div>
+    </div>
+
+    <div class="term-card fade-in">
+      <div class="term-name">Righteousness</div>
+      <div class="term-pos">noun</div>
+      <div class="term-def">The condition resulting from thoughts and actions that produce systemic benefit beyond the initiator.</div>
+      <div class="term-addendum">Righteousness is not moral superiority but functional alignment with creation's generative patterns. Scripture honors the righteous not for ethical perfection by man's standards but for functional effectiveness by creation's standards: their actions demonstrably generate increasing order, complexity, and shared prosperity.</div>
+    </div>
+
+    <div class="term-card fade-in">
+      <div class="term-name">Disobedience</div>
+      <div class="term-pos">verb</div>
+      <div class="term-def">Any thought or action that defies the frameworks for creation.</div>
+      <div class="term-addendum">Disobedience is the mechanism that produces entropy and sin. It represents defiance of the patterns and principles observable in creation's design — the choice to act contrary to negentropy. Disobedience generates self-terminating effects.</div>
+    </div>
+
+    <div class="term-card fade-in">
+      <div class="term-name">Entropy</div>
+      <div class="term-pos">noun</div>
+      <div class="term-def">Disorder resulting from thoughts or actions that do not benefit or affect anything beyond the receiver or initiator.</div>
+      <div class="term-addendum">In human behavior, entropic actions produce no systemic ripple effects: the benefit stops with the individual, creating no ongoing value for others. The thermal heat generated manifests as physiological stress, anxiety, and bodily tension — the body's response to self-terminating patterns.</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"><br></div>
+
+<!-- APP TEASER -->
+<section class="app-section" id="app">
+  <div class="app-section-inner">
+    <div class="app-label">Coming to iOS</div>
+    <h2>The Full App<br>Is Coming</h2>
+    <p>Before Ruin will be a complete scripture and direction tool — built on the King James text, powered by the agency of Jesus as a configured Anthropic agent. When it launches, this is where it lives.</p>
+
+    <div class="video-placeholder">
+      <div class="video-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="5,3 19,12 5,21" fill="#f59e0b" opacity=".6"></polygon>
+        </svg>
+      </div>
+      <div class="video-label">App walkthrough — coming soon</div>
+    </div>
+
+    <form class="notify-form" action="https://IQIcommunications.us1.list-manage.com/subscribe/post?u=a9b49656570fa7be63ac89978&amp;id=96bd061895&amp;f_id=008cdde4f0" method="post" target="_blank" id="app-notify-form">
+      <input type="text" name="FNAME" placeholder="First name" autocomplete="given-name">
+      <input type="email" name="EMAIL" placeholder="Email — notify me when it launches" required="" autocomplete="email">
+      <button type="submit">Notify Me</button>
+      <div aria-hidden="true" style="position:absolute;left:-5000px;">
+        <input type="text" name="b_a9b49656570fa7be63ac89978_96bd061895" tabindex="-1" value="">
+      </div>
+    </form>
+    <p class="notify-note">No spam · Unsubscribe anytime</p>
+    <div class="notify-success" id="app-notify-success">You will be the first to know.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-brand">Before Ruin</span>
+  <ul class="footer-links">
+    <li><a href="/signup">Stay Informed</a></li>
+    <li><a href="https://www.robertlangan.com" target="_blank" rel="noopener">robertlangan.com</a></li>
+    <li><a href="https://robertlangan.substack.com" target="_blank" rel="noopener">iquestionit</a></li>
+    <li><a href="https://theoriginal.live" target="_blank" rel="noopener">theoriginal.live</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 Robert Langan · Auburn, New York · <a href="https://www.robertlangan.com" style="color:var(--gold);text-decoration:none;">robertlangan.com</a></p>
+</footer>
+<script>
+/* ── Fade-in observer ─────────────────────────────────────── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+/* ── Helpers ──────────────────────────────────────────────── */
+function showLoading(areaId) {
+  document.getElementById(areaId).innerHTML =
+    '<div class="loading-dots"><span></span><span></span><span></span></div>';
+}
+function showError(areaId, msg) {
+  document.getElementById(areaId).innerHTML =
+    `<div class="error-msg">${msg}</div>`;
+}
+
+/* ── Scripture Lookup ─────────────────────────────────────── */
+async function lookupVerse() {
+  const book = document.getElementById('bible-book').value.trim();
+  const ref  = document.getElementById('bible-ref').value.trim();
+  const area = 'verse-result';
+  if (!book || !ref) { showError(area, 'Enter a book and reference.'); return; }
+
+  const btn = document.querySelector('.tool-panel.bible .tool-btn');
+  btn.disabled = true;
+  showLoading(area);
+
+  try {
+    const query    = encodeURIComponent(`${book} ${ref}`);
+    const response = await fetch(`https://bible-api.com/${query}?translation=kjv`);
+    const data     = await response.json();
+    if (!response.ok || data.error) {
+      showError(area, data.error || 'Verse not found. Check the reference and try again.');
+      return;
+    }
+    const verses = data.verses || [];
+    const text   = verses.length
+      ? verses.map(v => `<span style="opacity:.5;font-size:.85em;">${v.verse} </span>${v.text.trim()}`).join(' ')
+      : data.text || '';
+    document.getElementById(area).innerHTML = `
+      <div class="result-card">
+        <div class="result-ref">${data.reference}</div>
+        <div class="result-verse">${text}</div>
+      </div>`;
+  } catch (err) {
+    showError(area, 'Could not reach the scripture service. Check your connection.');
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+/* ── Query counter ────────────────────────────────────────── */
+function updateQueryCounter(remaining) {
+  const el = document.getElementById('query-counter');
+  if (!el) return;
+  const token = localStorage.getItem('br_token');
+  if (token) { el.textContent = ''; return; } // hide for signed-in users
+  if (remaining <= 0) {
+    el.innerHTML = 'Free queries used · <a href="/subscribe" style="color:var(--gold)">Upgrade</a>';
+  } else {
+    el.textContent = remaining + ' of 10 free ' + (remaining === 1 ? 'query' : 'queries') + ' remaining';
+  }
+}
+
+/* ── Ask the Agency ───────────────────────────────────────── */
+async function askAgent() {
+  const question = document.getElementById('agent-question').value.trim();
+  const area     = 'agent-result';
+  if (!question) { showError(area, 'Enter a question.'); return; }
+
+  const btn = document.querySelector('.tool-panel.agent .tool-btn');
+  btn.disabled = true;
+  showLoading(area);
+
+  try {
+    const token = localStorage.getItem('br_token') || null;
+    const response = await fetch('/api/agent', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question, token })
+    });
+
+    const data = await response.json();
+    const remaining = response.headers.get('X-Queries-Remaining');
+    if (remaining !== null) updateQueryCounter(parseInt(remaining));
+
+    if (response.status === 429) {
+      const isMonthlyLimit = data.error === 'monthly_limit_reached';
+      const msg = isMonthlyLimit
+        ? 'Monthly limit reached. <a href="/subscribe" style="color:var(--gold)">Upgrade for unlimited access →</a>'
+        : 'You\'ve used your 10 free introductory queries. <a href="/login" style="color:var(--gold)">Sign up free</a> for 15/month — or <a href="/subscribe" style="color:var(--gold)">subscribe</a> for unlimited access.';
+      document.getElementById(area).innerHTML = `<div class="error-msg">${msg}</div>`;
+      updateQueryCounter(0);
+      return;
+    }
+
+    if (!response.ok) {
+      showError(area, data.error || 'The agency is unavailable. Try again shortly.');
+      return;
+    }
+
+    const raw  = data.text || '';
+    const html = raw
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n\n/g, '</p><p>')
+      .replace(/\n/g, '<br>');
+
+    document.getElementById(area).innerHTML = `
+      <div class="result-card">
+        <div class="result-response"><p>${html}</p></div>
+      </div>`;
+  } catch (err) {
+    showError(area, 'Could not reach the agency. Check your connection.');
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+/* ── Enter key support ────────────────────────────────────── */
+document.getElementById('bible-ref').addEventListener('keydown', e => {
+  if (e.key === 'Enter') lookupVerse();
+});
+document.getElementById('agent-question').addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); askAgent(); }
+});
+</script>
+</body></html>
