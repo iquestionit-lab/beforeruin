@@ -1,0 +1,307 @@
+[
+  {
+    "term": "faith",
+    "entry_status": "published",
+    "original_terms": [
+      {
+        "word": "אֱמוּנָה",
+        "transliteration": "emunah",
+        "language": "Hebrew",
+        "strongs": "H530",
+        "meaning_original": "Binding commitment, steadfastness — an active posture of holding to what has been declared. Not internal sentiment evaluated against probability but a demonstrated, body-level commitment to a fixed declaration. The man who built on rock does not re-examine the foundation when the flood comes.",
+        "source": "Strong's H530; Habakkuk 2:4 — 'the just shall live by his emunah'"
+      },
+      {
+        "word": "נֶאֱמָן",
+        "transliteration": "ne'eman",
+        "language": "Hebrew",
+        "strongs": "H539",
+        "meaning_original": "Faithful, established, confirmed — the character of the one whose word is a fixed point. Applied to God: not that he is probable, but that his declaration stands as foundation. The same root as emunah and amen. Faith directed toward a ne'eman God is not a wager — it is resting on something that does not move.",
+        "source": "Strong's H539; Deuteronomy 7:9 — 'the faithful (ne'eman) God, who keeps covenant'; Numbers 12:7 — Moses called faithful in all God's house"
+      },
+      {
+        "word": "πίστις",
+        "transliteration": "pistis",
+        "language": "Greek",
+        "strongs": "G4102",
+        "meaning_original": "Commitment grounded in declared reality — the full weight of oneself resting on what has been established. Not trust (which implies ongoing evaluation and potential revision) but binding to a declaration. Hebrews 11:1 gives the operative definition: pistis is hypostasis — the foundation the weight rests upon. Rooted in πείθω (peitho): to be fully persuaded, having arrived at settled commitment.",
+        "source": "Strong's G4102; Hebrews 11:1 — 'pistis is the hypostasis of things hoped for'; Romans 1:17; Galatians 3:11"
+      },
+      {
+        "word": "ὑπόστασις",
+        "transliteration": "hypostasis",
+        "language": "Greek",
+        "strongs": "G5287",
+        "meaning_original": "That which stands under — a foundation, a substratum, the thing weight rests upon. Hebrews 11:1 uses it to define pistis itself: faith is not a probability being evaluated but the very structure bearing the load. The word was also used for property deeds and legal title — that on which a claim firmly stands. No anxiety lives on a hypostasis; anxiety lives in trust.",
+        "source": "Strong's G5287; Hebrews 11:1 — 'the hypostasis of things hoped for'; Hebrews 3:14; 2 Corinthians 9:4"
+      }
+    ],
+    "drift_points": [
+      {
+        "handoff": "Hebrew → Greek (Septuagint)",
+        "what_changed": "Emunah (binding commitment — a bodily, behavioral posture) rendered as pistis. The Septuagint preserved much of the commitment dimension, but pistis in Greek philosophical usage also carried 'persuasion' and 'conviction,' beginning a slow shift from commitment-to-declaration toward confidence-in-evaluation.",
+        "approximate_period": "3rd–2nd century BCE"
+      },
+      {
+        "handoff": "Greek → Latin (Vulgate)",
+        "what_changed": "Pistis rendered as fides. In Latin, fides carried 'belief in a creed' and 'loyalty to a person' — the commitment dimension survived partially, but the object shifted from declared reality to propositional content. Jerome's translation choices embedded fides in a credal framework.",
+        "approximate_period": "4th century CE"
+      },
+      {
+        "handoff": "Latin → English (Reformation translations)",
+        "what_changed": "'Faith' inherited fides and was increasingly glossed as 'trust' — a word implying ongoing evaluation and revisable confidence. By the 16th century the commitment structure had largely collapsed. Trust allows anxiety; commitment does not. The body knows the difference. Tyndale's 'faith' and later translations treated it as an internal state rather than a binding posture toward declared reality.",
+        "approximate_period": "16th century CE"
+      },
+      {
+        "handoff": "English popular usage → modern 'faith'",
+        "what_changed": "Contemporary usage treats faith as a synonym for belief held without adequate evidence — nearly the opposite of its origin. The original image: a man who has heard a reliable declaration and has staked himself on it. The modern image: someone hoping something is true despite not knowing. The first excludes anxiety. The second produces it.",
+        "approximate_period": "19th–21st century CE"
+      }
+    ],
+    "primary_sources": [
+      "Habakkuk 2:4 (Hebrew — emunah)",
+      "Deuteronomy 7:9 (Hebrew — ne'eman: the faithful God who keeps covenant)",
+      "Numbers 12:7 (Hebrew — ne'eman: Moses faithful in all God's house)",
+      "Romans 1:17 (Greek/Hebrew intertext)",
+      "Hebrews 11:1 (Greek — pistis defined as hypostasis)",
+      "Hebrews 3:14 (Greek — hypostasis)",
+      "Galatians 3:11 (Greek)"
+    ],
+    "research_sources": [
+      "Blue Letter Bible — H530, H539, G4102, G5287",
+      "Sefaria — Habakkuk 2:4; Deuteronomy 7:9",
+      "Perseus Digital Library — πίστις and ὑπόστασις in classical usage",
+      "Liddell–Scott-Jones — ὑπόστασις as property title/legal foundation"
+    ],
+    "before_ruin_article_link": null,
+    "search_aliases": ["emunah", "ne'eman", "pistis", "hypostasis", "belief", "trust", "fides", "faith", "commitment", "foundation", "amen", "faithful"]
+  },
+  {
+    "term": "grace",
+    "entry_status": "published",
+    "original_terms": [
+      {
+        "word": "חֵן",
+        "transliteration": "chen",
+        "language": "Hebrew",
+        "strongs": "H2580",
+        "meaning_original": "Favor shown to the unworthy or vulnerable — a powerful person inclining toward a lesser one. Not earned, not transactional. Often translated 'favor' in older texts.",
+        "source": "Strong's H2580; Genesis 6:8 — 'Noah found chen in the eyes of YHWH'"
+      },
+      {
+        "word": "חֶסֶד",
+        "transliteration": "hesed",
+        "language": "Hebrew",
+        "strongs": "H2617",
+        "meaning_original": "Steadfast lovingkindness, covenant loyalty. Often paired with emunah. An active, relentless commitment to those bound in covenant. Not sentiment — obligation fulfilled beyond obligation.",
+        "source": "Strong's H2617; Psalm 136 (every verse); Micah 6:8"
+      },
+      {
+        "word": "χάρις",
+        "transliteration": "charis",
+        "language": "Greek",
+        "strongs": "G5485",
+        "meaning_original": "Gift, goodwill, favor freely bestowed — something given without exchange. In classical Greek, charis included the beauty that prompts a gift and the gratitude it generates. In the New Testament, the emphasis is on the unmerited giving.",
+        "source": "Strong's G5485; John 1:14; Ephesians 2:8–9; Luke 2:52"
+      }
+    ],
+    "drift_points": [
+      {
+        "handoff": "Hebrew chen/hesed → Greek charis (Septuagint)",
+        "what_changed": "Two distinct Hebrew concepts — chen (favor) and hesed (covenant loyalty) — both rendered into charis. The covenant-loyalty dimension of hesed became less visible.",
+        "approximate_period": "3rd–2nd century BCE"
+      },
+      {
+        "handoff": "Greek charis → Latin gratia",
+        "what_changed": "Gratia carried 'pleasing quality' and 'thankfulness' in classical Latin. The active gift-giving dimension diluted into a quality the recipient possesses ('graciousness').",
+        "approximate_period": "4th century CE"
+      },
+      {
+        "handoff": "Latin gratia → English 'grace'",
+        "what_changed": "Grace absorbed theological specialization. By the Reformation it had become primarily a technical term in soteriology (how one is saved), losing the relational and covenantal texture of chen and hesed.",
+        "approximate_period": "16th–17th century CE"
+      }
+    ],
+    "primary_sources": [
+      "Genesis 6:8 (Hebrew — chen)",
+      "Psalm 136 (Hebrew — hesed)",
+      "John 1:14 (Greek — charis)",
+      "Ephesians 2:8 (Greek)",
+      "Micah 6:8 (Hebrew)"
+    ],
+    "research_sources": [
+      "Blue Letter Bible — H2580, H2617, G5485",
+      "Sefaria — Psalm 136",
+      "Perseus Digital Library — χάρις in classical usage"
+    ],
+    "before_ruin_article_link": null,
+    "search_aliases": ["grace", "chen", "hesed", "charis", "gratia", "favor", "lovingkindness", "mercy"]
+  },
+  {
+    "term": "repentance",
+    "entry_status": "published",
+    "original_terms": [
+      {
+        "word": "שׁוּב",
+        "transliteration": "shuv",
+        "language": "Hebrew",
+        "strongs": "H7725",
+        "meaning_original": "To turn, return, change direction — a physical metaphor. The image is someone walking a wrong path who stops, turns, and walks back. Not emotional remorse but directional change.",
+        "source": "Strong's H7725; Isaiah 55:7; Hosea 14:1 — 'Return (shuv), O Israel, to YHWH your God'"
+      },
+      {
+        "word": "μετάνοια",
+        "transliteration": "metanoia",
+        "language": "Greek",
+        "strongs": "G3341",
+        "meaning_original": "Change of mind (nous = mind/understanding). A fundamental reorientation of one's frame of perception — not regret about the past, but a changed way of seeing. Distinct from μεταμέλομαι (metamelomi, G3338), which means to feel regret or remorse.",
+        "source": "Strong's G3341; Matthew 3:2; Acts 2:38; Romans 2:4"
+      }
+    ],
+    "drift_points": [
+      {
+        "handoff": "Hebrew shuv → Greek metanoia (Septuagint)",
+        "what_changed": "Shuv (directional turning) and metanoia (mind-change) are related but not identical. The Septuagint sometimes renders shuv as epistrephō (to turn around) instead. The behavioral-direction emphasis of shuv can get absorbed into the more cognitive metanoia.",
+        "approximate_period": "3rd–2nd century BCE"
+      },
+      {
+        "handoff": "Greek metanoia → Latin paenitentia",
+        "what_changed": "Paenitentia merged metanoia (mind-change) with metamelomi (remorse/regret) into one Latin word. This conflation caused centuries of theological debate and gave rise to the sacrament of Penance — external acts of contrition substituted for internal reorientation.",
+        "approximate_period": "4th century CE"
+      },
+      {
+        "handoff": "Latin paenitentia → English 'repentance'",
+        "what_changed": "'Repentance' carries the emotional register of remorse and sorrow. The original directive (change direction; change your mind) became buried under feeling guilty. Tyndale rendered it 'repentance'; some later translators preferred 'conversion' to recover the directional sense.",
+        "approximate_period": "16th century CE"
+      }
+    ],
+    "primary_sources": [
+      "Hosea 14:1 (Hebrew — shuv)",
+      "Isaiah 55:7 (Hebrew — shuv)",
+      "Matthew 3:2 (Greek — metanoia)",
+      "Acts 2:38 (Greek — metanoia)",
+      "Romans 2:4 (Greek)"
+    ],
+    "research_sources": [
+      "Blue Letter Bible — H7725, G3341, G3338",
+      "Sefaria — Hosea 14:1",
+      "CCEL — Tyndale's New Testament (1526)"
+    ],
+    "before_ruin_article_link": null,
+    "search_aliases": ["repentance", "shuv", "metanoia", "penance", "return", "convert", "conversion", "remorse", "regret", "turn"]
+  },
+  {
+    "term": "sin",
+    "entry_status": "published",
+    "original_terms": [
+      {
+        "word": "חָטָא",
+        "transliteration": "chata",
+        "language": "Hebrew",
+        "strongs": "H2398",
+        "meaning_original": "To miss the mark, to fall short of a standard — an archery term. Also used for a stumble on a path. The standard being missed matters more than the internal guilt. The same word appears in Judges 20:16 for slingers who 'missed not' their target.",
+        "source": "Strong's H2398; Judges 20:16; Genesis 39:9; Psalm 51:4"
+      },
+      {
+        "word": "עָוֹן",
+        "transliteration": "avon",
+        "language": "Hebrew",
+        "strongs": "H5771",
+        "meaning_original": "Iniquity, crookedness, twisting from the path. Where chata is missing a target, avon is a structural bending — a warped character or habitual deviation. Often translated 'iniquity' to distinguish it from chata.",
+        "source": "Strong's H5771; Isaiah 53:6; Psalm 32:5"
+      },
+      {
+        "word": "ἁμαρτία",
+        "transliteration": "hamartia",
+        "language": "Greek",
+        "strongs": "G266",
+        "meaning_original": "Missing the mark, falling short. The same athletic/archery metaphor as chata. In classical Greek, hamartia was also used in literary tragedy for the 'fatal flaw' that brought a hero down — not moral evil but a misjudgment that had consequences.",
+        "source": "Strong's G266; Romans 3:23; 1 John 3:4; Hebrews 12:1"
+      }
+    ],
+    "drift_points": [
+      {
+        "handoff": "Hebrew (multiple words) → Greek hamartia (Septuagint)",
+        "what_changed": "Hebrew had several distinct words for moral failure (chata, avon, pesha, resha). The Septuagint collapsed many of these into hamartia, losing distinctions between 'missing the mark,' 'structural crookedness,' 'transgression,' and 'wickedness.'",
+        "approximate_period": "3rd–2nd century BCE"
+      },
+      {
+        "handoff": "Greek hamartia → Latin peccatum",
+        "what_changed": "Peccatum (from peccare, 'to stumble') carried more of the 'moral fault' sense than the 'missing target' sense. The kinesthetic, directional metaphor weakened.",
+        "approximate_period": "4th century CE"
+      },
+      {
+        "handoff": "Latin peccatum → English 'sin'",
+        "what_changed": "'Sin' in modern usage carries primarily a moral/guilt register — it is about culpability and condemnation. The original image of missing a mark (with implied correction possible) was replaced by a legal verdict. This shift made sin about status (guilty/innocent) rather than direction (off-course/corrected).",
+        "approximate_period": "16th century CE"
+      }
+    ],
+    "primary_sources": [
+      "Judges 20:16 (Hebrew — chata in non-moral context)",
+      "Psalm 51:4 (Hebrew — chata, avon)",
+      "Isaiah 53:6 (Hebrew — avon)",
+      "Romans 3:23 (Greek — hamartano/hamartia)",
+      "1 John 3:4 (Greek)"
+    ],
+    "research_sources": [
+      "Blue Letter Bible — H2398, H5771, G266",
+      "Sefaria — Psalm 51",
+      "Perseus Digital Library — ἁμαρτία in Aristotle's Poetics"
+    ],
+    "before_ruin_article_link": null,
+    "search_aliases": ["sin", "chata", "avon", "hamartia", "iniquity", "transgression", "missing the mark", "fault", "peccatum"]
+  },
+  {
+    "term": "salvation",
+    "entry_status": "published",
+    "original_terms": [
+      {
+        "word": "יְשׁוּעָה",
+        "transliteration": "yeshuah",
+        "language": "Hebrew",
+        "strongs": "H3444",
+        "meaning_original": "Deliverance, rescue, safety, victory — from the verb yasha (H3467, 'to save, rescue, deliver'). Concrete and physical: rescue from enemies, deliverance from danger, preservation of life. The same root as the name Yeshua.",
+        "source": "Strong's H3444; Psalm 27:1; Exodus 15:2; Isaiah 12:2"
+      },
+      {
+        "word": "σωτηρία",
+        "transliteration": "soteria",
+        "language": "Greek",
+        "strongs": "G4991",
+        "meaning_original": "Deliverance, preservation, safety. σωτήρ (soter, G4990) is the deliverer/rescuer. In classical Greek used for rescue from physical danger, disease, and death. In the New Testament, expands to include deliverance from death and judgment — but the physical rescue dimension is foundational, not replaced.",
+        "source": "Strong's G4991; Acts 4:12; Luke 1:69; Philippians 1:28"
+      }
+    ],
+    "drift_points": [
+      {
+        "handoff": "Hebrew yeshuah → Greek soteria (Septuagint)",
+        "what_changed": "The translation was accurate — both words carried 'deliverance/rescue.' However, the concrete, military and physical-rescue register of yeshuah began to abstract into the more generalized soteria framework as Greek theology developed.",
+        "approximate_period": "3rd–2nd century BCE"
+      },
+      {
+        "handoff": "Greek soteria → Latin salus/salvatio",
+        "what_changed": "Salus in Latin also meant 'health' and 'welfare,' which broadened the concept. By Augustine, salvatio became primarily about the eternal state of the soul — the temporal rescue dimension receded.",
+        "approximate_period": "4th–5th century CE"
+      },
+      {
+        "handoff": "Latin salvatio → English 'salvation'",
+        "what_changed": "By the time of English translations, 'salvation' had become almost exclusively an afterlife term — being 'saved' meant going to heaven. The Hebrew yeshuah, which often referred to rescue from present enemies or current danger, was almost entirely eclipsed.",
+        "approximate_period": "16th–17th century CE"
+      }
+    ],
+    "primary_sources": [
+      "Psalm 27:1 (Hebrew — yeshuah)",
+      "Exodus 15:2 (Hebrew — yeshuah, the Song of Moses)",
+      "Isaiah 12:2 (Hebrew — yeshuah)",
+      "Acts 4:12 (Greek — soteria)",
+      "Luke 1:69 (Greek — soteria, the Benedictus)"
+    ],
+    "research_sources": [
+      "Blue Letter Bible — H3444, H3467, G4991, G4990",
+      "Sefaria — Psalm 27",
+      "Perseus Digital Library — σωτηρία in classical texts"
+    ],
+    "before_ruin_article_link": null,
+    "search_aliases": ["salvation", "yeshuah", "soteria", "yasha", "saved", "rescue", "deliver", "deliverance", "soter", "salus"]
+  }
+]
