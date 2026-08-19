@@ -131,9 +131,11 @@ Rule 6 — Separate source types.
 Distinguish between primary sources (scripture, original manuscripts, patristic texts) and research sources (concordances, lexicons, digital reference tools).
 
 Rule 7 — No source data found.
-If no source data was fetched for the query, respond with:
-"No source data retrieved for [term]. Submitted to the research queue."
-Do not speculate. Do not invent citations.
+If no source data was fetched for the query, do NOT refuse or return a queue message. Instead:
+1. Identify the likely theological term in the query from your knowledge of biblical languages.
+2. Answer from your knowledge of attested primary sources — cite them by name, reference, and Strong's number as you would with fetched data.
+3. Note at the end: "Source fetch returned no data for this query — answer drawn from lexical knowledge. Cite original sources directly for verification."
+Do not invent citations. Do not refuse to answer. A response grounded in named primary sources is always better than a queue message.
 
 Rule 8 — Linguistic Gender & Familial Policy Filter.
 Scripture originates within the order of the Divine Family. Every word carries functional gender and familial authority that governs how it must be read. When source data surfaces a term with gender or familial weight, apply this framework:
@@ -172,6 +174,17 @@ Gap-fill function (active where source data leaves genuine ambiguity):
 
 Rule 10 — Purpose of the Believer & Ministry.
 When source data surfaces references to work, ministry, or calling: believers are instructed to transfer the Good News and remain ready to answer — not to build institutional structures that consume the whole heart and soul. Surface drift from this clearly when the data shows it.
+
+Rule 11 — Faith is Commitment, Not Trust.
+When source data concerns faith (emunah / pistis / hypostasis), apply this distinction without exception:
+
+Faith is commitment — the full weight of oneself resting on a declared reality. It is a binding posture, not an ongoing evaluation.
+
+Trust implies revisability: the trusting person retains the option to withdraw confidence if the evidence shifts. Commitment does not. A person who has committed has staked themselves. There is no anxiety in commitment; anxiety lives in trust.
+
+The operative definition is Hebrews 11:1: pistis is hypostasis — the foundation the weight rests upon, not a probability being monitored.
+
+When source material uses "trust" as a gloss for pistis or emunah, name it as a rendering choice and note what the original terms actually carry. Do not reproduce "trust" as the definition. Render faith as commitment to declared reality — sourced from the fetched data.
 
 ## Tone
 
@@ -462,12 +475,25 @@ async function fetchLiveSources(query, mode) {
   } else {
     // word_origin or concept_search
     const STOP_WORDS = new Set([
+      // Grammar
       'is','are','was','were','do','does','did','has','have','had',
       'what','who','where','when','why','how','which','whose',
       'the','a','an','and','or','of','in','on','at','to','for',
       'can','could','would','should','will','shall','may','might',
       'i','you','he','she','it','we','they','me','him','her','us','them',
       'my','your','his','its','our','their','this','that','these','those',
+      // Question-framing words (not the theological subject)
+      'choose','pick','find','show','give','tell','list','explain','define',
+      'look','search','get','use','used','mean','means','meaning','definition',
+      'two','one','three','four','five','few','some','any','many','several',
+      'word','words','term','terms','concept','place','places','instance',
+      'instances','example','examples','time','times','verse','verses',
+      'passage','passages','text','texts','reference','references',
+      // Biblical context words (not the subject being searched)
+      'new','old','testament','bible','scripture','scriptures','biblical',
+      'greek','hebrew','latin','english','original','language','translation',
+      'say','says','said','speak','spoken','written','write','appears',
+      'appear','found','book','books','chapter','chapters',
     ]);
 
     const searchTerms = query

@@ -922,6 +922,31 @@
 
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+
+  <!-- Firebase Analytics -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBI4nInmcefOF5vgq3Q8MBksyZ77Hj42gM",
+      authDomain: "before-ruin-b3744.firebaseapp.com",
+      projectId: "before-ruin-b3744",
+      storageBucket: "before-ruin-b3744.firebasestorage.app",
+      messagingSenderId: "1085925281032",
+      appId: "1:1085925281032:web:4d983e7196b9af476930bd",
+      measurementId: "G-TJYEYC4N88"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+
+    // Expose logEvent globally so search handler can track queries
+    window._logEvent = (name, params) => logEvent(analytics, name, params);
+
+    // Track page view
+    logEvent(analytics, 'page_view', { page_title: 'Before Ruin', page_location: window.location.href });
+  </script>
 </head>
 <body>
 
@@ -1600,8 +1625,11 @@
         if (!res.ok) throw new Error('Search failed');
         const data = await res.json();
         renderResults(data, query);
+        // Track successful search in Analytics
+        if (window._logEvent) window._logEvent('search', { search_term: query, search_mode: mode });
       } catch (err) {
         resultsEl.innerHTML = `<div class="re-no-result">Could not reach the search engine — please try again.</div>`;
+        if (window._logEvent) window._logEvent('search_error', { search_term: query, search_mode: mode });
       }
     }
 
