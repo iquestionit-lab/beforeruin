@@ -413,131 +413,6 @@
     .re-mode-label { font-family: var(--fh); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--P); margin-bottom: 3px; }
     .re-mode-desc { font-family: var(--fb); font-size: 11.5px; line-height: 1.35; color: rgba(248,246,240,.5); }
 
-    /* ── SEARCH RESULTS ── */
-    #re-results { margin-top: 20px; display: none; }
-    #re-results.has-results { display: block; }
-    .re-result-card {
-      border: .5px solid rgba(197,160,89,.3);
-      border-left: 3px solid var(--CR);
-      background: rgba(17,17,17,.25);
-      padding: 18px 20px;
-      margin-bottom: 12px;
-    }
-    .re-result-term {
-      font-family: var(--fh);
-      font-size: 18px;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      color: var(--P);
-      margin-bottom: 14px;
-      padding-bottom: 8px;
-      border-bottom: .5px solid rgba(197,160,89,.2);
-    }
-    .re-result-originals { margin-bottom: 14px; }
-    .re-orig-block {
-      padding: 10px 0;
-      border-bottom: .5px solid rgba(197,160,89,.12);
-    }
-    .re-orig-block:last-child { border-bottom: none; }
-    .re-orig-word {
-      font-family: var(--fb);
-      font-style: italic;
-      font-size: 20px;
-      color: var(--GOl);
-      display: inline;
-    }
-    .re-orig-translit {
-      font-family: var(--fm);
-      font-size: 11px;
-      letter-spacing: .12em;
-      color: var(--GOm);
-      display: inline;
-      margin-left: 10px;
-    }
-    .re-orig-lang {
-      font-family: var(--fm);
-      font-size: 9px;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: rgba(197,160,89,.5);
-      margin-top: 2px;
-      margin-bottom: 5px;
-    }
-    .re-orig-meaning {
-      font-family: var(--fb);
-      font-size: 13px;
-      line-height: 1.55;
-      color: rgba(248,246,240,.8);
-      margin: 5px 0;
-    }
-    .re-orig-source {
-      font-family: var(--fm);
-      font-size: 9.5px;
-      letter-spacing: .1em;
-      color: var(--CR);
-      margin-top: 4px;
-    }
-    .re-drift-section { margin-top: 12px; }
-    .re-drift-label {
-      font-family: var(--fm);
-      font-size: 9px;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: var(--GOm);
-      margin-bottom: 8px;
-    }
-    .re-drift-item {
-      padding: 8px 0 8px 12px;
-      border-left: 2px solid rgba(168,28,28,.4);
-      margin-bottom: 6px;
-    }
-    .re-drift-handoff {
-      font-family: var(--fm);
-      font-size: 10px;
-      letter-spacing: .1em;
-      color: var(--CR);
-      margin-bottom: 3px;
-    }
-    .re-drift-what {
-      font-family: var(--fb);
-      font-size: 12.5px;
-      line-height: 1.5;
-      color: rgba(248,246,240,.7);
-    }
-    .re-drift-period {
-      font-family: var(--fm);
-      font-size: 9px;
-      color: rgba(197,160,89,.5);
-      margin-top: 3px;
-    }
-    .re-no-result {
-      font-family: var(--fb);
-      font-style: italic;
-      font-size: 13px;
-      color: rgba(248,246,240,.5);
-      padding: 16px 0;
-      text-align: center;
-    }
-    .re-result-sources {
-      margin-top: 12px;
-      padding-top: 10px;
-      border-top: .5px solid rgba(197,160,89,.15);
-    }
-    .re-result-sources-label {
-      font-family: var(--fm);
-      font-size: 9px;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--GOm);
-      margin-bottom: 5px;
-    }
-    .re-result-sources-list {
-      font-family: var(--fm);
-      font-size: 10px;
-      color: rgba(197,160,89,.6);
-      line-height: 1.7;
-    }
-
     /* How it differs bar */
     .re-differs {
       background: rgba(197,160,89,.06);
@@ -835,88 +710,7 @@
     @media (max-width: 600px) {
       .prep-grid { grid-template-columns: repeat(2, 1fr); }
     }
-  
-    /* ── Result card: markdown rendering ───────────────────── */
-    .re-result-card-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 12px;
-      padding-bottom: 10px;
-      border-bottom: .5px solid rgba(197,160,89,.15);
-    }
-    .re-result-brand {
-      font-family: var(--fh);
-      font-size: 10px;
-      letter-spacing: .2em;
-      color: rgba(197,160,89,.55);
-      flex: 1;
-    }
-    .re-copy-btn {
-      background: none;
-      border: .5px solid rgba(197,160,89,.3);
-      color: rgba(197,160,89,.7);
-      font-family: var(--fm);
-      font-size: 9px;
-      letter-spacing: .1em;
-      padding: 4px 10px;
-      cursor: pointer;
-      transition: border-color .15s, color .15s;
-    }
-    .re-copy-btn:hover { border-color: var(--GO); color: var(--GO); }
-    .re-result-body h1, .re-result-body h2, .re-result-body h3 {
-      font-family: var(--fh);
-      letter-spacing: .06em;
-      color: var(--P);
-      margin: 16px 0 6px;
-      font-weight: normal;
-      text-transform: uppercase;
-    }
-    .re-result-body h1 { font-size: 15px; display: none; } /* term shown in .re-result-term */
-    .re-result-body h2 { font-size: 11px; color: var(--GO); letter-spacing: .18em; }
-    .re-result-body h3 { font-size: 10px; color: rgba(197,160,89,.7); letter-spacing: .15em; }
-    .re-result-body p {
-      font-family: var(--fb);
-      font-size: 14px;
-      line-height: 1.75;
-      color: rgba(248,246,240,.88);
-      margin-bottom: 12px;
-    }
-    .re-result-body strong { color: var(--P); font-weight: 600; }
-    .re-result-body em { color: var(--GOl); font-style: italic; }
-    .re-result-body ul, .re-result-body ol {
-      padding-left: 18px;
-      margin-bottom: 12px;
-    }
-    .re-result-body li {
-      font-family: var(--fb);
-      font-size: 13.5px;
-      line-height: 1.65;
-      color: rgba(248,246,240,.82);
-      margin-bottom: 4px;
-    }
-    .re-result-body hr {
-      border: none;
-      border-top: .5px solid rgba(197,160,89,.2);
-      margin: 14px 0;
-    }
-    .re-result-body blockquote {
-      border-left: 3px solid var(--CR);
-      padding-left: 14px;
-      margin: 10px 0;
-      color: rgba(248,246,240,.7);
-      font-style: italic;
-    }
-    .re-result-body code {
-      font-family: var(--fm);
-      font-size: 11.5px;
-      color: var(--GOl);
-      background: rgba(197,160,89,.08);
-      padding: 1px 5px;
-    }
-
-</style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+  </style>
 </head>
 <body>
 
@@ -930,7 +724,7 @@
         <span class="ticker-text">
           THE WORDS HAVE NOT CHANGED. YOUR UNDERSTANDING OF THEM HAS.
           &nbsp;&nbsp;⬥&nbsp;&nbsp;
-          FAITH IS NOT A FEELING. IT IS A COMMITMENT THE BODY RESTS UPON.
+          FAITH IS NOT A FEELING. IT IS STRUCTURED TRUST THAT MOVES THE BODY.
           &nbsp;&nbsp;⬥&nbsp;&nbsp;
           NEW: PREPOSITIONS — THE SMALL WORDS THAT CHANGE EVERYTHING.
           &nbsp;&nbsp;⬥&nbsp;&nbsp;
@@ -953,7 +747,7 @@
         <a href="#">Essays</a>
       </div>
       <div class="live-pill"><span class="live-dot"></span>LIVE EDITION</div>
-      <div id="nav-date" style="font-family:var(--fm);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--INKs);">Thur. — July 30, 2026</div>
+      <div style="font-family:var(--fm);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--INKs);">Thur. — July 30, 2026</div>
     </div>
     <div class="mast-center">
       <div class="mast-eyebrow">The Lexicon of Recovered Truth</div>
@@ -963,7 +757,7 @@
     <div class="mast-subbar">
       <span class="msb-l">Vol. I &nbsp;·&nbsp; No. 4 &nbsp;·&nbsp; Current Dispensation</span>
       <span class="msb-c">The Sole Sovereign Truth</span>
-      <span id="updated-date" class="msb-r">Updated: July 30, 2026</span>
+      <span class="msb-r">Updated: July 30, 2026</span>
     </div>
   </header>
 
@@ -1049,26 +843,11 @@
     <!-- RIGHT: URGENT NOTICES -->
     <aside class="col-sidebar">
       <div class="sb-section">
-        <div class="sb-head">Bible Lookup</div>
+        <div class="sb-head">Lookup</div>
         <div style="border:.5px solid var(--GO);padding:13px;background:var(--P);">
-          <div style="font-family:var(--fm);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--GOm);margin-bottom:8px;">Enter a verse or reference</div>
-          <input id="bl-input" type="text" placeholder="e.g. John 3:16 · Romans 10:17…"
-            style="width:100%;background:var(--PD);border:none;border-bottom:1px solid var(--GO);padding:8px 10px;font-family:var(--fm);font-size:13px;color:var(--INK);outline:none;margin-bottom:8px;box-sizing:border-box;">
-          <select id="bl-version"
-            style="width:100%;background:var(--PD);border:none;border-bottom:1px solid var(--GO);padding:8px 10px;font-family:var(--fm);font-size:11px;color:var(--INK);outline:none;margin-bottom:8px;box-sizing:border-box;letter-spacing:.04em;cursor:pointer;">
-            <option value="kjv">KJV — King James Version</option>
-            <option value="ylt">YLT — Young's Literal Translation</option>
-            <option value="web">WEB — World English Bible</option>
-            <option value="darby">Darby Translation</option>
-            <option value="bbe">BBE — Bible in Basic English</option>
-          </select>
-          <button id="bl-btn" style="width:100%;background:var(--CR);color:var(--WH);border:none;padding:9px;font-family:var(--fm);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;">Retrieve →</button>
-          <div id="bl-result" style="display:none;margin-top:12px;border-top:1px solid var(--GO);padding-top:10px;">
-            <div id="bl-ref" style="font-family:var(--fm);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--GO);margin-bottom:6px;"></div>
-            <div id="bl-text" style="font-family:Georgia,serif;font-size:12.5px;line-height:1.7;color:var(--INK);font-style:italic;"></div>
-            <a id="bl-bglink" href="#" target="_blank" style="display:inline-block;margin-top:8px;font-family:var(--fm);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--GO);text-decoration:none;">Full chapter → Bible Gateway ↗</a>
-          </div>
-          <div id="bl-error" style="display:none;margin-top:10px;font-family:var(--fm);font-size:10px;color:var(--CR);letter-spacing:.1em;text-transform:uppercase;"></div>
+          <div style="font-family:var(--fm);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--GOm);margin-bottom:8px;">Enter a term or reference</div>
+          <input type="text" placeholder="e.g. 'spirit' or Rom 10:17…" style="width:100%;background:var(--PD);border:none;border-bottom:1px solid var(--GO);padding:8px 10px;font-family:var(--fm);font-size:13px;color:var(--INK);outline:none;margin-bottom:8px;">
+          <button style="width:100%;background:var(--CR);color:var(--WH);border:none;padding:9px;font-family:var(--fm);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;">Retrieve →</button>
         </div>
       </div>
       <div class="sb-section">
@@ -1189,7 +968,6 @@
         </div>
 
         <!-- Search counter -->
-        <div style="font-family:var(--fm);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(197,160,89,.5);margin-bottom:6px;">⬩ Monthly search quota</div>
         <div class="re-counter" id="re-counter">
           <span id="re-counter-text">6 of 8 free searches remaining this month</span>
           <div class="re-counter-bar"><div class="re-counter-fill" id="re-counter-fill" style="width:75%"></div></div>
@@ -1221,27 +999,24 @@
 
         <div style="font-family:var(--fm);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--GOm);margin-bottom:10px;">Search mode</div>
         <div class="re-modes">
-          <div class="re-mode" data-mode="passage">
+          <div class="re-mode active">
             <div class="re-mode-icon">§</div>
             <div class="re-mode-label">Passage</div>
             <div class="re-mode-desc">Enter a reference — receive decoded original language</div>
           </div>
-          <div class="re-mode active" data-mode="term">
+          <div class="re-mode">
             <div class="re-mode-icon">λ</div>
             <div class="re-mode-label">Term</div>
             <div class="re-mode-desc">Look up a word and its recovered meaning</div>
           </div>
-          <div class="re-mode" data-mode="question">
+          <div class="re-mode">
             <div class="re-mode-icon">?</div>
             <div class="re-mode-label">Question</div>
             <div class="re-mode-desc">Ask plainly — receive the textual answer</div>
           </div>
         </div>
 
-        <!-- Results panel -->
-        <div id="re-results"></div>
-
-        <div class="re-differs" id="re-differs-panel">
+        <div class="re-differs">
           <div class="re-differs-label">⬩ What makes this different</div>
           <p class="re-differs-text">Every standard Bible search returns the translated text. <strong>This returns what the translated text was translated from</strong> — and flags where the translation introduced the drift.</p>
         </div>
@@ -1491,76 +1266,20 @@
     }
 
     function updateCounter(used, limit) {
-      // Counter hidden — no paywall active
+      const remaining = Math.max(0, limit - used);
+      const pct = Math.min(100, (used / limit) * 100);
       const counter = document.getElementById('re-counter');
-      if (counter) counter.style.display = 'none';
+      document.getElementById('re-counter-text').textContent =
+        remaining === 0
+          ? 'Monthly limit reached — subscribe to continue'
+          : `${remaining} of ${limit} free searches remaining this month`;
+      document.getElementById('re-counter-fill').style.width = pct + '%';
+      counter.classList.toggle('warn', remaining <= 2);
     }
 
     function hideCounter() {
       const c = document.getElementById('re-counter');
       if (c) c.style.display = 'none';
-    }
-
-    // ── SCRIPTSEARCH — AI ENGINE ───────────────────────────
-    const SS_ENDPOINT = 'https://us-central1-before-ruin-b3744.cloudfunctions.net/search';
-
-    const MODE_MAP = {
-      'passage':  'passage_search',
-      'term':     'word_origin',
-      'question': 'concept_search'
-    };
-
-    function scoreMatch(term, q) {
-      // kept for legacy — not called by new engine
-      return 0;
-    }
-
-    function renderResults(data, query) {
-      const el = document.getElementById('re-results');
-      const differsPanel = document.getElementById('re-differs-panel');
-
-      // Render markdown to HTML
-      const answerHtml = (typeof marked !== 'undefined')
-        ? marked.parse(data.answer || '')
-        : data.answer.split(/\n\n+/).map(p => `<p>${p.replace(/\n/g,'<br>')}</p>`).join('');
-
-      const sourceChips = (data.sources && data.sources.length)
-        ? `<div style="margin-top:16px;padding-top:14px;border-top:.5px solid rgba(197,160,89,.2);">
-            <div class="re-result-sources-label">⬩ Primary Sources</div>
-            <div class="re-result-sources-list">${data.sources.join(' · ')}</div>
-           </div>`
-        : '';
-
-      el.innerHTML = `
-        <div class="re-result-card">
-          <div class="re-result-card-header">
-            <img src="/favicon-192x192.png" alt="" style="width:20px;height:20px;opacity:.8;border-radius:3px;">
-            <span class="re-result-brand">SCRIPTSEARCH · ORIGINAL FREQUENCY</span>
-            <button class="re-copy-btn" onclick="copyResult(this)">⎘ COPY</button>
-          </div>
-          <div class="re-result-term">${query}</div>
-          <div class="re-result-body">${answerHtml}</div>
-          ${sourceChips}
-        </div>`;
-
-      el.classList.add('has-results');
-      differsPanel.style.display = 'none';
-    }
-
-    function copyResult(btn) {
-      const card = btn.closest('.re-result-card');
-      const term = card.querySelector('.re-result-term');
-      const body = card.querySelector('.re-result-body');
-      const sources = card.querySelector('.re-result-sources-list');
-      const lines = [];
-      if (term) lines.push(term.textContent.trim().toUpperCase(), '');
-      if (body) lines.push(body.innerText.trim(), '');
-      if (sources) lines.push('Primary Sources: ' + sources.textContent.trim());
-      lines.push('', 'ScriptSearch · Original Frequency Holdings · beforeruin.app');
-      navigator.clipboard.writeText(lines.join('\n')).then(() => {
-        btn.textContent = '✓ COPIED';
-        setTimeout(() => btn.textContent = '⎘ COPY', 2000);
-      });
     }
 
     // Hook the search button
@@ -1573,30 +1292,35 @@
       const query = document.querySelector('.re-search-input').value.trim();
       if (!query) return;
 
-      // Track usage (counter informational only — no gate)
-      searchesUsed++;
-      localStorage.setItem('br_searches_used', searchesUsed);
-      updateCounter(searchesUsed, FREE_LIMIT);
-
-      // Show loading state
-      const resultsEl = document.getElementById('re-results');
-      resultsEl.innerHTML = `<div class="re-no-result" style="font-style:normal;font-family:var(--fm);font-size:10px;letter-spacing:.15em;">SEARCHING THE SOURCES…</div>`;
-      resultsEl.classList.add('has-results');
-      document.getElementById('re-differs-panel').style.display = 'none';
-
-      const mode = MODE_MAP[currentMode()] || 'word_origin';
+      const token = localStorage.getItem('br_token');
+      const headers = { 'Content-Type': 'application/json' };
+      if (token) headers['Authorization'] = 'Bearer ' + token;
 
       try {
-        const res = await fetch(SS_ENDPOINT, {
+        const res  = await fetch(API + '/search', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ q: query, mode })
+          headers,
+          body: JSON.stringify({ query, mode: currentMode() })
         });
-        if (!res.ok) throw new Error('Search failed');
         const data = await res.json();
-        renderResults(data, query);
+
+        if (res.status === 429) {
+          openModal('paywall-modal');
+          return;
+        }
+
+        if (data.allowed) {
+          searchesUsed++;
+          localStorage.setItem('br_searches_used', searchesUsed);
+          if (data.remaining !== null) updateCounter(FREE_LIMIT - data.remaining, FREE_LIMIT);
+          // TODO: display data.results when search engine is wired
+        }
       } catch (err) {
-        resultsEl.innerHTML = `<div class="re-no-result">Could not reach the search engine — please try again.</div>`;
+        // Backend not yet deployed — demo mode: track locally only
+        searchesUsed++;
+        localStorage.setItem('br_searches_used', searchesUsed);
+        updateCounter(searchesUsed, FREE_LIMIT);
+        if (searchesUsed >= FREE_LIMIT) openModal('paywall-modal');
       }
     }
 
@@ -1623,71 +1347,6 @@
         document.querySelector('.re-search-input').focus();
       });
     });
-
-
-    // Bible Lookup — inline verse fetch via bible-api.com (no key, CORS-open, public domain translations)
-    (function() {
-      const btn     = document.getElementById('bl-btn');
-      const input   = document.getElementById('bl-input');
-      const ver     = document.getElementById('bl-version');
-      const result  = document.getElementById('bl-result');
-      const refEl   = document.getElementById('bl-ref');
-      const textEl  = document.getElementById('bl-text');
-      const bgLink  = document.getElementById('bl-bglink');
-      const errEl   = document.getElementById('bl-error');
-      if (!btn) return;
-
-      const BG_VERSION_MAP = { kjv:'KJV', ylt:'YLT', web:'WEB', darby:'DARBY', bbe:'BBE' };
-
-      function doLookup() {
-        const ref = input.value.trim();
-        if (!ref) return;
-        const version = ver.value;
-        btn.textContent = 'Retrieving…';
-        btn.disabled = true;
-        result.style.display = 'none';
-        errEl.style.display = 'none';
-
-        const url = 'https://bible-api.com/' + encodeURIComponent(ref) + '?translation=' + version;
-        fetch(url)
-          .then(r => r.json())
-          .then(data => {
-            if (data.error) throw new Error(data.error);
-            refEl.textContent = data.reference + ' · ' + (data.translation_name || version.toUpperCase());
-            textEl.textContent = data.text.trim();
-            const bgRef = encodeURIComponent(data.reference);
-            const bgVer = BG_VERSION_MAP[version] || 'KJV';
-            bgLink.href = 'https://www.biblegateway.com/passage/?search=' + bgRef + '&version=' + bgVer;
-            result.style.display = 'block';
-          })
-          .catch(err => {
-            errEl.textContent = 'Reference not found — try "John 3:16" or "Romans 10:17"';
-            errEl.style.display = 'block';
-          })
-          .finally(() => {
-            btn.textContent = 'Retrieve →';
-            btn.disabled = false;
-          });
-      }
-
-      btn.addEventListener('click', doLookup);
-      input.addEventListener('keydown', function(e) { if (e.key === 'Enter') doLookup(); });
-    })();
-
-    // Dynamic date — updates on each page load
-    (function() {
-      const days = ['Sun.','Mon.','Tue.','Wed.','Thur.','Fri.','Sat.'];
-      const months = ['January','February','March','April','May','June',
-                      'July','August','September','October','November','December'];
-      const now = new Date();
-      const dayStr = days[now.getDay()];
-      const dateStr = months[now.getMonth()] + ' ' + now.getDate() + ', ' + now.getFullYear();
-      const navDate = document.getElementById('nav-date');
-      const updatedDate = document.getElementById('updated-date');
-      if (navDate) navDate.textContent = dayStr + ' — ' + dateStr;
-      if (updatedDate) updatedDate.textContent = 'Updated: ' + dateStr;
-    })();
-
   </script>
 
 </body>

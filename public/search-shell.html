@@ -1,0 +1,49 @@
+<!--
+  ScriptSearch — Native Search Shell
+  Original Frequency Holdings
+
+  This is the minimum HTML structure the search client expects.
+  Drop these elements into the Before Ruin index.html at the Recovery Engine section.
+  IDs must match the SELECTORS in search-client.js exactly.
+-->
+
+<!-- Search Form -->
+<form id="scriptsearch-form" autocomplete="off">
+  <input
+    id="scriptsearch-input"
+    type="text"
+    placeholder="Enter a word, concept, or passage reference…"
+    aria-label="Search term"
+    spellcheck="false"
+  />
+
+  <select id="scriptsearch-mode" aria-label="Search mode">
+    <option value="word_origin">Word Origin</option>
+    <option value="concept_search">Concept Search</option>
+    <option value="passage_search">Passage Search</option>
+  </select>
+
+  <button type="submit">Search</button>
+</form>
+
+<!-- Loading State -->
+<div id="scriptsearch-loading" style="display:none;" aria-live="polite">
+  Searching the sources…
+</div>
+
+<!-- Error State -->
+<div id="scriptsearch-error" style="display:none;" role="alert"></div>
+
+<!-- Results -->
+<div id="scriptsearch-results" style="display:none;">
+  <div id="scriptsearch-answer"></div>
+  <div id="scriptsearch-sources" style="display:none;"></div>
+</div>
+
+<!-- Load the client (place before closing </body>) -->
+<!-- Set endpoint before loading the script -->
+<script>
+  window.SCRIPTSEARCH_ENDPOINT =
+    "https://us-central1-before-ruin-b3744.cloudfunctions.net/search";
+</script>
+<script src="/search-client.js"></script>
