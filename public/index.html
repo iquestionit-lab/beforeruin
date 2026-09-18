@@ -943,7 +943,34 @@
       padding: 1px 5px;
     }
 
-</style>
+
+    /* ── BIBLE LOOKUP BAND ── */
+    .bl-band{background:var(--PD);border-top:2px solid var(--INK);border-bottom:2px solid var(--INK);padding:28px 20px}
+    .bl-inner{max-width:900px;margin:0 auto}
+    .bl-kicker{font-family:var(--fm);font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--CR);text-align:center;margin-bottom:7px}
+    .bl-hed{font-family:var(--fd);font-size:clamp(20px,3.1vw,29px);font-weight:700;line-height:1.16;text-align:center;margin-bottom:5px}
+    .bl-sub{font-family:var(--fs);font-size:15.5px;font-style:italic;color:var(--INKs);text-align:center;margin:0 auto 18px;max-width:560px}
+    .bl-row{display:grid;grid-template-columns:1fr 215px 155px;gap:8px}
+    @media (max-width:760px){ .bl-row{grid-template-columns:1fr} .bl-band{padding:22px 16px} }
+
+    /* ── RECOVERY ENGINE DOOR ── */
+    .rx-door{background:var(--INK);color:var(--P);padding:44px 20px;border-top:3px solid var(--CR)}
+    .rx-inner{max-width:840px;margin:0 auto;text-align:center}
+    .rx-k{font-family:var(--fm);font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--GO);margin-bottom:11px}
+    .rx-h{font-family:var(--fd);font-size:clamp(23px,3.6vw,34px);font-weight:700;line-height:1.16;margin-bottom:13px}
+    .rx-h em{font-style:italic;color:var(--GOl)}
+    .rx-p{font-family:var(--fb);font-size:16.5px;line-height:1.6;color:rgba(248,246,240,.7);max-width:640px;margin:0 auto 24px}
+    .rx-doors{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:28px;text-align:left}
+    .rx-door-card{border:1px solid rgba(197,160,89,.3);padding:15px}
+    .rx-dc-i{font-family:var(--fb);font-style:italic;font-size:17px;color:var(--GO)}
+    .rx-dc-t{font-family:var(--fh);font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin:5px 0 5px}
+    .rx-dc-d{font-family:var(--fb);font-size:13.5px;line-height:1.42;color:rgba(248,246,240,.52)}
+    .rx-cta{display:inline-block;background:var(--CR);color:var(--WH);font-family:var(--fh);font-size:13px;letter-spacing:.2em;text-transform:uppercase;padding:16px 36px;text-decoration:none;transition:.15s}
+    .rx-cta:hover{background:var(--CRL)}
+    .rx-foot{font-family:var(--fm);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(197,160,89,.55);margin-top:15px}
+    .rx-foot a{text-decoration:none}
+    @media (max-width:760px){ .rx-doors{grid-template-columns:1fr} .rx-door{padding:34px 16px} }
+  </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
 
   <!-- Firebase Analytics -->
@@ -997,11 +1024,11 @@
   <header class="masthead">
     <div class="mast-nav">
       <div>
-        <a href="#">Terms</a>
-        <a href="#">Scripture</a>
-        <a href="#">Prepositions</a>
-        <a href="#">Misconceptions</a>
-        <a href="#">Essays</a>
+        <a href="/search.html">The Recovery Engine</a>
+        <a href="/sources.html">Read With Me</a>
+        <a href="/texts.html">The Witnesses</a>
+        <a href="/method.html">The Method</a>
+        <a href="/her.html">She Is Working</a>
       </div>
       <div class="live-pill"><span class="live-dot"></span>LIVE EDITION</div>
       <div id="nav-date" style="font-family:var(--fm);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--INKs);">Thur. — July 30, 2026</div>
@@ -1021,6 +1048,35 @@
   <!-- HERO BAND -->
   <div class="hero-band">
     <p class="hero-claim">You already know the words. <strong>Here is what they actually mean.</strong></p>
+  </div>
+
+
+  <!-- ══ BIBLE LOOKUP — the pew tool, first thing on the page ══ -->
+  <div class="bl-band">
+    <div class="bl-inner">
+      <div class="bl-kicker">⬩ Look up a verse</div>
+      <div class="bl-hed">Somebody just read something aloud.</div>
+      <div class="bl-sub">Type the reference. Read it for yourself, in five translations, before the next point is made.</div>
+      <div class="bl-row">
+        <input id="bl-input" type="text" placeholder="John 3:16"
+          style="background:var(--P);border:1px solid var(--GO);padding:14px;font-family:var(--fm);font-size:15px;color:var(--INK);width:100%;">
+        <select id="bl-version"
+          style="background:var(--P);border:1px solid var(--GO);padding:14px 10px;font-family:var(--fm);font-size:12px;color:var(--INK);width:100%;">
+          <option value="kjv">KJV — King James Version</option>
+          <option value="ylt">YLT — Young's Literal Translation</option>
+          <option value="web">WEB — World English Bible</option>
+          <option value="darby">Darby Translation</option>
+          <option value="bbe">BBE — Bible in Basic English</option>
+        </select>
+        <button id="bl-btn" style="background:var(--CR);color:var(--WH);border:none;padding:14px;font-family:var(--fm);font-size:11px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;">Retrieve →</button>
+      </div>
+      <div id="bl-result" style="display:none;margin-top:16px;border-top:1px solid var(--GO);padding-top:12px;">
+        <div id="bl-ref" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--GOm);margin-bottom:7px;"></div>
+        <div id="bl-text" style="font-family:Georgia,serif;font-size:16px;line-height:1.75;color:var(--INK);font-style:italic;"></div>
+        <a id="bl-bglink" href="#" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-family:var(--fm);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--CR);">Open in Bible Gateway →</a>
+      </div>
+      <div id="bl-error" style="display:none;margin-top:12px;font-family:var(--fm);font-size:10.5px;color:var(--CR);letter-spacing:.1em;text-transform:uppercase;"></div>
+    </div>
   </div>
 
   <!-- ═══ 3-COLUMN CONTENT — the hooks ═══ -->
@@ -1100,29 +1156,6 @@
     <!-- RIGHT: URGENT NOTICES -->
     <aside class="col-sidebar">
       <div class="sb-section">
-        <div class="sb-head">Bible Lookup</div>
-        <div style="border:.5px solid var(--GO);padding:13px;background:var(--P);">
-          <div style="font-family:var(--fm);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--GOm);margin-bottom:8px;">Enter a verse or reference</div>
-          <input id="bl-input" type="text" placeholder="e.g. John 3:16 · Romans 10:17…"
-            style="width:100%;background:var(--PD);border:none;border-bottom:1px solid var(--GO);padding:8px 10px;font-family:var(--fm);font-size:13px;color:var(--INK);outline:none;margin-bottom:8px;box-sizing:border-box;">
-          <select id="bl-version"
-            style="width:100%;background:var(--PD);border:none;border-bottom:1px solid var(--GO);padding:8px 10px;font-family:var(--fm);font-size:11px;color:var(--INK);outline:none;margin-bottom:8px;box-sizing:border-box;letter-spacing:.04em;cursor:pointer;">
-            <option value="kjv">KJV — King James Version</option>
-            <option value="ylt">YLT — Young's Literal Translation</option>
-            <option value="web">WEB — World English Bible</option>
-            <option value="darby">Darby Translation</option>
-            <option value="bbe">BBE — Bible in Basic English</option>
-          </select>
-          <button id="bl-btn" style="width:100%;background:var(--CR);color:var(--WH);border:none;padding:9px;font-family:var(--fm);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;">Retrieve →</button>
-          <div id="bl-result" style="display:none;margin-top:12px;border-top:1px solid var(--GO);padding-top:10px;">
-            <div id="bl-ref" style="font-family:var(--fm);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--GO);margin-bottom:6px;"></div>
-            <div id="bl-text" style="font-family:Georgia,serif;font-size:12.5px;line-height:1.7;color:var(--INK);font-style:italic;"></div>
-            <a id="bl-bglink" href="#" target="_blank" style="display:inline-block;margin-top:8px;font-family:var(--fm);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--GO);text-decoration:none;">Full chapter → Bible Gateway ↗</a>
-          </div>
-          <div id="bl-error" style="display:none;margin-top:10px;font-family:var(--fm);font-size:10px;color:var(--CR);letter-spacing:.1em;text-transform:uppercase;"></div>
-        </div>
-      </div>
-      <div class="sb-section">
         <div class="sb-head">Urgent Notices</div>
         <div class="brief"><div class="brief-kicker">⬥ Correction</div><div class="brief-hed">Believe and Belief are not the same word.</div><p class="brief-body">Verb vs. noun. The verb demands action. The noun describes a structure. James 2 depends entirely on this distinction.</p></div>
         <div class="brief"><div class="brief-kicker">⬥ Dispatch</div><div class="brief-hed">The Spirit is not a feeling — it moves, rushes, departs.</div><p class="brief-body">Samson did not feel the Spirit leave. You cannot say this of something he could see with his eyes.</p></div>
@@ -1173,133 +1206,33 @@
   <!-- ═══════════════════════════════════════════════
        THE RECOVERY ENGINE — PROMINENT, STATIC, BOTTOM
   ═══════════════════════════════════════════════ -->
-  <section class="recovery-engine" id="recovery-engine">
-
-    <div class="re-label-bar">
-      <span class="re-label-title">The Recovery Engine</span>
-      <span class="re-label-meta">Scripture · Terms · Prepositions · Misconceptions</span>
-    </div>
-
-    <div class="re-inner">
-
-      <!-- LEFT: What this is -->
-      <div class="re-explain">
-        <div class="re-eyebrow">⬩ What This Is</div>
-        <h2 class="re-hed">This is not a Bible search. <em>It is a correction engine.</em></h2>
-        <p class="re-body">
-          Enter any passage, word, or question. What you receive is not a concordance listing.
-          It is the <strong>original language behind the translation</strong> — the words the text actually used,
-          what they meant before the drift, and every misconception entry that touches that passage.
-        </p>
-
-        <div class="re-features">
-          <div class="re-feature">
-            <div class="re-feature-dot"></div>
-            <div class="re-feature-text"><strong>Enter a verse</strong> — receive the original-language words with recovered meanings highlighted.</div>
-          </div>
-          <div class="re-feature">
-            <div class="re-feature-dot"></div>
-            <div class="re-feature-text"><strong>Enter a term</strong> — see what it meant before the drift, and every passage where the drift changes the reading.</div>
-          </div>
-          <div class="re-feature">
-            <div class="re-feature-dot"></div>
-            <div class="re-feature-text"><strong>Enter a question</strong> — receive the passage-level answer with prepositions and key terms decoded.</div>
-          </div>
-          <div class="re-feature">
-            <div class="re-feature-dot"></div>
-            <div class="re-feature-text"><strong>Enter a misconception</strong> — "Samson's hair" or "faith without works" — and receive the corrected reading with textual evidence.</div>
-          </div>
+  <!-- ══ THE RECOVERY ENGINE — the door, not the room ══ -->
+  <div class="rx-door">
+    <div class="rx-inner">
+      <div class="rx-k">⬩ The Recovery Engine</div>
+      <div class="rx-h">That verse said something <em>before</em> it said this.</div>
+      <p class="rx-p">Every Bible search returns the translation. This one returns what the translation was made from — and marks the places where the English moved.</p>
+      <div class="rx-doors">
+        <div class="rx-door-card">
+          <div class="rx-dc-i">§</div>
+          <div class="rx-dc-t">Passage</div>
+          <div class="rx-dc-d">You have the reference. Read it in the language it was written in.</div>
         </div>
-
-        <!-- VIDEO PLACEHOLDER -->
-        <div class="video-placeholder">
-          <div class="vp-corner tl"></div>
-          <div class="vp-corner tr"></div>
-          <div class="vp-corner bl"></div>
-          <div class="vp-corner br"></div>
-          <div class="vp-coming">Coming Soon</div>
-          <div class="vp-content">
-            <div class="vp-play-btn">
-              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                <polygon points="7,4 19,11 7,18" fill="#C5A059"/>
-              </svg>
-            </div>
-            <div class="vp-label">Video Explainer</div>
-            <div class="vp-sublabel">A walkthrough of the Recovery Engine — forthcoming</div>
-          </div>
+        <div class="rx-door-card">
+          <div class="rx-dc-i">λ</div>
+          <div class="rx-dc-t">Term</div>
+          <div class="rx-dc-d">You have the word, and you suspect it has moved. Find out what it carried.</div>
         </div>
-
+        <div class="rx-door-card">
+          <div class="rx-dc-i">?</div>
+          <div class="rx-dc-t">Question</div>
+          <div class="rx-dc-d">You do not have the word yet. Ask it plainly and it finds the passage.</div>
+        </div>
       </div>
-
-      <!-- RIGHT: Search interface -->
-      <div class="re-search">
-
-        <div class="re-search-brand">
-          <div class="re-search-wordmark">Before <span>Ruin</span></div>
-          <div class="re-search-tagline">Search what was written. Not what was taught.</div>
-        </div>
-
-        <!-- Search counter -->
-        <div style="font-family:var(--fm);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(197,160,89,.5);margin-bottom:6px;">⬩ Monthly search quota</div>
-        <div class="re-counter" id="re-counter">
-          <span id="re-counter-text">6 of 8 free searches remaining this month</span>
-          <div class="re-counter-bar"><div class="re-counter-fill" id="re-counter-fill" style="width:75%"></div></div>
-        </div>
-
-        <div class="re-search-label">⬩ Enter a verse, word, or question</div>
-
-        <div class="re-search-input-wrap">
-          <input class="re-search-input" type="text" placeholder="e.g. 'John 1:3' · 'faith' · 'who made the world?'">
-          <button class="re-search-btn" aria-label="Search">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <circle cx="8.5" cy="8.5" r="5.5" stroke="#111" stroke-width="1.8"/>
-              <line x1="12.5" y1="12.5" x2="18" y2="18" stroke="#111" stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-          </button>
-        </div>
-
-        <div class="re-examples-label">Try these:</div>
-        <div class="re-chips">
-          <span class="re-chip">Romans 10:17</span>
-          <span class="re-chip">Samson's strength</span>
-          <span class="re-chip">believe vs belief</span>
-          <span class="re-chip">Who created the world?</span>
-          <span class="re-chip">John 1:3</span>
-          <span class="re-chip">What does "hate" mean?</span>
-          <span class="re-chip">Faith cometh by hearing</span>
-          <span class="re-chip">Spirit of the LORD</span>
-        </div>
-
-        <div style="font-family:var(--fm);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--GOm);margin-bottom:10px;">Search mode</div>
-        <div class="re-modes">
-          <div class="re-mode" data-mode="passage">
-            <div class="re-mode-icon">§</div>
-            <div class="re-mode-label">Passage</div>
-            <div class="re-mode-desc">Enter a reference — receive decoded original language</div>
-          </div>
-          <div class="re-mode active" data-mode="term">
-            <div class="re-mode-icon">λ</div>
-            <div class="re-mode-label">Term</div>
-            <div class="re-mode-desc">Look up a word and its recovered meaning</div>
-          </div>
-          <div class="re-mode" data-mode="question">
-            <div class="re-mode-icon">?</div>
-            <div class="re-mode-label">Question</div>
-            <div class="re-mode-desc">Ask plainly — receive the textual answer</div>
-          </div>
-        </div>
-
-        <!-- Results panel -->
-        <div id="re-results"></div>
-
-        <div class="re-differs" id="re-differs-panel">
-          <div class="re-differs-label">⬩ What makes this different</div>
-          <p class="re-differs-text">Every standard Bible search returns the translated text. <strong>This returns what the translated text was translated from</strong> — and flags where the translation introduced the drift.</p>
-        </div>
-
-      </div>
+      <a class="rx-cta" href="/search.html">Open the Recovery Engine →</a>
+      <div class="rx-foot">Eight searches a month, free &nbsp;·&nbsp; <a href="/how-to-search.html" style="color:var(--GOl);">How to ask</a></div>
     </div>
-  </section>
+  </div>
 
   <!-- FOOTER -->
   <footer>
@@ -1407,7 +1340,7 @@
       <a class="tier-cta" href="#" onclick="startCheckout('study'); return false;">Subscribe — $5/month</a>
       <div class="modal-free-note">
         Already subscribed? <a href="#" onclick="openModal('auth-modal'); closeModal('paywall-modal'); return false;">Sign in</a>
-        &nbsp;·&nbsp; Continue reading definitions — <a href="#recovery-engine" onclick="closeModal('paywall-modal')">scroll up</a>
+        &nbsp;·&nbsp; Or keep reading — <a href="/sources.html">the sources for every episode</a>
       </div>
     </div>
   </div>
@@ -1615,8 +1548,10 @@
     }
 
     // Hook the search button
-    document.querySelector('.re-search-btn').addEventListener('click', handleSearch);
-    document.querySelector('.re-search-input').addEventListener('keydown', e => {
+    const _btn = document.querySelector('.re-search-btn');
+    if (_btn) _btn.addEventListener('click', handleSearch);
+    const _inp = document.querySelector('.re-search-input');
+    if (_inp) _inp.addEventListener('keydown', e => {
       if (e.key === 'Enter') handleSearch();
     });
 

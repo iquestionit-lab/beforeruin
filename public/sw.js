@@ -2,7 +2,7 @@
    Reading happens in pews, easy chairs and kitchens with one bar of signal.
    This keeps the pages readable when the signal is not. */
 
-const VERSION = 'br-2026-09-17-01';
+const VERSION = 'br-2026-09-18-01';
 const SHELL   = `shell-${VERSION}`;
 const RUNTIME = `runtime-${VERSION}`;
 
@@ -15,6 +15,8 @@ const PRECACHE = [
   '/texts.html',
   '/method.html',
   '/her.html',
+  '/how-to-search.html',
+  '/terms.html',
   '/BR-002-001.html',
   '/BR-001-001.html',
   '/print.css',
