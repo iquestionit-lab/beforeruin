@@ -15,3 +15,6 @@ node_modules/
 
 Script Bank/
 .fuse_hidden*
+
+# Firebase local deploy cache
+.firebase/
