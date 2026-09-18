@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Witnesses — Before Ruin</title>
+<meta name="description" content="The manuscripts behind the Bible you read — what each one is, when it was written, how much weight scholars give it, and what it says.">
+<link rel="canonical" href="https://beforeruin.app/texts.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://beforeruin.app/texts.html">
+<meta property="og:title" content="The Witnesses — Before Ruin">
+<meta property="og:description" content="The manuscripts behind the Bible you read, in the order they shaped it.">
+<meta property="og:site_name" content="Before Ruin">
+<meta property="og:image" content="https://beforeruin.app/before_ruin_og.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--P:#F8F6F0;--PD:#EDE9DF;--INK:#111;--INKs:#3A3530;--CR:#A81C1C;--CRL:#C42222;
+ --GO:#C5A059;--GOm:#9E7E3F;--GOl:#D4B470;--WH:#FFF;
+ --fd:'Cinzel Decorative',serif;--fh:'Cinzel',serif;--fs:'Playfair Display',Georgia,serif;
+ --fb:'IM Fell English',Georgia,serif;--fm:'Courier Prime',monospace;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--P);color:var(--INK);font-family:var(--fb);font-size:16px;line-height:1.7}
+a{color:var(--CR);text-decoration:none}a:hover{text-decoration:underline}
+
+.ticker{background:var(--CR);color:var(--WH);font-family:var(--fm);font-size:11px;letter-spacing:.12em;padding:7px 0;overflow:hidden}
+.ticker-row{display:flex;align-items:center;padding:0 20px;gap:10px}
+.ticker-tag{background:var(--INK);color:var(--WH);padding:1px 10px;font-weight:700;letter-spacing:.18em;flex-shrink:0;font-size:10px}
+.ticker-scroll{overflow:hidden;flex:1}
+.ticker-text{display:inline-block;animation:scroll-t 34s linear infinite;padding-left:100%;white-space:nowrap}
+@keyframes scroll-t{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+
+.masthead{background:var(--P);border-bottom:2px solid var(--INK);padding:0 20px}
+.mast-nav{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:.5px solid var(--GO);font-family:var(--fm);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--INKs)}
+.mast-nav a{color:var(--INKs);margin:0 8px}.mast-nav a:hover{color:var(--CR);text-decoration:none}
+.mast-center{text-align:center;padding:20px 0 14px;position:relative}
+.mast-center::before,.mast-center::after{content:'❧';color:var(--GO);font-size:24px;position:absolute;top:50%;transform:translateY(-50%)}
+.mast-center::before{left:20px}.mast-center::after{right:20px;transform:translateY(-50%) scaleX(-1)}
+.mast-eyebrow{font-family:var(--fm);font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--GOm);margin-bottom:5px}
+.mast-wordmark{font-family:var(--fd);font-size:clamp(34px,6vw,74px);font-weight:900;letter-spacing:.05em;line-height:1}
+.mast-wordmark .ruin{color:var(--CR)}
+.mast-gold-rule{height:1px;background:linear-gradient(to right,transparent,var(--GO) 12%,var(--GO) 88%,transparent);margin:8px 0 0}
+.mast-subbar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;border-top:.5px solid var(--GO);border-bottom:.5px solid var(--GO);padding:6px 0;margin-top:2px}
+.msb-l{font-family:var(--fm);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--INKs)}
+.msb-c{font-family:var(--fh);font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--INK);font-weight:600;text-align:center}
+.msb-r{font-family:var(--fm);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--INKs);text-align:right}
+@media(max-width:640px){.mast-subbar{grid-template-columns:1fr;text-align:center}.msb-r,.msb-l{text-align:center}.mast-nav{flex-direction:column;gap:6px}}
+
+.hero-band{background:var(--PD);border-bottom:1px solid var(--GO);padding:22px 20px;text-align:center}
+.hero-claim{font-family:var(--fs);font-size:clamp(17px,2.4vw,23px);font-style:italic;color:var(--INKs);max-width:820px;margin:0 auto}
+.hero-claim strong{font-style:normal;color:var(--INK)}
+
+.wrap{max-width:900px;margin:0 auto;padding:40px 20px 70px}
+.kicker{font-family:var(--fm);font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--CR);margin-bottom:10px}
+.lede{font-family:var(--fs);font-size:19px;line-height:1.62;color:var(--INKs);border-left:3px solid var(--GO);padding-left:18px;margin-bottom:12px}
+.lede strong{color:var(--INK)}
+.note{font-family:var(--fm);font-size:12.5px;line-height:1.75;color:var(--INKs);background:var(--PD);border:1px solid var(--GO);padding:14px 16px;margin:26px 0 0}
+
+.ep{margin-top:52px;border-top:2px solid var(--INK);padding-top:18px}
+.ep-num{font-family:var(--fm);font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--GOm)}
+.ep-title{font-family:var(--fd);font-size:clamp(26px,4vw,40px);font-weight:700;line-height:1.12;margin:6px 0 4px}
+.ep-meta{font-family:var(--fm);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--INKs);margin-bottom:6px}
+.ep-sum{font-family:var(--fs);font-size:17px;font-style:italic;color:var(--INKs);margin-bottom:6px}
+
+.sec{font-family:var(--fh);font-size:13px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--INK);
+ border-bottom:1px solid var(--GO);padding-bottom:6px;margin:38px 0 4px}
+
+.src{border-bottom:.5px solid rgba(0,0,0,.12);padding:16px 0}
+.src:last-child{border-bottom:none}
+.src-t{font-family:var(--fs);font-size:18px;font-weight:700;line-height:1.35}
+.src-a{font-family:var(--fb);font-size:15.5px;color:var(--INKs);margin-top:2px}
+.src-d{font-family:var(--fm);font-size:12px;letter-spacing:.04em;color:var(--INKs);margin-top:5px}
+.src-d a{word-break:break-word}
+.src-n{font-family:var(--fs);font-size:15px;font-style:italic;color:var(--INKs);margin-top:7px}
+.tag{display:inline-block;font-family:var(--fm);font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+ padding:2px 8px;border:1px solid currentColor;margin-right:6px;vertical-align:2px}
+.t-peer{color:#2E6B4F}.t-book{color:var(--GOm)}.t-text{color:var(--INKs)}.t-read{color:#6A4FA3}.t-open{color:var(--CR)}
+
+.quote{font-family:var(--fs);font-size:17px;line-height:1.6;font-style:italic;color:var(--INK);
+ border-left:3px solid var(--CR);padding:4px 0 4px 16px;margin:10px 0}
+.orig{font-size:22px;line-height:1.9;direction:rtl;unicode-bidi:isolate;margin:6px 0}
+
+.caveat{background:#F3EEE4;border:1px solid var(--GOm);padding:16px 18px;margin-top:28px}
+.caveat h4{font-family:var(--fh);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--CR);margin-bottom:8px}
+.caveat p{font-family:var(--fb);font-size:15.5px;color:var(--INKs)}
+.caveat p+p{margin-top:8px}
+
+.foot{border-top:2px solid var(--INK);margin-top:60px;padding-top:18px;text-align:center;
+ font-family:var(--fm);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--INKs)}
+.foot a{color:var(--CR)}
+</style>
+
+<style>
+.wt{border-bottom:.5px solid rgba(0,0,0,.12);padding:22px 0}
+.wt:last-child{border-bottom:none}
+.wt-h{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.wt-n{font-family:var(--fd);font-size:clamp(20px,2.8vw,27px);font-weight:700;line-height:1.2}
+.wt-d{font-family:var(--fm);font-size:12px;letter-spacing:.08em;color:var(--GOm);white-space:nowrap}
+.wt-b{font-size:16.5px;line-height:1.72;margin-top:9px;color:var(--INKs)}
+.wt-b strong{color:var(--INK)}
+.wt-u{font-family:var(--fm);font-size:12.5px;line-height:1.7;color:var(--INKs);margin-top:10px;
+ border-left:2px solid var(--GO);padding-left:12px}
+.wt-s{display:inline-block;font-family:var(--fm);font-size:9.5px;font-weight:700;letter-spacing:.16em;
+ text-transform:uppercase;padding:2px 9px;border:1px solid currentColor;margin-top:12px}
+.s-base{color:#2E6B4F}.s-check{color:#2F5E8C}.s-wit{color:var(--GOm)}.s-read{color:#6A4FA3}
+.rank{font-family:var(--fd);font-size:44px;font-weight:900;color:var(--GO);opacity:.5;line-height:1;
+ float:left;margin:2px 16px 0 0}
+.says{background:var(--PD);border:1px solid var(--GO);padding:14px 16px;margin-top:14px}
+.says p{font-family:var(--fs);font-size:16.5px;font-style:italic;line-height:1.55;color:var(--INK)}
+.says p+p{margin-top:8px;padding-top:8px;border-top:.5px dotted var(--GOm)}
+.says .who{font-family:var(--fm);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+ color:var(--GOm);font-style:normal;display:block;margin-bottom:3px}
+.stage{margin-top:46px;border-top:2px solid var(--INK);padding-top:16px}
+.stage-k{font-family:var(--fm);font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--CR)}
+.stage-t{font-family:var(--fd);font-size:clamp(23px,3.4vw,33px);font-weight:700;line-height:1.14;margin:6px 0 6px}
+.stage-s{font-family:var(--fs);font-size:17px;font-style:italic;color:var(--INKs)}
+.tip{background:#F3EEE4;border-left:3px solid var(--CR);padding:12px 15px;margin-top:13px}
+.tip .th{font-family:var(--fm);font-size:9.5px;font-weight:700;letter-spacing:.2em;
+ text-transform:uppercase;color:var(--CR);display:block;margin-bottom:5px}
+.tip p{font-family:var(--fb);font-size:15.5px;line-height:1.66;color:var(--INKs)}
+.tip p+p{margin-top:7px}
+</style>
+<link rel="stylesheet" media="print" href="/print.css">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Before Ruin">
+<meta name="theme-color" content="#F8F6F0">
+</head>
+<body>
+<div class="ticker"><div class="ticker-row">
+  <span class="ticker-tag">THE WITNESSES</span>
+  <div class="ticker-scroll"><span class="ticker-text">
+    NO ORIGINAL SURVIVES. WHAT SURVIVES IS TESTIMONY. &nbsp;⬥&nbsp;
+    THIS ONE SAYS THIS. THAT ONE SAYS THAT. &nbsp;⬥&nbsp;
+    THE BIBLE ON YOUR SHELF WAS BUILT FROM THESE, IN THIS ORDER.
+  </span></div>
+</div></div>
+
+<header class="masthead">
+  <div class="mast-nav">
+    <div><a href="/">Home</a><a href="/her.html">She Is Working</a><a href="/texts.html">The Witnesses</a><a href="/method.html">The Method</a><a href="/sources.html">Read With Me</a></div>
+    <div id="nav-date"></div>
+  </div>
+  <div class="mast-center">
+    <div class="mast-eyebrow">Where The Words On Your Page Came From</div>
+    <div class="mast-wordmark">The&nbsp;<span class="ruin">Witnesses</span></div>
+  </div>
+  <div class="mast-gold-rule"></div>
+  <div class="mast-subbar">
+    <span class="msb-l">Series &nbsp;·&nbsp; The Texts Themselves</span>
+    <span class="msb-c">One Says This &nbsp;·&nbsp; Another Says That</span>
+    <span class="msb-r"><span style="color:var(--GOm)">BR-TX-001</span> &nbsp;·&nbsp; <span id="updated-date"></span></span>
+  </div>
+</header>
+
+<div class="hero-band">
+  <p class="hero-claim">Nobody has the original of anything. <strong>What we have is a room full of witnesses — and they do not all say the same thing.</strong></p>
+</div>
+
+<div class="wrap">
+
+  <p class="kicker">Abstract</p>
+  <p class="lede">A <strong>witness</strong> is the word scholars actually use for an old copy of scripture, and it is the right word. A manuscript is not a proof and it is not a verdict — it is somebody who was there, telling you what they saw on the page in front of them.</p>
+
+  <p class="b" style="font-size:17px;line-height:1.75;margin-top:16px">This page sets out the manuscripts behind the Bible you read, <strong>in the order they shaped the page in front of you</strong> — the Hebrew line first, then the Greek, then the Syriac, then the earliest readers who were not copying scripture but explaining it. For each one: what it is, when it was written, what part it plays in producing a modern English Bible, and how much weight the field gives it.</p>
+
+  <p class="b" style="font-size:17px;line-height:1.75">Three findings run through what follows. <strong>First,</strong> the witnesses agree far more than they differ, and the agreement across a thousand years of copying is the remarkable part. <strong>Second,</strong> where they differ, an editor had to choose which reading to print — and that choice is what you are holding when you hold a Bible. <strong>Third,</strong> every disagreement discussed here is already public, printed in the footnotes of ordinary Bibles, and drawn from manuscripts the field has published and trusted for generations. Nothing on this page was recovered from an outsider, a suppressed gospel, or a cave discovery.</p>
+
+  <p class="b" style="font-size:17px;line-height:1.75">Where a witness bears directly on the question this series asks — how the Holy Spirit was spoken of in the Syriac churches — its testimony is set out in its own box: <em>what this witness says.</em> One says this. Another says that. Both are shown.</p>
+
+  <div class="note">
+    <strong>HOW EACH ONE IS USED</strong><br>
+    <span class="wt-s s-base">Base text</span> &nbsp;the text an English Bible is translated <em>from</em><br>
+    <span class="wt-s s-check">Check</span> &nbsp;consulted to test or correct the base text<br>
+    <span class="wt-s s-wit">Witness</span> &nbsp;how a community read it — not a base for English Bibles<br>
+    <span class="wt-s s-read">Earliest readers</span> &nbsp;not scripture; people telling us what they understood it to mean
+  </div>
+
+  <!-- ─────────── OLD TESTAMENT ─────────── -->
+  <div class="stage">
+    <div class="stage-k">First &nbsp;·&nbsp; The Old Testament you read</div>
+    <h2 class="stage-t">The Hebrew line</h2>
+    <p class="stage-s">Almost every English Old Testament is translated from one manuscript, checked against older ones.</p>
+  </div>
+
+  <div class="wt">
+    <span class="rank">1</span>
+    <div class="wt-h"><span class="wt-n">The Masoretic Text</span><span class="wt-d">c. 930 – 1008 AD</span></div>
+    <div class="wt-b">The Hebrew Bible as copied, vowel-pointed and annotated by the Masoretes, Jewish scribal families working in Tiberias and Babylonia. Two manuscripts carry it: the <strong>Aleppo Codex</strong> (c. 930, partly lost in 1947) and the <strong>Leningrad Codex B19A</strong> (1008) — the oldest complete Hebrew Bible in existence.</div>
+    <div class="wt-u">USED FOR: the base text of the Old Testament in essentially every modern English Bible — KJV, NIV, ESV, NASB, JPS, all of them. When you read Genesis in English, you are reading Leningrad B19A.<br>
+      SCHOLARLY STANDING: <strong>Universal.</strong> Not contested. The printed editions <em>Biblia Hebraica Stuttgartensia</em> and <em>Biblia Hebraica Quinta</em> are Leningrad with the variants noted in the margins.</div>
+    <div class="tip"><span class="th">For the reader</span>
+      <p>You can hold this one. Any <em>Biblia Hebraica Stuttgartensia</em> is the Leningrad Codex with the variants printed in the bottom margin &mdash; and that margin is the argument, right there on the page, in a book you can buy used for the price of lunch.</p>
+      <p><strong>Try this:</strong> open an English Bible to almost any chapter and look for a footnote reading <em>Or&hellip;</em> or <em>Some manuscripts&hellip;</em>. That footnote is an editor telling you the witnesses disagreed here. Nobody hid it from you; it was just in small type.</p>
+    </div>
+    <span class="wt-s s-base">Base text</span>
+  </div>
+
+  <div class="wt">
+    <span class="rank">2</span>
+    <div class="wt-h"><span class="wt-n">The Dead Sea Scrolls</span><span class="wt-d">c. 250 BC – 68 AD</span></div>
+    <div class="wt-b">About 950 manuscripts from the caves at Qumran and nearby, including fragments of every Old Testament book but Esther. The <strong>Great Isaiah Scroll</strong> is complete and roughly a thousand years older than anything previously known.</div>
+    <div class="wt-u">USED FOR: checking the Masoretic Text against copies made a millennium earlier. Translators consult them at every difficult verse, and modern Bibles carry footnotes reading &ldquo;Dead Sea Scrolls&rdquo; where they were followed instead.<br>
+      SCHOLARLY STANDING: <strong>Universal, and the single most important manuscript find of the twentieth century.</strong> What they mostly showed is that the Masoretes copied with extraordinary care.</div>
+    <div class="tip"><span class="th">For the reader</span>
+      <p><strong>Go look at one tonight.</strong> The Israel Museum put the Great Isaiah Scroll online at full resolution, free, and you can zoom until you see individual pen strokes. It is the same Isaiah you read on Sunday, copied before Christ was born.</p>
+      <p>What surprised everyone was how <em>little</em> had changed. That is the finding, and it is worth sitting with before anyone tells you the Bible has been rewritten beyond recognition.</p>
+    </div>
+    <span class="wt-s s-check">Check</span>
+  </div>
+
+  <div class="wt">
+    <span class="rank">3</span>
+    <div class="wt-h"><span class="wt-n">The Septuagint (LXX)</span><span class="wt-d">from c. 250 BC</span></div>
+    <div class="wt-b">The Old Testament translated into Greek by Jewish scholars in Alexandria, beginning with the Torah in the third century BC. It preserves a Hebrew text sometimes older than the Masoretic one, and it is the Bible most New Testament writers quote.</div>
+    <div class="wt-u">USED FOR: a check on the Hebrew, a witness to an older Hebrew reading, and the direct source of many Old Testament quotations in the New. Where an English Bible footnote says &ldquo;Greek,&rdquo; this is what it means.<br>
+      SCHOLARLY STANDING: <strong>Universal as a witness</strong> — with normal scholarly caution, since it is a translation and translators make choices. Editions: Rahlfs-Hanhart; the Göttingen Septuagint for critical work.</div>
+    <div class="tip"><span class="th">For the reader</span>
+      <p><strong>Here is where it gets interesting.</strong> When a New Testament writer quotes the Old Testament and the wording does not match your Old Testament &mdash; this is usually why. He was quoting the Greek. Compare Hebrews 10:5 with Psalm 40:6 and you will see it happen in front of you.</p>
+      <p>It is not an error in anyone. It is two faithful translations of the same book, and the apostles used the one their readers had.</p>
+    </div>
+    <span class="wt-s s-check">Check</span>
+  </div>
+
+  <!-- ─────────── NEW TESTAMENT ─────────── -->
+  <div class="stage">
+    <div class="stage-k">Second &nbsp;·&nbsp; The New Testament you read</div>
+    <h2 class="stage-t">The Greek line</h2>
+    <p class="stage-s">Here there is no single manuscript. There are about 5,800, and an edited text built from them.</p>
+  </div>
+
+  <div class="wt">
+    <span class="rank">4</span>
+    <div class="wt-h"><span class="wt-n">The Greek papyri</span><span class="wt-d">c. 175 – 300 AD</span></div>
+    <div class="wt-b">The oldest surviving copies, written on papyrus and mostly fragmentary. <strong>P<sup>46</sup></strong> (Paul&rsquo;s letters), <strong>P<sup>66</sup></strong> and <strong>P<sup>75</sup></strong> (John and Luke) are the heavyweights. P<sup>52</sup>, a scrap of John the size of a credit card, may be earlier still.</div>
+    <div class="wt-u">USED FOR: the earliest evidence for what the text said. They carry great weight precisely because so little time separates them from the writing.<br>
+      SCHOLARLY STANDING: <strong>Universal.</strong> Dating individual papyri is debated by decades; their importance is not.</div>
+    <span class="wt-s s-check">Check</span>
+  </div>
+
+  <div class="wt">
+    <span class="rank">5</span>
+    <div class="wt-h"><span class="wt-n">Codex Sinaiticus &amp; Codex Vaticanus</span><span class="wt-d">4th century</span></div>
+    <div class="wt-b">The two great complete Greek Bibles. Sinaiticus was found at St Catherine&rsquo;s Monastery on Sinai and is <a href="https://www.codexsinaiticus.org" rel="noopener">fully online, free, page by page</a>. Vaticanus has been in the Vatican Library since at least 1475.</div>
+    <div class="wt-u">USED FOR: the backbone of the modern critical Greek New Testament — <strong>Nestle-Aland (NA28)</strong> and the <strong>UBS Greek New Testament</strong>, which is what nearly every modern English New Testament is translated from.<br>
+      SCHOLARLY STANDING: <strong>Universal.</strong> Where the KJV and a modern Bible differ in the New Testament, this is usually why: the KJV rests on later manuscripts, modern versions on these.</div>
+    <span class="wt-s s-base">Base text</span>
+  </div>
+
+  <div class="wt">
+    <span class="rank">6</span>
+    <div class="wt-h"><span class="wt-n">Alexandrinus, Bezae, and the rest</span><span class="wt-d">5th century onward</span></div>
+    <div class="wt-b">Roughly <strong>5,800 catalogued Greek manuscripts</strong> are registered in the INTF <em>Kurzgefasste Liste</em> — about 140 papyri, 320 majuscules, 2,900 minuscules and 2,480 lectionaries. <strong>Codex Alexandrinus</strong> (5th c.) and <strong>Codex Bezae</strong> (5th c., with a famously independent text) are the best known of the later majuscules.</div>
+    <div class="wt-u">USED FOR: mapping how the text travelled and where communities differed. Bezae in particular preserves readings found nowhere else.<br>
+      SCHOLARLY STANDING: <strong>Universal as witnesses;</strong> weighted by age, character and family rather than counted like votes.</div>
+    <div class="tip"><span class="th">For the reader</span>
+      <p><strong>Treat that number gently.</strong> The registration count is slightly inflated: it includes &ldquo;ghost&rdquo; numbers — fragments later matched to a codex already on the list, items since lost, and pieces reclassified as not New Testament at all. The honest way to say it is <em>roughly 5,800 catalogued</em>, never a precise figure.</p>
+      <p>And the number is not the point. <strong>Editors do not take a vote.</strong> One early, independent witness can outweigh a thousand later copies that were all made from each other — the way one person who was in the room outweighs a hundred who heard about it.</p>
+    </div>
+    <span class="wt-s s-check">Check</span>
+  </div>
+
+  <!-- ─────────── SYRIAC ─────────── -->
+  <div class="stage">
+    <div class="stage-k">Third &nbsp;·&nbsp; Not in your Bible &mdash; but decisive for this series</div>
+    <h2 class="stage-t">The Syriac line</h2>
+    <p class="stage-s">Aramaic&rsquo;s close cousin, and the language of the churches east of Antioch. No English Bible is translated from these. They are how a whole civilisation of Christians actually read.</p>
+  </div>
+
+  <div class="wt">
+    <span class="rank">7</span>
+    <div class="wt-h"><span class="wt-n">The Old Syriac Gospels</span><span class="wt-d">text c. 200 · copies 4th–5th c.</span></div>
+    <div class="wt-b">Two manuscripts survive: the <strong>Sinaitic Palimpsest</strong> (found under a later text at St Catherine&rsquo;s in 1892) and the <strong>Curetonian Gospels</strong> in the British Library. They carry the oldest form of the gospels in Syriac.</div>
+    <div class="wt-u">USED FOR: an early independent window on the gospel text, and — for this series — the earliest Syriac evidence for how the Holy Spirit was spoken of.<br>
+      SCHOLARLY STANDING: <strong>Universal.</strong> Dating of the underlying translation is discussed; the manuscripts themselves are not in question.</div>
+    <div class="says">
+      <p><span class="who">What this witness says</span>&ldquo;She&rdquo; &mdash; feminine, regularly, throughout, wherever <em>ruha</em> names the Holy Spirit.</p>
+    </div>
+    <span class="wt-s s-wit">Witness</span>
+  </div>
+
+  <div class="wt">
+    <span class="rank">8</span>
+    <div class="wt-h"><span class="wt-n">The Peshitta</span><span class="wt-d">early 5th century</span></div>
+    <div class="wt-b">The standard Bible of the Syriac churches, and still the liturgical Bible of the Syriac Orthodox, Assyrian and Maronite traditions today. The name means roughly &ldquo;simple&rdquo; or &ldquo;common&rdquo; &mdash; the everyday version.</div>
+    <div class="wt-u">USED FOR: a major early witness to both Testaments, and a check on the Hebrew that is genuinely independent of the Greek. Critical edition: the Leiden Peshitta.<br>
+      SCHOLARLY STANDING: <strong>Universal as a witness.</strong> Its Old Testament was translated from Hebrew, which makes it unusually valuable.</div>
+    <div class="says">
+      <p><span class="who">What this witness says</span>Mixed. Mostly still feminine &mdash; and at Psalm 51:13 four manuscripts preserve <em>ruhak qaddishta</em>, feminine, against the later correction.</p>
+    </div>
+    <span class="wt-s s-wit">Witness</span>
+  </div>
+
+  <div class="wt">
+    <span class="rank">9</span>
+    <div class="wt-h"><span class="wt-n">Philoxenian &amp; Harklean</span><span class="wt-d">507 &amp; 616 AD</span></div>
+    <div class="wt-b">Two deliberate revisions, each pulling the Syriac closer to the Greek. The <strong>Philoxenian</strong> (507, commissioned by Philoxenus of Mabbug) is lost, but its readings can be recovered from what Philoxenus quotes. The <strong>Harklean</strong> (616, Thomas of Harqel) survives and is extremely literal.</div>
+    <div class="wt-u">USED FOR: tracing how the Syriac text was reshaped over four centuries &mdash; the clearest documented case of revision in this tradition.<br>
+      SCHOLARLY STANDING: <strong>Universal.</strong> That these are revisions, and deliberate ones, is not disputed by anybody.</div>
+    <div class="says">
+      <p><span class="who">What the Philoxenian says</span>Systematic, as far as its quotations let us see.</p>
+      <p><span class="who">What the Harklean says</span>&ldquo;He&rdquo; &mdash; masculine, everywhere.</p>
+    </div>
+    <span class="wt-s s-wit">Witness</span>
+  </div>
+
+  <div class="wt">
+    <span class="rank">10</span>
+    <div class="wt-h"><span class="wt-n">Codex Ambrosianus</span><span class="wt-d">6th–7th century</span></div>
+    <div class="wt-b">The earliest complete Syriac Old Testament, held at the Biblioteca Ambrosiana in Milan. For most of the Peshitta Old Testament it is the manuscript everything else is measured against.</div>
+    <div class="wt-u">USED FOR: the reference manuscript for the Syriac Old Testament.<br>
+      SCHOLARLY STANDING: <strong>Universal.</strong> Its authority is exactly why the Psalm 51 reading matters.</div>
+    <div class="says">
+      <p><span class="who">What this witness says</span>At Psalm 51:13, the masculine <em>qaddisha</em> &mdash; where four earlier manuscripts read feminine.</p>
+    </div>
+    <span class="wt-s s-wit">Witness</span>
+  </div>
+
+  <!-- ─────────── READERS ─────────── -->
+  <div class="stage">
+    <div class="stage-k">Fourth &nbsp;·&nbsp; Not scripture at all</div>
+    <h2 class="stage-t">The earliest readers</h2>
+    <p class="stage-s">These do not carry the text. They carry something you cannot get any other way: what people who spoke the language thought it meant.</p>
+  </div>
+
+  <div class="wt">
+    <div class="wt-h"><span class="wt-n">Aphrahat, <em>Demonstrations</em></span><span class="wt-d">337 – 345 AD</span></div>
+    <div class="wt-b">Twenty-three treatises by a Persian bishop, the earliest substantial Syriac Christian writing we have. Standard English translation: Sebastian Brock.</div>
+    <div class="wt-u">USED FOR: what a mainstream, respected teacher in the Persian church taught, a century before the revisions began.<br>
+      SCHOLARLY STANDING: <strong>Universal.</strong> Not a fringe figure, not a heretic, not disputed.</div>
+    <div class="says">
+      <p><span class="who">What this reader says</span>&ldquo;As long as a man has not taken a wife, he loves and reveres God his Father &mdash; and the Holy Spirit his Mother.&rdquo; &mdash; Dem. 18:10</p>
+    </div>
+    <span class="wt-s s-read">Earliest readers</span>
+  </div>
+
+  <div class="wt">
+    <div class="wt-h"><span class="wt-n">Genesis Rabbah</span><span class="wt-d">4th – 5th century</span></div>
+    <div class="wt-b">The classic rabbinic commentary on Genesis, compiled in the land of Israel. It records named rabbis arguing about what particular Hebrew words mean.</div>
+    <div class="wt-u">USED FOR: how Hebrew-speaking readers understood a Hebrew word, from inside the language, with no stake in any later Christian argument.<br>
+      SCHOLARLY STANDING: <strong>Universal</strong> as a witness to rabbinic interpretation. It is commentary, not scripture, and it is read as commentary.</div>
+    <div class="says">
+      <p><span class="who">What this reader says</span>Ben Zoma on Genesis 1:2 &mdash; &ldquo;not <em>blowing</em>, but <em>merachefet</em> &mdash; like this bird that flutters with its wings, and its wings touch and do not touch.&rdquo; &mdash; 2:4</p>
+    </div>
+    <div class="tip"><span class="th">For the reader &mdash; and the other side of it</span>
+      <p><strong>Ben Zoma is not the only evidence, and the rest of it does not all point one way.</strong> The same root turns up in Ugaritic, a Canaanite language older than Hebrew, in the Epic of Aqhat: <em>nšrm tr&#7717;pn</em> &mdash; &ldquo;the eagles hover&rdquo; (KTU 1.18 IV 21, 31&ndash;32; parallel at 1.19 I 32&ndash;33).</p>
+      <p>Scholars reach for that line as the comparative case that the root means <strong>soaring or gliding in flight</strong> &mdash; not brooding, not sitting on a nest. It is the strongest argument against the mother-bird reading of Genesis 1:2, and you should know it exists.</p>
+      <p>What it does not touch is <strong>Deuteronomy 32:11</strong>, where the same verb is used of a bird over its <em>nestlings</em>, with the nest named in the verse. That one is not about gliding. So the honest position is the one the episode takes on air: Genesis 1:2 is contested, Deuteronomy 32:11 is not, and Ben Zoma tells you how a Hebrew-speaking reader heard it.</p>
+    </div>
+    <span class="wt-s s-read">Earliest readers</span>
+  </div>
+
+  <!-- ─────────── HOW TO HOLD IT ─────────── -->
+  <div class="stage">
+    <div class="stage-k">Conclusion</div>
+    <h2 class="stage-t">What the witnesses, taken together, show</h2>
+    <p class="stage-s">Four lines of testimony, some of them a thousand years apart, and a page that was built out of all of them.</p>
+  </div>
+
+  <p class="b" style="font-size:17px;line-height:1.75;margin-top:18px">The Hebrew line gives an Old Testament copied with such care that manuscripts a thousand years apart read almost identically. The Greek line gives a New Testament attested earlier and more abundantly than any other work of the ancient world. The Syriac line gives something neither of those can: <strong>a complete Christian civilisation reading in a Semitic language, and a documented record of that reading being changed over four centuries.</strong> And the earliest readers — Aphrahat, Ben Zoma — give what no manuscript can give, which is what people who spoke these languages thought the words meant.</p>
+
+  <p class="b" style="font-size:17px;line-height:1.75">Set side by side, the Syriac witnesses do not argue with each other. They testify in sequence. Around the year 200, <em>she</em>. In the early fifth century, mostly still <em>she</em>. By the early seventh, <em>he</em>, everywhere. Four versions, four hundred years, and a direction of travel that anyone can follow.</p>
+
+  <div class="caveat">
+    <h4>How to hold all of this</h4>
+    <p><strong>Disagreement between witnesses is normal, and it is public.</strong> It is printed in the footnotes of the Bible you already own. Open to almost any page and you will find a line reading <em>some manuscripts read…</em> — that is this whole page in miniature, and nobody has ever hidden it.</p>
+    <p><strong>Weight is not a head-count.</strong> Editors do not take a vote among 5,800 manuscripts. They weigh age, independence, the habits of the scribe, and whether a reading explains how the others arose. A single early witness can outweigh a thousand later copies of one another.</p>
+    <p><strong>Every witness on this page is one the field already trusts.</strong> Nothing here is recovered from an outsider, a suppressed gospel, or a text somebody discovered in a cave last year. These are the ordinary, published, agreed-upon manuscripts that produced the Bible on your shelf — and they are where this work is done.</p>
+  </div>
+
+  <div class="note" style="margin-top:30px">
+    <strong>A SEPARATE SERIES — THE TOOLS</strong><br>
+    Concordances, lexicons, interlinears and the English translations themselves are a different kind of thing altogether. They are not witnesses; they are instruments other people built for reading the witnesses, and every one of them carries its maker&rsquo;s judgement. Those get their own pages, so the two never get confused.
+  </div>
+
+  <div class="stage">
+    <div class="stage-k">References</div>
+    <h2 class="stage-t">The printed editions behind this page</h2>
+    <p class="stage-s">These are the critical editions scholars actually work from. Several are free.</p>
+  </div>
+
+  <div class="refs">
+    <h3 class="sec">Hebrew</h3>
+    <div class="src">
+      <div class="src-d" style="font-size:15.5px;font-family:var(--fb);line-height:1.9">
+        <em>Biblia Hebraica Stuttgartensia</em> (BHS). Deutsche Bibelgesellschaft, 1977; 5th ed. 1997. The Leningrad Codex with a critical apparatus.<br>
+        <em>Biblia Hebraica Quinta</em> (BHQ). Deutsche Bibelgesellschaft, 2004– . The successor edition, appearing volume by volume.<br>
+        <em>The Dead Sea Scrolls Digital Library</em> &mdash; <a href="https://www.deadseascrolls.org.il" rel="noopener">deadseascrolls.org.il</a>. The Israel Museum&rsquo;s high-resolution images, free.
+      </div>
+    </div>
+
+    <h3 class="sec">Greek</h3>
+    <div class="src">
+      <div class="src-d" style="font-size:15.5px;font-family:var(--fb);line-height:1.9">
+        Nestle-Aland, <em>Novum Testamentum Graece</em>, 28th ed. (NA28). Deutsche Bibelgesellschaft, 2012.<br>
+        <em>The Greek New Testament</em>, 5th rev. ed. United Bible Societies, 2014. Same text as NA28, apparatus aimed at translators.<br>
+        Rahlfs-Hanhart, <em>Septuaginta</em>, rev. ed. Deutsche Bibelgesellschaft, 2006 &mdash; the standard hand edition.<br>
+        <em>Septuaginta: Vetus Testamentum Graecum</em> (the Göttingen Septuagint). Vandenhoeck &amp; Ruprecht &mdash; the full critical edition.<br>
+        <em>Codex Sinaiticus Project</em> &mdash; <a href="https://www.codexsinaiticus.org" rel="noopener">codexsinaiticus.org</a>. The whole manuscript, page by page, with transcription. Free.
+      </div>
+    </div>
+
+    <h3 class="sec">Syriac</h3>
+    <div class="src">
+      <div class="src-d" style="font-size:15.5px;font-family:var(--fb);line-height:1.9">
+        <em>The Old Testament in Syriac according to the Peshi&#7789;ta Version</em> (the Leiden Peshitta). Peshitta Institute / Brill, 1966– .<br>
+        Sebastian P. Brock, &ldquo;The Holy Spirit as Feminine in Early Syriac Literature,&rdquo; in <em>After Eve: Women, Theology and the Christian Tradition</em>, ed. Janet Martin Soskice. London: Collins / Marshall Pickering, 1990, pp. 73&ndash;88.<br>
+        <span style="font-size:14px">For the grammatical shift around the year 400, see pp. 74&ndash;76; for the liturgical examples, pp. 81&ndash;83.</span><br>
+        <em>Gorgias Encyclopedic Dictionary of the Syriac Heritage</em> (GEDSH), ed. Brock, Butts, Kiraz &amp; Van Rompay. Gorgias Press, 2011 &mdash; <a href="https://gedsh.bethmardutho.org" rel="noopener">free online</a>.
+      </div>
+    </div>
+
+    <h3 class="sec">Manuscript libraries, free to browse</h3>
+    <div class="src">
+      <div class="src-d" style="font-size:15.5px;font-family:var(--fb);line-height:1.9">
+        Bibliothèque nationale de France &mdash; <a href="https://gallica.bnf.fr" rel="noopener">Gallica</a>. Large Syriac holdings, public domain, direct download.<br>
+        Vatican Library &mdash; <a href="https://digi.vatlib.it" rel="noopener">DigiVatLib</a>. Free for study; check terms for broadcast use.<br>
+        British Library &mdash; digitised manuscripts, Syriac collection. Licence stated per item.
+      </div>
+    </div>
+  </div>
+
+  <div class="tip" style="margin-top:26px">
+    <span class="th">For the reader &mdash; a small thing that happened while building this page</span>
+    <p>That Brock chapter reached me under <strong>two different titles</strong>. One said &ldquo;The Holy Spirit as <em>Feminine</em> in Early Syriac Literature.&rdquo; The other said &ldquo;The Holy Spirit as <em>Mother</em> in Early Syriac Tradition.&rdquo; Only one of them is on the book&rsquo;s contents page. The other is almost certainly a well-meaning hand somewhere down the chain, rendering <em>feminine</em> as <em>mother</em> &mdash; because in context, that is more or less what it comes to.</p>
+    <p><strong>Nobody did anything wrong.</strong> But look at what happened. A word was swapped for a near neighbour. The meaning tightened a little. And then it travelled, in a citation, to me.</p>
+    <p>Notice, too, which direction it drifted. <em>Mother</em> is the reading that helps my argument. <strong>It is still the one I had to set down</strong>, because it is not what the contents page says &mdash; and a citation that flatters the person citing it is exactly the one to check twice.</p>
+    <p>This is the whole subject of this series, happening in the present tense, in a footnote, in front of us. It is also the reason to go to the object itself. Not because people are dishonest &mdash; because <strong>words move when they are passed from hand to hand</strong>, and the only cure anyone has ever found is to open the book.</p>
+  </div>
+
+  <div class="note" style="margin-top:34px">
+    <strong>HOW THIS PAGE WAS BUILT</strong><br>
+    Every manuscript listed here is a published, catalogued witness that the field already works from. Nothing appears on this page that is not in one of the critical editions above, and nothing has been included because it favours an argument. Where a witness disagrees with another, both readings are printed. Where a date or an attribution is debated among scholars, the page says so rather than choosing quietly. If anything here is wrong, I would rather hear it than keep it.<br><br>
+    <strong>ON THE TOOLS.</strong> AI does the footwork here &mdash; finding, retrieving, cross-checking, keeping track &mdash; work that a generation ago meant a library card, travel, and years. It did not ask the question, and it does not decide what is published. Nothing reaches you that I have not gone back to the source and read for myself; where I could not reach one, the page says so. <a href="/method.html">The full method is here.</a>
+  </div>
+
+  <div class="foot">
+    Before Ruin &nbsp;·&nbsp; Robert Langan Ministries &nbsp;·&nbsp; Sundays 11 PM on The Now Network<br>
+    <a href="/">beforeruin.app</a> &nbsp;·&nbsp; <a href="/sources.html">Read with me</a> &nbsp;·&nbsp; If I have any of this wrong, I would be glad to know. Write to me.<br>
+    <span style="color:var(--GOm);letter-spacing:.2em">BR-TX-001</span>
+  </div>
+</div>
+
+<script>
+(function(){var d=new Date();
+ var dy=['Sun.','Mon.','Tue.','Wed.','Thur.','Fri.','Sat.'];
+ var mo=['January','February','March','April','May','June','July','August','September','October','November','December'];
+ var n=document.getElementById('nav-date');
+ if(n)n.textContent=dy[d.getDay()]+' — '+mo[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear();
+ var u=document.getElementById('updated-date');
+ if(u)u.textContent='Updated: '+mo[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear();})();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/sw.js').catch(function () { /* offline reading is a bonus, never a requirement */ });
+  });
+}
+</script>
+</body>
+</html>

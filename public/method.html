@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How This Work Is Done — Before Ruin</title>
+<meta name="description" content="The method behind Before Ruin — what the tools do, what they cannot do, and how to do this work yourself.">
+<link rel="canonical" href="https://beforeruin.app/method.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://beforeruin.app/method.html">
+<meta property="og:title" content="How This Work Is Done — Before Ruin">
+<meta property="og:description" content="The method, the tools, and how to do this yourself.">
+<meta property="og:site_name" content="Before Ruin">
+<meta property="og:image" content="https://beforeruin.app/before_ruin_og.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="stylesheet" media="print" href="/print.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--P:#F8F6F0;--PD:#EDE9DF;--INK:#111;--INKs:#3A3530;--CR:#A81C1C;--CRL:#C42222;
+ --GO:#C5A059;--GOm:#9E7E3F;--GOl:#D4B470;--WH:#FFF;
+ --fd:'Cinzel Decorative',serif;--fh:'Cinzel',serif;--fs:'Playfair Display',Georgia,serif;
+ --fb:'IM Fell English',Georgia,serif;--fm:'Courier Prime',monospace;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--P);color:var(--INK);font-family:var(--fb);font-size:16px;line-height:1.7}
+a{color:var(--CR);text-decoration:none}a:hover{text-decoration:underline}
+
+.ticker{background:var(--CR);color:var(--WH);font-family:var(--fm);font-size:11px;letter-spacing:.12em;padding:7px 0;overflow:hidden}
+.ticker-row{display:flex;align-items:center;padding:0 20px;gap:10px}
+.ticker-tag{background:var(--INK);color:var(--WH);padding:1px 10px;font-weight:700;letter-spacing:.18em;flex-shrink:0;font-size:10px}
+.ticker-scroll{overflow:hidden;flex:1}
+.ticker-text{display:inline-block;animation:scroll-t 34s linear infinite;padding-left:100%;white-space:nowrap}
+@keyframes scroll-t{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+
+.masthead{background:var(--P);border-bottom:2px solid var(--INK);padding:0 20px}
+.mast-nav{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:.5px solid var(--GO);font-family:var(--fm);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--INKs)}
+.mast-nav a{color:var(--INKs);margin:0 8px}.mast-nav a:hover{color:var(--CR);text-decoration:none}
+.mast-center{text-align:center;padding:20px 0 14px;position:relative}
+.mast-center::before,.mast-center::after{content:'❧';color:var(--GO);font-size:24px;position:absolute;top:50%;transform:translateY(-50%)}
+.mast-center::before{left:20px}.mast-center::after{right:20px;transform:translateY(-50%) scaleX(-1)}
+.mast-eyebrow{font-family:var(--fm);font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--GOm);margin-bottom:5px}
+.mast-wordmark{font-family:var(--fd);font-size:clamp(34px,6vw,74px);font-weight:900;letter-spacing:.05em;line-height:1}
+.mast-wordmark .ruin{color:var(--CR)}
+.mast-gold-rule{height:1px;background:linear-gradient(to right,transparent,var(--GO) 12%,var(--GO) 88%,transparent);margin:8px 0 0}
+.mast-subbar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;border-top:.5px solid var(--GO);border-bottom:.5px solid var(--GO);padding:6px 0;margin-top:2px}
+.msb-l{font-family:var(--fm);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--INKs)}
+.msb-c{font-family:var(--fh);font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--INK);font-weight:600;text-align:center}
+.msb-r{font-family:var(--fm);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--INKs);text-align:right}
+@media(max-width:640px){.mast-subbar{grid-template-columns:1fr;text-align:center}.msb-r,.msb-l{text-align:center}.mast-nav{flex-direction:column;gap:6px}}
+
+.hero-band{background:var(--PD);border-bottom:1px solid var(--GO);padding:22px 20px;text-align:center}
+.hero-claim{font-family:var(--fs);font-size:clamp(17px,2.4vw,23px);font-style:italic;color:var(--INKs);max-width:820px;margin:0 auto}
+.hero-claim strong{font-style:normal;color:var(--INK)}
+
+.wrap{max-width:900px;margin:0 auto;padding:40px 20px 70px}
+.kicker{font-family:var(--fm);font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--CR);margin-bottom:10px}
+.lede{font-family:var(--fs);font-size:19px;line-height:1.62;color:var(--INKs);border-left:3px solid var(--GO);padding-left:18px;margin-bottom:12px}
+.lede strong{color:var(--INK)}
+.note{font-family:var(--fm);font-size:12.5px;line-height:1.75;color:var(--INKs);background:var(--PD);border:1px solid var(--GO);padding:14px 16px;margin:26px 0 0}
+
+.ep{margin-top:52px;border-top:2px solid var(--INK);padding-top:18px}
+.ep-num{font-family:var(--fm);font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--GOm)}
+.ep-title{font-family:var(--fd);font-size:clamp(26px,4vw,40px);font-weight:700;line-height:1.12;margin:6px 0 4px}
+.ep-meta{font-family:var(--fm);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--INKs);margin-bottom:6px}
+.ep-sum{font-family:var(--fs);font-size:17px;font-style:italic;color:var(--INKs);margin-bottom:6px}
+
+.sec{font-family:var(--fh);font-size:13px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--INK);
+ border-bottom:1px solid var(--GO);padding-bottom:6px;margin:38px 0 4px}
+
+.src{border-bottom:.5px solid rgba(0,0,0,.12);padding:16px 0}
+.src:last-child{border-bottom:none}
+.src-t{font-family:var(--fs);font-size:18px;font-weight:700;line-height:1.35}
+.src-a{font-family:var(--fb);font-size:15.5px;color:var(--INKs);margin-top:2px}
+.src-d{font-family:var(--fm);font-size:12px;letter-spacing:.04em;color:var(--INKs);margin-top:5px}
+.src-d a{word-break:break-word}
+.src-n{font-family:var(--fs);font-size:15px;font-style:italic;color:var(--INKs);margin-top:7px}
+.tag{display:inline-block;font-family:var(--fm);font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+ padding:2px 8px;border:1px solid currentColor;margin-right:6px;vertical-align:2px}
+.t-peer{color:#2E6B4F}.t-book{color:var(--GOm)}.t-text{color:var(--INKs)}.t-read{color:#6A4FA3}.t-open{color:var(--CR)}
+
+.quote{font-family:var(--fs);font-size:17px;line-height:1.6;font-style:italic;color:var(--INK);
+ border-left:3px solid var(--CR);padding:4px 0 4px 16px;margin:10px 0}
+.orig{font-size:22px;line-height:1.9;direction:rtl;unicode-bidi:isolate;margin:6px 0}
+
+.caveat{background:#F3EEE4;border:1px solid var(--GOm);padding:16px 18px;margin-top:28px}
+.caveat h4{font-family:var(--fh);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--CR);margin-bottom:8px}
+.caveat p{font-family:var(--fb);font-size:15.5px;color:var(--INKs)}
+.caveat p+p{margin-top:8px}
+
+.foot{border-top:2px solid var(--INK);margin-top:60px;padding-top:18px;text-align:center;
+ font-family:var(--fm);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--INKs)}
+.foot a{color:var(--CR)}
+</style>
+
+<style>
+.tip{background:#F3EEE4;border-left:3px solid var(--CR);padding:13px 16px;margin-top:14px}
+.tip .th{font-family:var(--fm);font-size:9.5px;font-weight:700;letter-spacing:.2em;
+ text-transform:uppercase;color:var(--CR);display:block;margin-bottom:5px}
+.tip p{font-family:var(--fb);font-size:15.5px;line-height:1.66;color:var(--INKs)}
+.tip p+p{margin-top:7px}
+.stage{margin-top:46px;border-top:2px solid var(--INK);padding-top:16px}
+.stage-k{font-family:var(--fm);font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--CR)}
+.stage-t{font-family:var(--fd);font-size:clamp(23px,3.4vw,33px);font-weight:700;line-height:1.14;margin:6px 0 6px}
+.stage-s{font-family:var(--fs);font-size:17px;font-style:italic;color:var(--INKs)}
+.b{font-size:17px;line-height:1.75;margin-top:14px;color:var(--INKs)}
+.b strong{color:var(--INK)}
+.pull{font-family:var(--fs);font-size:clamp(21px,3vw,28px);line-height:1.38;font-style:italic;
+ color:var(--INK);border-left:3px solid var(--CR);padding:6px 0 6px 20px;margin:26px 0}
+.steps{counter-reset:s;margin-top:20px}
+.step{position:relative;padding:15px 0 15px 58px;border-bottom:.5px solid rgba(0,0,0,.12)}
+.step:last-child{border-bottom:none}
+.step::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:13px;
+ width:38px;height:38px;border:1px solid var(--GO);border-radius:50%;
+ font-family:var(--fh);font-size:17px;color:var(--GOm);display:flex;align-items:center;justify-content:center}
+.step h4{font-family:var(--fs);font-size:18.5px;font-weight:700;margin-bottom:3px}
+.step p{font-size:16px;color:var(--INKs);line-height:1.65}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:0 34px;margin-top:20px}
+@media(max-width:700px){.two-col{grid-template-columns:1fr;gap:0}}
+.col h4{font-family:var(--fh);font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+ color:var(--CR);border-bottom:1px solid var(--GO);padding-bottom:6px;margin-bottom:10px}
+.col ul{list-style:none;margin:0}
+.col li{font-size:16px;line-height:1.6;color:var(--INKs);padding:7px 0 7px 18px;position:relative}
+.col li::before{content:'·';position:absolute;left:4px;color:var(--GO);font-weight:700}
+</style>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Before Ruin">
+<meta name="theme-color" content="#F8F6F0">
+</head>
+<body>
+<div class="ticker"><div class="ticker-row">
+  <span class="ticker-tag">THE METHOD</span>
+  <div class="ticker-scroll"><span class="ticker-text">
+    THE TOOL DID NOT ASK THE QUESTION. &nbsp;⬥&nbsp;
+    NOTHING REACHES YOU THAT I HAVE NOT READ AT THE SOURCE. &nbsp;⬥&nbsp;
+    HERE IS HOW IT IS DONE, SO YOU CAN DO IT TOO.
+  </span></div>
+</div></div>
+
+<header class="masthead">
+  <div class="mast-nav">
+    <div><a href="/">Home</a><a href="/her.html">She Is Working</a><a href="/texts.html">The Witnesses</a><a href="/method.html">The Method</a><a href="/sources.html">Read With Me</a></div>
+    <div id="nav-date"></div>
+  </div>
+  <div class="mast-center">
+    <div class="mast-eyebrow">For the person who wants to check it themselves</div>
+    <div class="mast-wordmark">How This&nbsp;<span class="ruin">Work Is Done</span></div>
+  </div>
+  <div class="mast-gold-rule"></div>
+  <div class="mast-subbar">
+    <span class="msb-l">Method &nbsp;·&nbsp; Tools &nbsp;·&nbsp; What You Can Do Yourself</span>
+    <span class="msb-c">Come And Do Likewise</span>
+    <span class="msb-r"><span style="color:var(--GOm)">BR-MT-001</span> &nbsp;·&nbsp; <span id="updated-date"></span></span>
+  </div>
+</header>
+
+<div class="hero-band">
+  <p class="hero-claim">A generation ago this took a library card, a reading-room chair, and years. <strong>That is no longer true — and the change is worth handing over rather than hiding.</strong></p>
+</div>
+
+<div class="wrap">
+
+  <p class="kicker">Abstract</p>
+  <p class="lede">This page is written for the person sitting in a Bible study who wants to check something and does not know where to start. It sets out how the work on this site is actually done: what the tools are, what they are genuinely good for, what they cannot do at all, and where a person has to stand.</p>
+
+  <p class="b"><strong>The short version.</strong> I use AI for the footwork — finding, retrieving, cross-checking, keeping track. It is very good at that, and it costs almost nothing, where forty years ago the same work meant travel, fees, and most of a decade. <strong>What it does not do is ask, judge, or answer for what is published.</strong> Nothing reaches you that I have not gone back to the source and read for myself. Where I could not reach a source, the page says so. Where a conclusion is mine rather than the field's, it is marked as a reading. Where the evidence cuts against me, that is printed too.</p>
+
+  <p class="b">And there is one more thing, which turns out to be the whole point: <strong>using these tools well is a skill, and it is not the same skill as operating them.</strong> That part is teachable, so most of this page is spent teaching it.</p>
+
+  <!-- ─────────── THE QUESTION ─────────── -->
+  <div class="stage">
+    <div class="stage-k">First</div>
+    <h2 class="stage-t">The tool did not ask the question</h2>
+    <p class="stage-s">Everything downstream depends on where the question came from.</p>
+  </div>
+
+  <p class="b">No machine woke up one morning and wondered whether the Holy Ghost was a ghost. None of them sat in a cold room as a boy and noticed that the household had only one voice in it. Nothing in a data centre has ever been handed a God described as Father and then looked around the room for the mother.</p>
+
+  <div class="pull">The question came from a life. The tool only ever answered what it was asked.</div>
+
+  <p class="b">That is not a small distinction, and it is not a defensive one. <strong>In research, the question is most of the work.</strong> Anyone who has done it will tell you the same: a well-formed question aimed at the right place will find things a thousand hours of undirected reading never turns up. A badly formed one returns a tidy answer to nothing.</p>
+
+  <p class="b">Every question on this site came from a man who had been troubled by something for years before any of these tools existed. <strong>What changed is how long it took to go and look.</strong></p>
+
+  <!-- ─────────── WHAT THE TOOLS DO ─────────── -->
+  <div class="stage">
+    <div class="stage-k">Second</div>
+    <h2 class="stage-t">What the tools do, and what they do not</h2>
+    <p class="stage-s">Worth being plain about both, because the line between them is where the work lives.</p>
+  </div>
+
+  <div class="two-col">
+    <div class="col">
+      <h4>The footwork — genuinely good at this</h4>
+      <ul>
+        <li>Finding which scholars have written on a question, and which of them the field actually reads</li>
+        <li>Retrieving a passage in Syriac, Hebrew or Greek and laying the versions side by side</li>
+        <li>Cross-checking a claim against several sources at once and flagging where they part company</li>
+        <li>Keeping track of hundreds of citations without losing one</li>
+        <li>Turning a half-remembered line into a chapter and a page number</li>
+        <li>Doing all of it in an evening rather than over a term</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h4>What no tool does</h4>
+      <ul>
+        <li>Ask a question that came out of somebody's life</li>
+        <li>Know which answer matters and which is merely correct</li>
+        <li>Notice when a source is confidently wrong</li>
+        <li>Feel the pull to accept the reading that helps, and refuse it</li>
+        <li>Decide what a congregation is ready to hear, and how to say it without wounding anyone</li>
+        <li>Stand behind it afterward</li>
+      </ul>
+    </div>
+  </div>
+
+  <p class="b" style="margin-top:22px">I spent forty years in a trade where nobody hand-calculates a service load. You use the tables. You use the calculator. Nobody thinks the less of you for it, and the work is better for it. <strong>But an apprentice does not get the tables on day one.</strong> He gets them after he has done enough by hand to know when a number looks wrong — because the table will happily give you an answer to a question you asked incorrectly, and the table is not the one who has to sign the permit.</p>
+
+  <!-- ─────────── THE NUANCE ─────────── -->
+  <div class="stage">
+    <div class="stage-k">Third</div>
+    <h2 class="stage-t">The part that is a skill</h2>
+    <p class="stage-s">Anyone can type a question. Knowing what came back is a different matter.</p>
+  </div>
+
+  <p class="b">These tools do not fail loudly. They fail <em>plausibly</em> — a citation with the right shape and a wrong page number, a title that has drifted one word, a summary that is accurate about a book nobody in the field takes seriously any more. None of that announces itself. It arrives looking exactly like everything else.</p>
+
+  <p class="b">So the skill is not operating the thing. <strong>The skill is knowing what an answer should look like before you get one</strong>, and noticing when the shape is off.</p>
+
+  <div class="tip">
+    <span class="th">A live example from this site</span>
+    <p>While building <a href="/texts.html">The Witnesses</a>, a chapter by Sebastian Brock came back under two different titles. One said <em>Feminine</em>. One said <em>Mother</em>. Only one is on the book's contents page.</p>
+    <p><strong>Notice which way it drifted.</strong> <em>Mother</em> is the reading that helps my argument. It is still the one I set down — because it is not what the contents page says, and <strong>a citation that flatters the person citing it is exactly the one to check twice.</strong></p>
+    <p>No tool caught that. No tool could. It was caught because I knew what the citation ought to look like, and that one looked a little too good.</p>
+  </div>
+
+  <p class="b" style="margin-top:22px">That is the nuance, and it is why this is not a button. It comes from years of reading, from having been wrong in public, and from wanting the truth more than you want the argument. <strong>It can be learned.</strong> It is learned the same way anything is learned in a trade: by doing it, being corrected, and doing it again.</p>
+
+  <!-- ─────────── HOW TO ─────────── -->
+  <div class="stage">
+    <div class="stage-k">Fourth</div>
+    <h2 class="stage-t">How to do this yourself</h2>
+    <p class="stage-s">You can check anything on this site tonight, from a kitchen table, for nothing.</p>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <h4>Start with something that has bothered you.</h4>
+      <p>Not a topic — a snag. A verse that never sat right, a word your pastor used oddly, a thing you were told that you could never quite square. The snag is the question, and the question is most of the work.</p>
+    </div>
+    <div class="step">
+      <h4>Find the word underneath the word.</h4>
+      <p>Open an interlinear or a lexicon and see what stands under the English. <a href="https://logeion.uchicago.edu" rel="noopener">Logeion</a> gives you the standard Greek and Latin dictionaries free. Blue Letter Bible and STEP Bible will show you the Hebrew and Greek behind any verse without costing a cent.</p>
+    </div>
+    <div class="step">
+      <h4>Ask who has written on it — then go get the actual book.</h4>
+      <p>This is where a tool earns its keep: it will tell you in a minute who the field reads on your question. <strong>Then stop using it and get the book.</strong> Interlibrary loan is free at most public libraries. Archive.org lends. Many scholars post their own work.</p>
+    </div>
+    <div class="step">
+      <h4>Look at the manuscript yourself.</h4>
+      <p>You do not need permission and you do not need Greek. <a href="https://www.codexsinaiticus.org" rel="noopener">Codex Sinaiticus</a> is online page by page. The <a href="https://www.deadseascrolls.org.il" rel="noopener">Dead Sea Scrolls</a> are photographed at full resolution. Look at the thing itself at least once — it changes how you read everything after.</p>
+    </div>
+    <div class="step">
+      <h4>Go looking for who disagrees.</h4>
+      <p>Deliberately. Before you are attached to the answer. If you cannot state the best case against your position in its own strongest form, you do not understand your position yet — you only like it.</p>
+    </div>
+    <div class="step">
+      <h4>Write down which part is yours.</h4>
+      <p>Somewhere in every piece of work there is a seam between what the sources say and what you concluded from them. Find that seam and mark it. On this site those are tagged <strong>Reading</strong>. It costs nothing and it is the difference between teaching and selling.</p>
+    </div>
+  </div>
+
+  <!-- ─────────── CONCLUSION ─────────── -->
+  <div class="stage">
+    <div class="stage-k">Conclusion</div>
+    <h2 class="stage-t">The footwork is cheap now. The judgement never was.</h2>
+    <p class="stage-s">Which is good news, and it is the reason this page exists.</p>
+  </div>
+
+  <p class="b">What used to guard this work was cost. Thousands of dollars, years of access, a chair in a room most people would never be admitted to. That gate is largely gone, and I am not sorry to see it go. A man in Auburn, New York can now read the same manuscripts as a man in Oxford, on the same evening, for nothing.</p>
+
+  <p class="b"><strong>What is left is the part that was always the real work</strong> — asking a question worth asking, recognising a bad answer, resisting the reading that flatters you, and standing behind what you publish. None of that was ever for sale, and none of it has been automated.</p>
+
+  <div class="pull">The tools did the fetching. The asking, the weighing, and the answering for it are mine.</div>
+
+  <p class="b">If you want to check any of it, everything you need is listed on <a href="/texts.html">The Witnesses</a> and on each episode's page. Most of it is free. <strong>I would rather you go and look than take my word for it</strong> — that is the whole posture of this work, and it applies to the method as much as to the conclusions.</p>
+
+  <div class="caveat">
+    <h4>Where I fall short, and what I do about it</h4>
+    <p>I am one man, working evenings, caring for my mother, without a department behind me. There are sources I have not been able to reach and languages I read only with help. <strong>When that is the case, the page says so in plain words</strong> rather than smoothing it over.</p>
+    <p>If you find something here that is wrong, I would genuinely rather know than not. Corrections go straight onto the page with the date.</p>
+  </div>
+
+  <div class="foot">
+    Before Ruin &nbsp;·&nbsp; Robert Langan Ministries &nbsp;·&nbsp; Sundays 11 PM on The Now Network<br>
+    <a href="/">beforeruin.app</a> &nbsp;·&nbsp; <a href="/texts.html">The Witnesses</a> &nbsp;·&nbsp; <a href="/sources.html">Read with me</a><br>
+    <span style="color:var(--GOm);letter-spacing:.2em">BR-MT-001</span>
+  </div>
+</div>
+
+<script>
+(function(){var d=new Date();
+ var dy=['Sun.','Mon.','Tue.','Wed.','Thur.','Fri.','Sat.'];
+ var mo=['January','February','March','April','May','June','July','August','September','October','November','December'];
+ var n=document.getElementById('nav-date');
+ if(n)n.textContent=dy[d.getDay()]+' — '+mo[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear();
+ var u=document.getElementById('updated-date');
+ if(u)u.textContent='Updated: '+mo[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear();})();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/sw.js').catch(function () { /* offline reading is a bonus, never a requirement */ });
+  });
+}
+</script>
+</body>
+</html>
