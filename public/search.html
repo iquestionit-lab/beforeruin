@@ -1470,6 +1470,24 @@
   </script>
 
   <script>
+    // A link can arrive with a search already in it:  /search.html?q=through&mode=term
+    (function () {
+      var p = new URLSearchParams(window.location.search);
+      var q = p.get('q');
+      if (!q) return;
+      var mode = p.get('mode') || 'term';
+      var m = document.querySelector('.re-mode[data-mode="' + mode + '"]');
+      if (m) {
+        document.querySelectorAll('.re-mode').forEach(function (x) { x.classList.remove('active'); });
+        m.classList.add('active');
+      }
+      var input = document.querySelector('.re-search-input');
+      input.value = q;
+      document.querySelector('.re-search-btn').click();
+    })();
+  </script>
+
+  <script>
     // Topic buttons — fill, switch to Term, and run it. One click from cold to an answer.
     document.querySelectorAll('.ss-topic').forEach(function (b) {
       b.addEventListener('click', function () {

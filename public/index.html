@@ -182,15 +182,17 @@
     .prep-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:var(--GO); border:1px solid var(--GO); margin-bottom:24px; }
     .prep-card { background:var(--P); padding:16px 14px; cursor:pointer; transition:background .15s; position:relative; }
     .prep-card:hover { background:var(--PD); }
+    .prep-card:hover .pc-english { color:var(--CR); }
+    .prep-card.featured:hover { background:#1c1c1c; }
     .prep-card.featured { background:var(--INK); }
     .pc-english { font-family:var(--fd); font-size:22px; font-weight:700; color:var(--INK); line-height:1; margin-bottom:8px; letter-spacing:.04em; }
     .prep-card.featured .pc-english { color:var(--P); }
     .pc-variants { display:flex; flex-direction:column; gap:4px; }
     .pc-greek { font-family:var(--fb); font-style:italic; font-size:12px; color:var(--INKs); }
     .prep-card.featured .pc-greek { color:var(--GOl); }
-    .pc-meaning { font-family:var(--fm); font-size:9px; letter-spacing:.08em; text-transform:uppercase; color:var(--GOm); }
+    .pc-meaning { font-family:var(--fm); font-size:9.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--INKs); }
     .prep-card.featured .pc-meaning { color:var(--GO); }
-    .pc-count { position:absolute; top:8px; right:10px; font-family:var(--fm); font-size:8.5px; letter-spacing:.1em; color:var(--GO); text-transform:uppercase; }
+    .pc-count { position:absolute; top:8px; right:10px; font-family:var(--fm); font-size:9px; letter-spacing:.1em; color:var(--GOm); text-transform:uppercase; }
     .prep-card.featured .pc-count { color:var(--CR); }
 
     /* ═══════════════════════════════════════════
@@ -1662,6 +1664,15 @@
       btn.addEventListener('click', doLookup);
       input.addEventListener('keydown', function(e) { if (e.key === 'Enter') doLookup(); });
     })();
+
+    // Preposition cards — each one opens that word in the Recovery Engine
+    document.querySelectorAll('.prep-card').forEach(function (card) {
+      card.addEventListener('click', function () {
+        var w = card.querySelector('.pc-english');
+        if (!w) return;
+        window.location.href = '/search.html?q=' + encodeURIComponent(w.textContent.trim()) + '&mode=term';
+      });
+    });
 
     // Dynamic date — updates on each page load
     (function() {
