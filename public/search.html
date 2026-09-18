@@ -1357,7 +1357,8 @@
       const resultsEl = document.getElementById('re-results');
       resultsEl.innerHTML = `<div class="re-no-result" style="font-style:normal;font-family:var(--fm);font-size:10px;letter-spacing:.15em;">SEARCHING THE SOURCES…</div>`;
       resultsEl.classList.add('has-results');
-      document.getElementById('re-differs-panel').style.display = 'none';
+      const _dp = document.getElementById('re-differs-panel');
+      if (_dp) _dp.style.display = 'none';
 
       const mode = MODE_MAP[currentMode()] || 'word_origin';
 
