@@ -993,6 +993,41 @@
              letter-spacing:.14em; text-transform:uppercase; color:var(--INKs); }
   .ss-foot a { color:var(--CR); text-decoration:none; }
   @media (max-width:700px){ .recovery-engine .re-inner.ss-inner { max-width:100%; } }
+
+  /* ── Working indicator: the one green thing on the site ── */
+  .re-progress { display:none; height:4px; margin-top:9px; overflow:hidden;
+                 background:rgba(248,246,240,.09); position:relative; }
+  .re-progress.on { display:block; }
+  .re-progress-bar { position:absolute; inset:0 auto 0 0; width:38%;
+                     background:linear-gradient(90deg, rgba(47,163,107,0) 0%, #2FA36B 45%, #6FE3AC 100%);
+                     animation: re-sweep 1.05s cubic-bezier(.45,.05,.55,.95) infinite; }
+  @keyframes re-sweep { 0% { left:-40%; } 100% { left:100%; } }
+  .re-progress-word { display:none; margin-top:7px; font-family:var(--fm); font-size:9.5px;
+                      letter-spacing:.2em; text-transform:uppercase; color:#6FE3AC; }
+  .re-progress-word.on { display:block; }
+  @media (prefers-reduced-motion: reduce) {
+    .re-progress-bar { animation:none; width:100%;
+                       background:#2FA36B; opacity:.55; }
+  }
+
+  /* ── Printing an answer: the card, and nothing else ── */
+  @media print {
+    body * { visibility: hidden; }
+    #re-results, #re-results * { visibility: visible; }
+    #re-results { position: absolute; left: 0; top: 0; width: 100%; margin: 0; }
+    .re-copy-btn, .re-print-btn { display: none !important; }
+    .re-result-card,
+    .re-result-card * {
+      background: #fff !important;
+      color: #111 !important;
+      border-color: #999 !important;
+      box-shadow: none !important;
+    }
+    .re-result-card { border: none !important; padding: 0 !important; }
+    .re-result-term { font-size: 20pt !important; }
+    .re-result-body { font-size: 11.5pt !important; line-height: 1.55 !important; }
+    a[href]:after { content: " (" attr(href) ")"; font-size: 9pt; color: #555 !important; }
+  }
 </style>
 <body>
 
@@ -1051,6 +1086,11 @@
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><line x1="16.5" y1="16.5" x2="21" y2="21"></line></svg>
           </button>
         </div>
+
+        <div class="re-progress" id="re-progress" aria-hidden="true">
+          <div class="re-progress-bar"></div>
+        </div>
+        <div class="re-progress-word" id="re-progress-word">Searching the sources…</div>
 
         <div style="font-family:var(--fm);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--GOm);margin:16px 0 10px;">Choose what you are asking for</div>
         <div class="re-modes">
@@ -1321,6 +1361,7 @@
             <img src="/favicon-192x192.png" alt="" style="width:20px;height:20px;opacity:.8;border-radius:3px;">
             <span class="re-result-brand">SCRIPTSEARCH · ORIGINAL FREQUENCY</span>
             <button class="re-copy-btn" onclick="copyResult(this)">⎘ COPY</button>
+            <button class="re-copy-btn re-print-btn" onclick="window.print()">⎙ PRINT</button>
           </div>
           <div class="re-result-term">${query}</div>
           <div class="re-result-body">${answerHtml}</div>
@@ -1354,6 +1395,13 @@
       if (e.key === 'Enter') handleSearch();
     });
 
+    function setWorking(on) {
+      const bar  = document.getElementById('re-progress');
+      const word = document.getElementById('re-progress-word');
+      if (bar)  bar.classList.toggle('on', !!on);
+      if (word) word.classList.toggle('on', !!on);
+    }
+
     async function handleSearch() {
       const query = document.querySelector('.re-search-input').value.trim();
       if (!query) return;
@@ -1364,6 +1412,7 @@
       updateCounter(searchesUsed, FREE_LIMIT);
 
       // Show loading state
+      setWorking(true);
       const resultsEl = document.getElementById('re-results');
       resultsEl.innerHTML = `<div class="re-no-result" style="font-style:normal;font-family:var(--fm);font-size:10px;letter-spacing:.15em;">SEARCHING THE SOURCES…</div>`;
       resultsEl.classList.add('has-results');
@@ -1380,10 +1429,12 @@
         });
         if (!res.ok) throw new Error('Search failed');
         const data = await res.json();
+        setWorking(false);
         renderResults(data, query);
         // Track successful search in Analytics
         if (window._logEvent) window._logEvent('search', { search_term: query, search_mode: mode });
       } catch (err) {
+        setWorking(false);
         resultsEl.innerHTML = `<div class="re-no-result">Could not reach the search engine — please try again.</div>`;
         if (window._logEvent) window._logEvent('search_error', { search_term: query, search_mode: mode });
       }
