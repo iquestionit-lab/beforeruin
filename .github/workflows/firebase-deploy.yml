@@ -1,4 +1,4 @@
-name: Deploy to Firebase Hosting
+name: Deploy to Firebase
 
 on:
   push:
@@ -6,7 +6,10 @@ on:
       - main
 
 jobs:
-  build_and_deploy:
+  # ── The site. Unchanged, and deliberately independent of the functions job:
+  #    if functions fail to deploy, the site still goes out.
+  deploy_hosting:
+    name: Hosting
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,3 +19,27 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_BEFORE_RUIN_B3744 }}
           channelId: live
           projectId: before-ruin-b3744
+
+  # ── The search engine. Deploys from the commit, never from a desk,
+  #    so a stale local clone can no longer put old code on the live site.
+  deploy_functions:
+    name: Functions
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install function dependencies
+        working-directory: functions
+        run: npm install
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_BEFORE_RUIN_B3744 }}
+
+      - name: Deploy functions
+        run: npx firebase-tools@latest deploy --only functions --project before-ruin-b3744 --non-interactive

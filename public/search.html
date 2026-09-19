@@ -1299,6 +1299,15 @@
         ? marked.parse(data.answer || '')
         : data.answer.split(/\n\n+/).map(p => `<p>${p.replace(/\n/g,'<br>')}</p>`).join('');
 
+      const noSources = (data.sources_fetched === false)
+        ? `<div style="margin-top:14px;padding:11px 13px;border:1px solid var(--CR);background:rgba(168,28,28,.08);
+                       font-family:var(--fb);font-size:13.5px;line-height:1.5;color:rgba(248,246,240,.8);">
+             <strong style="color:var(--GOl);">No live sources were reached for this one.</strong>
+             What follows is drawn from attested texts but was not fetched and checked against them just now.
+             Treat it as a starting point and verify it before you rely on it.
+           </div>`
+        : '';
+
       const sourceChips = (data.sources && data.sources.length)
         ? `<div style="margin-top:16px;padding-top:14px;border-top:.5px solid rgba(197,160,89,.2);">
             <div class="re-result-sources-label">⬩ Primary Sources</div>
@@ -1315,11 +1324,12 @@
           </div>
           <div class="re-result-term">${query}</div>
           <div class="re-result-body">${answerHtml}</div>
+          ${noSources}
           ${sourceChips}
         </div>`;
 
       el.classList.add('has-results');
-      differsPanel.style.display = 'none';
+      if (differsPanel) differsPanel.style.display = 'none';
     }
 
     function copyResult(btn) {

@@ -311,35 +311,32 @@ async function fetchApiBible(bibleId, passageId, label) {
   } catch (e) { return null; }
 }
 
-async function fetchYLT(passageId) {
-  // passageId: "ROM.10.17" → book=rom, chapter=10, verse=17
-  const parts = passageId.split('.');
-  if (parts.length < 3) return null;
-  const book = parts[0].toLowerCase();
-  const chapter = parts[1];
-  const verse = parseInt(parts[2].split('-')[0]);
-  const url = `https://getbible.net/v2/youngs/${book}/${chapter}.json`;
+async function fetchYLT(reference) {
+  // bible-api.com takes a plain reference ("John 1:3"). YLT there is New Testament only;
+  // an Old Testament lookup simply returns nothing, which the caller already handles.
+  const url = `https://bible-api.com/${encodeURIComponent(reference)}?translation=ylt`;
   const res = await safeFetch(url, {}, 'YLT');
   if (!res || !res.ok) return null;
   try {
     const data = await res.json();
-    const verseObj = data.verses?.[verse - 1];
-    return verseObj
-      ? `Young's Literal Translation (YLT):\n[${verseObj.name || passageId}] ${verseObj.verse}`
+    const text = (data.text || '').replace(/\s+/g, ' ').trim();
+    return text
+      ? `Young's Literal Translation (YLT):\n[${data.reference || reference}] ${text}`
       : null;
   } catch (e) { return null; }
 }
 
 async function fetchSefaria(query) {
-  const encoded = encodeURIComponent(query);
-  // Search primary texts
-  const textUrl = `https://www.sefaria.org/api/search-wrapper?query=${encoded}&type=text&field=naive_lemmatizer&sort_type=relevance&size=5`;
-  // Search commentary sheets (named commentators: Rashi, Maimonides, etc.)
-  const sheetUrl = `https://www.sefaria.org/api/search-wrapper?query=${encoded}&type=sheet&field=content&sort_type=relevance&size=3`;
+  const SEARCH_URL = 'https://www.sefaria.org/api/search-wrapper';
+  const post = (body, label) => safeFetch(SEARCH_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  }, label);
 
   const [textRes, sheetRes] = await Promise.all([
-    safeFetch(textUrl, {}, 'Sefaria-text'),
-    safeFetch(sheetUrl, {}, 'Sefaria-sheets'),
+    post({ query, type: 'text',  field: 'naive_lemmatizer', sort_type: 'relevance', size: 5 }, 'Sefaria-text'),
+    post({ query, type: 'sheet', field: 'content',          sort_type: 'relevance', size: 3 }, 'Sefaria-sheets'),
   ]);
 
   const parts = [];
@@ -348,9 +345,16 @@ async function fetchSefaria(query) {
     try {
       const data = await textRes.json();
       const hits = (data.hits?.hits || []).slice(0, 5).map(h => {
-        const s = h._source;
-        const text = s.exact || s.naive_lemmatizer || '';
-        return text ? `[${s.ref}] ${text.slice(0, 350)}` : null;
+        // search-wrapper returns no _source: the reference is the _id, the text is in highlight
+        const ref = String(h._id || '').split(' (')[0];
+        const hl  = h.highlight || {};
+        const text = []
+          .concat(hl.naive_lemmatizer || [], hl.exact || [], hl.content || [])
+          .join(' … ')
+          .replace(/<[^>]+>/g, '')
+          .replace(/\s+/g, ' ')
+          .trim();
+        return text ? `[${ref}] ${text.slice(0, 350)}` : null;
       }).filter(Boolean);
       if (hits.length) parts.push(`Sefaria — Hebrew/Jewish primary texts:\n${hits.join('\n\n')}`);
     } catch (e) {}
@@ -360,12 +364,16 @@ async function fetchSefaria(query) {
     try {
       const data = await sheetRes.json();
       const hits = (data.hits?.hits || []).slice(0, 3).map(h => {
-        const s = h._source;
-        const title = s.title || '';
-        const owner = s.ownerName || '';
-        const content = (s.content || '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+        const title = String(h._id || '').split(' (')[0];
+        const hl = h.highlight || {};
+        const content = []
+          .concat(hl.content || [], hl.naive_lemmatizer || [])
+          .join(' … ')
+          .replace(/<[^>]+>/g, '')
+          .replace(/\s+/g, ' ')
+          .trim();
         const snippet = content.slice(0, 300);
-        return snippet ? `[Commentary${title ? ': ' + title : ''}${owner ? ' — ' + owner : ''}] ${snippet}` : null;
+        return snippet ? `[Commentary${title ? ': ' + title : ''}] ${snippet}` : null;
       }).filter(Boolean);
       if (hits.length) parts.push(`Sefaria — Commentary layer:\n${hits.join('\n\n')}`);
     } catch (e) {}
@@ -457,7 +465,7 @@ async function fetchLiveSources(query, mode) {
         fetchApiBible(BIBLES.KJV,  passageId, 'King James Version (KJV)'),
         fetchApiBible(BIBLES.NASB, passageId, 'New American Standard Bible 1995 (NASB)'),
         fetchApiBible(BIBLES.CSB,  passageId, 'Christian Standard Bible (CSB)'),
-        fetchYLT(passageId),
+        fetchYLT(query),
         fetchSefariaPassage(query),
       ]);
       if (kjv)    sources.push(kjv);
@@ -519,7 +527,7 @@ async function fetchLiveSources(query, mode) {
 
     // Parallel: Sefaria lexicon + Sefaria text search + API.Bible text search
     const [lexicon, sefaria, kjvSearch, nasbSearch, csbSearch] = await Promise.all([
-      termEntry ? fetchSefariaLexicon(primaryTerm) : Promise.resolve(null),
+      termEntry ? fetchSefariaLexicon(termEntry.heb || primaryTerm) : Promise.resolve(null),
       fetchSefaria(sefariaSearchQuery),
       fetchApiBibleSearch(BIBLES.KJV,  'King James Version (KJV)',                bibleSearchQuery, 8),
       fetchApiBibleSearch(BIBLES.NASB, 'New American Standard Bible 1995 (NASB)', bibleSearchQuery, 8),
