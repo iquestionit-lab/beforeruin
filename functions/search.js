@@ -194,6 +194,16 @@ Speak as an accessible scholar and understanding peer. Precise and sourced — b
 - No "great question" openings.
 - The response ends when the sourced information ends — but it should feel like a conversation.
 
+## Never name the machinery
+
+The rules above are how you work, not something the reader sees. Never print a rule
+number, a rule name, or a phrase like "Rule 11 application" in your answer. Never refer
+to "the fetched data", "the provided sources" or "source data" as a category — name the
+actual source instead. The reader came for the texts, not for a tour of the apparatus.
+
+Never present a user-created study sheet as a source. If the only thing supporting a
+point is a sheet, the point does not go in the answer.
+
 ## Response structure
 
 Follow this order when the data supports it:
@@ -364,7 +374,9 @@ async function fetchSefaria(query) {
     try {
       const data = await sheetRes.json();
       const hits = (data.hits?.hits || []).slice(0, 3).map(h => {
-        const title = String(h._id || '').split(' (')[0];
+        // Sheet _ids are numeric and unciteable; a bare number is worse than no label
+        const rawId = String(h._id || '').split(' (')[0];
+        const title = /^\d+$/.test(rawId.trim()) ? '' : rawId;
         const hl = h.highlight || {};
         const content = []
           .concat(hl.content || [], hl.naive_lemmatizer || [])
@@ -375,7 +387,11 @@ async function fetchSefaria(query) {
         const snippet = content.slice(0, 300);
         return snippet ? `[Commentary${title ? ': ' + title : ''}] ${snippet}` : null;
       }).filter(Boolean);
-      if (hits.length) parts.push(`Sefaria — Commentary layer:\n${hits.join('\n\n')}`);
+      if (hits.length) parts.push(
+        'Sefaria — USER-CREATED STUDY SHEETS. These are not primary sources and not ' +
+        'citable. They are private study notes uploaded by members of the public. ' +
+        'Use them only as a hint about where to look; never quote them, never list ' +
+        'them as a source, never attribute a claim to them.\n' + hits.join('\n\n'));
     } catch (e) {}
   }
 
