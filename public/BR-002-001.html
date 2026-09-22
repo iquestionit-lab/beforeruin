@@ -399,5 +399,90 @@ if ('serviceWorker' in navigator) {
   });
 }
 </script>
+  <!-- ══ GET THE NOTES — Mailchimp signup (audience: Before Ruin) ══ -->
+  <section class="nsx" aria-labelledby="nsx-h">
+    <style>
+      .nsx{--nsxP:#F8F6F0;--nsxINK:#111;--nsxINKs:#3A3530;--nsxCR:#A81C1C;--nsxGO:#C5A059;--nsxGOm:#9E7E3F;
+           background:var(--nsxP);padding:54px 20px 60px;border-top:1px solid rgba(197,160,89,.45);
+           border-bottom:1px solid rgba(197,160,89,.45);text-align:center}
+      .nsx-in{max-width:640px;margin:0 auto}
+      .nsx-eyebrow{font-family:var(--fm,'Courier Prime',monospace);font-size:12px;letter-spacing:.3em;
+           text-transform:uppercase;color:var(--nsxGOm);margin-bottom:14px}
+      .nsx-h{font-family:var(--fh,'Cinzel',serif);font-weight:700;font-size:30px;letter-spacing:.04em;
+           color:var(--nsxINK);margin:0 0 12px}
+      .nsx-dek{font-family:var(--fb,'IM Fell English',Georgia,serif);font-size:17px;line-height:1.6;
+           color:var(--nsxINKs);margin:0 auto 26px;max-width:30em}
+      .nsx-form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+      .nsx-form input[type=email]{font-family:var(--fm,'Courier Prime',monospace);font-size:15px;
+           padding:13px 16px;min-width:270px;flex:0 1 320px;color:var(--nsxINK);background:#fff;
+           border:1px solid rgba(58,53,48,.35);border-radius:0}
+      .nsx-form input[type=email]:focus{outline:none;border-color:var(--nsxGOm)}
+      .nsx-form button{font-family:var(--fm,'Courier Prime',monospace);font-weight:700;font-size:14px;
+           letter-spacing:.14em;text-transform:uppercase;padding:13px 26px;color:var(--nsxCR);
+           background:transparent;border:2px solid var(--nsxCR);border-radius:0;cursor:pointer}
+      .nsx-form button:hover{background:var(--nsxCR);color:#fff}
+      .nsx-fine{font-family:var(--fm,'Courier Prime',monospace);font-size:11px;letter-spacing:.08em;
+           color:var(--nsxINKs);opacity:.75;margin-top:16px}
+      .nsx-msg{font-family:var(--fs,'Playfair Display',Georgia,serif);font-style:italic;font-size:17px;
+           color:var(--nsxINKs);margin-top:18px;min-height:1.4em}
+      .nsx-msg.bad{color:var(--nsxCR);font-style:normal;font-family:var(--fm,'Courier Prime',monospace);font-size:14px}
+      .nsx-hp{position:absolute;left:-5000px}
+      @media(max-width:520px){.nsx-h{font-size:24px}.nsx-form input[type=email]{min-width:0;width:100%;flex:1 1 100%}
+           .nsx-form button{width:100%}}
+    </style>
+    <div class="nsx-in">
+      <div class="nsx-eyebrow">The Notes</div>
+      <h2 class="nsx-h" id="nsx-h">Get the notes.</h2>
+      <p class="nsx-dek">Every verse, every source, every week &mdash; the same sheet I work from.
+         One email when an episode airs.</p>
+      <form class="nsx-form" id="nsx-form" novalidate>
+        <label for="nsx-email" class="nsx-hp">Email address</label>
+        <input type="email" id="nsx-email" name="EMAIL" placeholder="you@example.com" required autocomplete="email">
+        <div class="nsx-hp" aria-hidden="true">
+          <input type="text" name="b_a9b49656570fa7be63ac89978_aac385a4e4" tabindex="-1" value="">
+        </div>
+        <button type="submit">Get the notes</button>
+      </form>
+      <div class="nsx-msg" id="nsx-msg" role="status" aria-live="polite"></div>
+      <div class="nsx-fine">Your address and nothing else. One click to leave, in every email.</div>
+    </div>
+    <script>
+      (function () {
+        var U  = 'a9b49656570fa7be63ac89978';
+        var ID = 'aac385a4e4';
+        var POST = 'https://IQIcommunications.us1.list-manage.com/subscribe/post-json';
+        var SOURCE = 'episode-page';
+        var form = document.getElementById('nsx-form');
+        var msg  = document.getElementById('nsx-msg');
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var email = document.getElementById('nsx-email').value.trim();
+          if (!email || email.indexOf('@') < 1) {
+            msg.className = 'nsx-msg bad'; msg.textContent = 'That address does not look right.'; return;
+          }
+          msg.className = 'nsx-msg'; msg.textContent = 'Sending…';
+          var cb = 'nsx_cb_' + Date.now();
+          window[cb] = function (data) {
+            var ok = data && data.result === 'success';
+            msg.className = ok ? 'nsx-msg' : 'nsx-msg bad';
+            msg.innerHTML = ok
+              ? 'Check your inbox — confirm, and the notes will follow.'
+              : (data && data.msg ? String(data.msg).replace(/<[^>]*>/g, '') : 'Something went wrong. Try again.');
+            if (ok) form.reset();
+            delete window[cb];
+          };
+          var q = POST + '?u=' + U + '&id=' + ID +
+                  '&EMAIL=' + encodeURIComponent(email) +
+                  '&SOURCE=' + encodeURIComponent(SOURCE) +
+                  '&c=' + cb;
+          var s = document.createElement('script');
+          s.src = q;
+          s.onerror = function () { msg.className = 'nsx-msg bad'; msg.textContent = 'Could not reach the list. Try again.'; };
+          document.body.appendChild(s);
+        });
+      })();
+    </script>
+  </section>
+
 </body>
 </html>
