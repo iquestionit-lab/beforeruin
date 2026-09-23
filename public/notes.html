@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Notes — Before Ruin</title>
+<meta name="description" content="The notes for every episode of Before Ruin — what was said, where it comes from, and why it matters. Plus the word studies.">
+<link rel="canonical" href="https://beforeruin.app/notes.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Notes — Before Ruin">
+<meta property="og:description" content="What was said, where it comes from, and why it matters.">
+<meta property="og:image" content="https://beforeruin.app/before_ruin_og.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,700&family=Courier+Prime:wght@400;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--P:#F8F6F0;--PD:#EDE9DF;--INK:#111;--INKs:#3A3530;--CR:#A81C1C;--GO:#C5A059;--GOm:#9E7E3F;--WH:#FFF;
+ --fd:'Cinzel Decorative',serif;--fh:'Cinzel',serif;--fs:'Playfair Display',Georgia,serif;
+ --fb:'IM Fell English',Georgia,serif;--fm:'Courier Prime',monospace;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--P);color:var(--INK);font-family:var(--fb);font-size:16px;line-height:1.7}
+a{color:var(--CR);text-decoration:none}a:hover{text-decoration:underline}
+.ticker{background:var(--CR);color:var(--WH);font-family:var(--fm);font-size:11px;letter-spacing:.12em;padding:7px 0;overflow:hidden}
+.ticker-row{display:flex;align-items:center;padding:0 20px;gap:10px}
+.ticker-tag{background:var(--INK);color:var(--WH);padding:1px 10px;font-weight:700;letter-spacing:.18em;flex-shrink:0;font-size:10px}
+.ticker-scroll{overflow:hidden;flex:1}
+.ticker-text{display:inline-block;animation:sc 32s linear infinite;padding-left:100%;white-space:nowrap}
+@keyframes sc{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+.masthead{background:var(--P);border-bottom:2px solid var(--INK);padding:0 20px}
+.mast-nav{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:.5px solid var(--GO);font-family:var(--fm);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--INKs)}
+.mast-nav a{color:var(--INKs);margin:0 8px}.mast-nav a:hover{color:var(--CR)}
+.mast-center{text-align:center;padding:22px 0 14px;position:relative}
+.mast-center::before,.mast-center::after{content:'❧';color:var(--GO);font-size:24px;position:absolute;top:50%;transform:translateY(-50%)}
+.mast-center::before{left:20px}.mast-center::after{right:20px;transform:translateY(-50%) scaleX(-1)}
+.mast-eyebrow{font-family:var(--fm);font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--GOm);margin-bottom:6px}
+.mast-wordmark{font-family:var(--fd);font-size:clamp(30px,5.4vw,62px);font-weight:900;letter-spacing:.04em;line-height:1.06}
+.mast-wordmark .ruin{color:var(--CR)}
+.mast-gold-rule{height:1px;background:linear-gradient(to right,transparent,var(--GO) 12%,var(--GO) 88%,transparent);margin:10px 0 0}
+@media(max-width:640px){.mast-nav{flex-direction:column;gap:6px;text-align:center}}
+.wrap{max-width:860px;margin:0 auto;padding:36px 20px 70px}
+.lede{font-family:var(--fs);font-size:19px;line-height:1.6;font-style:italic;color:var(--INKs);border-left:3px solid var(--GO);padding-left:18px}
+.ser{font-family:var(--fh);font-size:13px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;border-bottom:1px solid var(--GO);padding-bottom:6px;margin:44px 0 0}
+.row{display:grid;grid-template-columns:96px 1fr auto;gap:18px;align-items:baseline;
+ padding:18px 0;border-bottom:.5px solid rgba(0,0,0,.12)}
+.code{font-family:var(--fm);font-size:12px;letter-spacing:.1em;color:var(--GOm)}
+.t{font-family:var(--fs);font-size:21px;font-weight:700;line-height:1.25}
+.d{font-family:var(--fb);font-size:15.5px;color:var(--INKs);margin-top:3px}
+.st{font-family:var(--fm);font-size:10px;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap}
+.live{color:#2E6B4F}.soon{color:var(--INKs);opacity:.6}
+@media(max-width:640px){.row{grid-template-columns:1fr;gap:4px}.st{margin-top:6px}}
+.foot{border-top:2px solid var(--INK);margin-top:54px;padding-top:18px;text-align:center;
+ font-family:var(--fm);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--INKs)}
+.foot a{color:var(--CR)}
+.mast-sub{font-family:var(--fs);font-style:italic;font-size:clamp(15px,2vw,20px);color:var(--INKs);margin-top:8px}
+.doors{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(197,160,89,.5);
+ border:1px solid rgba(197,160,89,.5);margin:34px 0 8px}
+.door{background:var(--P);padding:20px 18px}
+.door-k{font-family:var(--fh);font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--INK)}
+.door-d{font-family:var(--fb);font-size:15px;line-height:1.55;color:var(--INKs);margin:9px 0 12px}
+.door-a{font-family:var(--fm);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+@media(max-width:700px){.doors{grid-template-columns:1fr}}
+.tiers{border-left:3px solid var(--GO);padding:4px 0 4px 18px;margin:30px 0 6px}
+.tiers-h{font-family:var(--fm);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--GOm);margin-bottom:8px}
+.tiers-p{font-family:var(--fb);font-size:15.5px;line-height:1.65;color:var(--INKs);margin-bottom:9px}
+.ser2{font-family:var(--fm);font-size:10.5px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;
+ color:var(--GOm);margin:30px 0 -6px}
+.wnote{font-family:var(--fb);font-size:15.5px;line-height:1.6;color:var(--INKs);margin:14px 0 -4px}
+
+</style>
+<link rel="stylesheet" media="print" href="/print.css">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Before Ruin">
+<meta name="theme-color" content="#F8F6F0">
+</head>
+<body>
+
+<div class="ticker"><div class="ticker-row">
+  <span class="ticker-tag">OPEN TABLE</span>
+  <div class="ticker-scroll"><span class="ticker-text">
+    NOTHING HERE ASKS YOU TO TAKE MY WORD FOR IT. &nbsp;⬥&nbsp;
+    COME AND SEE FOR YOURSELF. &nbsp;⬥&nbsp;
+    WHERE A CONCLUSION IS MINE AND NOT THE FIELD'S, IT SAYS SO.
+  </span></div>
+</div></div>
+
+<header class="masthead">
+  <div class="mast-nav">
+    <div><a href="/">Home</a><a href="/her.html">She Is Working</a><a href="/texts.html">The Witnesses</a><a href="/method.html">The Method</a><a href="/notes.html">The Notes</a></div>
+    <div id="nav-date"></div>
+  </div>
+  <div class="mast-center">
+    <div class="mast-eyebrow">Before Ruin &nbsp;·&nbsp; Nothing Here Is Hidden</div>
+    <div class="mast-wordmark">The&nbsp;<span class="ruin">Notes</span></div>
+    <div class="mast-sub">Read with me.</div>
+  </div>
+  <div class="mast-gold-rule"></div>
+</header>
+
+<div class="wrap">
+  <p class="lede">A word was once changed quietly, where nobody could look. So none of this is kept back. Pick the episode you watched, pull up a chair, and read what I was reading.</p>
+
+  <div class="doors">
+    <div class="door">
+      <div class="door-k">I just watched an episode</div>
+      <div class="door-d">The notes for that hour — every claim, the evidence under it, and where to go look.</div>
+      <a class="door-a" href="#episodes">The episodes &rarr;</a>
+    </div>
+    <div class="door">
+      <div class="door-k">I want to study a word</div>
+      <div class="door-d">One word at a time, taken back to what it carried before it drifted.</div>
+      <a class="door-a" href="#words">The word studies &rarr;</a>
+    </div>
+    <div class="door">
+      <div class="door-k">I want to check the manuscripts</div>
+      <div class="door-d">The witnesses themselves, and the rules I hold myself to when I read them.</div>
+      <a class="door-a" href="/texts.html">The Witnesses &rarr;</a>
+    </div>
+  </div>
+
+  <div class="tiers">
+    <div class="tiers-h">How a note is built</div>
+    <p class="tiers-p">Every entry stacks in three, so you can stop wherever you like and never feel you quit early.
+      <strong>The line</strong> is one sentence, plain. <strong>The note</strong> explains what the evidence is and how
+      far it can be pushed. <strong>The record</strong> is the citation and where it sits &mdash; the manuscript, the
+      edition, the page &mdash; so you can put your own hands on it.</p>
+    <p class="tiers-p">A museum sets three things beside a painting: a title card, the wall text, and the accession
+      number. Same object, three doors, and nobody is embarrassed at any of them.</p>
+  </div>
+
+  <h3 class="ser" id="episodes">By Episode</h3>
+
+  <h4 class="ser2">Series II &nbsp;&middot;&nbsp; Bringing Ima Out of Exile</h4>
+
+  <div class="row">
+    <div class="code">BR-002-001</div>
+    <div>
+      <div class="t"><a href="/BR-002-001.html">The Lost Nursery</a></div>
+      <div class="d">A word for the way a mother bird holds herself over a nest. It is used of her twice, and one of those times is the water before the world.</div>
+    </div>
+    <div class="st live">Notes posted</div>
+  </div>
+
+  <h4 class="ser2">Series I &nbsp;·&nbsp; Faith</h4>
+
+  <div class="row">
+    <div class="code">BR-001-001</div>
+    <div>
+      <div class="t"><a href="/BR-001-001.html">Faith &nbsp;·&nbsp; &pi;&#943;&sigma;&tau;&iota;&sigmaf;</a></div>
+      <div class="d">Pistis was a guarantee. Emunah was a character. Faith was something you were.</div>
+    </div>
+    <div class="st live">Notes posted</div>
+  </div>
+
+  <div class="row">
+    <div class="code">BR-001-002</div>
+    <div>
+      <div class="t">Faith &nbsp;·&nbsp; Episode Two</div>
+      <div class="d">Notes in preparation.</div>
+    </div>
+    <div class="st soon">In preparation</div>
+  </div>
+
+  <div class="row">
+    <div class="code">BR-001-003</div>
+    <div>
+      <div class="t">Faith &nbsp;·&nbsp; Episode Three</div>
+      <div class="d">Notes in preparation.</div>
+    </div>
+    <div class="st soon">In preparation</div>
+  </div>
+
+
+  <h3 class="ser" id="words">The Word Studies</h3>
+  <p class="wnote">Not tied to one episode. A word, what it carried, what it carries now, and every place you
+    can check it. These are the sheets the episodes are built on.</p>
+
+  <div class="row">
+    <div class="code">BR-W-001</div>
+    <div>
+      <div class="t">Belief &nbsp;&middot;&nbsp; Believe</div>
+      <div class="d">One is a noun and one is a verb, and almost everything turns on which one you were handed.
+        <em>Emunah</em> is steadiness; <em>he&rsquo;emin</em> is putting your weight on something. A floor that is
+        never stood on is not known to hold.</div>
+    </div>
+    <div class="st soon">In preparation</div>
+  </div>
+
+  <div class="row">
+    <div class="code">BR-W-002</div>
+    <div>
+      <div class="t">&pi;&#943;&sigma;&tau;&iota;&sigmaf; &nbsp;&middot;&nbsp; pistis</div>
+      <div class="d">In the courts and the counting houses it meant proof &mdash; a guarantee you could produce.
+        It did not mean believing without evidence. That came later, and it cost us the word.</div>
+    </div>
+    <div class="st soon">In preparation</div>
+  </div>
+
+  <div class="row">
+    <div class="code">BR-W-003</div>
+    <div>
+      <div class="t">&#1512;&#1464;&#1495;&#1463;&#1507; &nbsp;&middot;&nbsp; rachaph</div>
+      <div class="d">To hover; to brood, of a bird over the nest. Three occurrences in the whole Hebrew Bible, one of
+        them disputed &mdash; which leaves two, and one of the two is the water before the world.</div>
+    </div>
+    <div class="st soon">In preparation</div>
+  </div>
+
+  <div class="foot">
+    Before Ruin &nbsp;·&nbsp; Robert Langan Ministries &nbsp;·&nbsp; Sundays 11 PM on The Now Network<br>
+    <a href="/">beforeruin.app</a> &nbsp;·&nbsp; <a href="/her.html">She Is Working</a>
+  </div>
+</div>
+
+<script>
+(function(){var d=new Date();
+ var dy=['Sun.','Mon.','Tue.','Wed.','Thur.','Fri.','Sat.'];
+ var mo=['January','February','March','April','May','June','July','August','September','October','November','December'];
+ var n=document.getElementById('nav-date');
+ if(n)n.textContent=dy[d.getDay()]+' — '+mo[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear();})();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/sw.js').catch(function () { /* offline reading is a bonus, never a requirement */ });
+  });
+}
+</script>
+  <!-- ══ GET THE NOTES — Mailchimp signup (audience: Before Ruin) ══ -->
+  <section class="nsx" aria-labelledby="nsx-h">
+    <style>
+      .nsx{--nsxP:#F8F6F0;--nsxINK:#111;--nsxINKs:#3A3530;--nsxCR:#A81C1C;--nsxGO:#C5A059;--nsxGOm:#9E7E3F;
+           background:var(--nsxP);padding:54px 20px 60px;border-top:1px solid rgba(197,160,89,.45);
+           border-bottom:1px solid rgba(197,160,89,.45);text-align:center}
+      .nsx-in{max-width:640px;margin:0 auto}
+      .nsx-eyebrow{font-family:var(--fm,'Courier Prime',monospace);font-size:12px;letter-spacing:.3em;
+           text-transform:uppercase;color:var(--nsxGOm);margin-bottom:14px}
+      .nsx-h{font-family:var(--fh,'Cinzel',serif);font-weight:700;font-size:30px;letter-spacing:.04em;
+           color:var(--nsxINK);margin:0 0 12px}
+      .nsx-dek{font-family:var(--fb,'IM Fell English',Georgia,serif);font-size:17px;line-height:1.6;
+           color:var(--nsxINKs);margin:0 auto 26px;max-width:30em}
+      .nsx-form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+      .nsx-form input[type=email]{font-family:var(--fm,'Courier Prime',monospace);font-size:15px;
+           padding:13px 16px;min-width:270px;flex:0 1 320px;color:var(--nsxINK);background:#fff;
+           border:1px solid rgba(58,53,48,.35);border-radius:0}
+      .nsx-form input[type=email]:focus{outline:none;border-color:var(--nsxGOm)}
+      .nsx-form button{font-family:var(--fm,'Courier Prime',monospace);font-weight:700;font-size:14px;
+           letter-spacing:.14em;text-transform:uppercase;padding:13px 26px;color:var(--nsxCR);
+           background:transparent;border:2px solid var(--nsxCR);border-radius:0;cursor:pointer}
+      .nsx-form button:hover{background:var(--nsxCR);color:#fff}
+      .nsx-fine{font-family:var(--fm,'Courier Prime',monospace);font-size:11px;letter-spacing:.08em;
+           color:var(--nsxINKs);opacity:.75;margin-top:16px}
+      .nsx-msg{font-family:var(--fs,'Playfair Display',Georgia,serif);font-style:italic;font-size:17px;
+           color:var(--nsxINKs);margin-top:18px;min-height:1.4em}
+      .nsx-msg.bad{color:var(--nsxCR);font-style:normal;font-family:var(--fm,'Courier Prime',monospace);font-size:14px}
+      .nsx-hp{position:absolute;left:-5000px}
+      @media(max-width:520px){.nsx-h{font-size:24px}.nsx-form input[type=email]{min-width:0;width:100%;flex:1 1 100%}
+           .nsx-form button{width:100%}}
+    </style>
+    <div class="nsx-in">
+      <div class="nsx-eyebrow">The Notes</div>
+      <h2 class="nsx-h" id="nsx-h">Get the notes.</h2>
+      <p class="nsx-dek">Every verse, every source, every week &mdash; the same sheet I work from.
+         One email when an episode airs.</p>
+      <form class="nsx-form" id="nsx-form" novalidate>
+        <label for="nsx-email" class="nsx-hp">Email address</label>
+        <input type="email" id="nsx-email" name="EMAIL" placeholder="you@example.com" required autocomplete="email">
+        <div class="nsx-hp" aria-hidden="true">
+          <input type="text" name="b_a9b49656570fa7be63ac89978_aac385a4e4" tabindex="-1" value="">
+        </div>
+        <button type="submit">Get the notes</button>
+      </form>
+      <div class="nsx-msg" id="nsx-msg" role="status" aria-live="polite"></div>
+      <div class="nsx-fine">Your address and nothing else. One click to leave, in every email.</div>
+    </div>
+    <script>
+      (function () {
+        var U  = 'a9b49656570fa7be63ac89978';
+        var ID = 'aac385a4e4';
+        var POST = 'https://IQIcommunications.us1.list-manage.com/subscribe/post-json';
+        var SOURCE = 'notes-page';
+        var form = document.getElementById('nsx-form');
+        var msg  = document.getElementById('nsx-msg');
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var email = document.getElementById('nsx-email').value.trim();
+          if (!email || email.indexOf('@') < 1) {
+            msg.className = 'nsx-msg bad'; msg.textContent = 'That address does not look right.'; return;
+          }
+          msg.className = 'nsx-msg'; msg.textContent = 'Sending…';
+          var cb = 'nsx_cb_' + Date.now();
+          window[cb] = function (data) {
+            var ok = data && data.result === 'success';
+            msg.className = ok ? 'nsx-msg' : 'nsx-msg bad';
+            msg.innerHTML = ok
+              ? 'Check your inbox — confirm, and the notes will follow.'
+              : (data && data.msg ? String(data.msg).replace(/<[^>]*>/g, '') : 'Something went wrong. Try again.');
+            if (ok) form.reset();
+            delete window[cb];
+          };
+          var q = POST + '?u=' + U + '&id=' + ID +
+                  '&EMAIL=' + encodeURIComponent(email) +
+                  '&SOURCE=' + encodeURIComponent(SOURCE) +
+                  '&c=' + cb;
+          var s = document.createElement('script');
+          s.src = q;
+          s.onerror = function () { msg.className = 'nsx-msg bad'; msg.textContent = 'Could not reach the list. Try again.'; };
+          document.body.appendChild(s);
+        });
+      })();
+    </script>
+  </section>
+
+</body>
+</html>
