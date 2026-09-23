@@ -1003,6 +1003,14 @@
     // Track page view
     logEvent(analytics, 'page_view', { page_title: 'Before Ruin', page_location: window.location.href });
   </script>
+<!-- GA4 -- one property across every property; split by Hostname in reports -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HJYZ8JBMGM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HJYZ8JBMGM');
+</script>
 </head>
 <body>
 
