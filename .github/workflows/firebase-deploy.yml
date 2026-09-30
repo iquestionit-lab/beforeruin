@@ -42,4 +42,4 @@ jobs:
           credentials_json: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_BEFORE_RUIN_B3744 }}
 
       - name: Deploy functions
-        run: npx firebase-tools@latest deploy --only functions --project before-ruin-b3744 --non-interactive
+        run: npx firebase-tools@15.31.0 deploy --only functions --project before-ruin-b3744 --non-interactive
