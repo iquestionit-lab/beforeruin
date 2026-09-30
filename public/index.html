@@ -1068,9 +1068,9 @@
   <!-- ══ BIBLE LOOKUP — the pew tool, first thing on the page ══ -->
   <div class="bl-band">
     <div class="bl-inner">
-      <div class="bl-kicker">⬩ Look up a verse</div>
+      <div class="bl-kicker">⬩ Quick lookup</div>
       <div class="bl-hed">Somebody just read something aloud.</div>
-      <div class="bl-sub">Type the reference. Read it for yourself, in five translations, before the next point is made.</div>
+      <div class="bl-sub">Type the reference and read it for yourself before the next point is made &mdash; in five public-domain translations, or straight into Bible Gateway, where more than 25 million people a month go for the same reason.</div>
       <div class="bl-row">
         <input id="bl-input" type="text" placeholder="John 3:16"
           style="background:var(--P);border:1px solid var(--GO);padding:14px;font-family:var(--fm);font-size:15px;color:var(--INK);width:100%;">
@@ -1090,6 +1090,11 @@
         <a id="bl-bglink" href="#" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-family:var(--fm);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--CR);">Open in Bible Gateway →</a>
       </div>
       <div id="bl-error" style="display:none;margin-top:12px;font-family:var(--fm);font-size:10.5px;color:var(--CR);letter-spacing:.1em;text-transform:uppercase;"></div>
+      <div style="margin-top:18px;padding-top:14px;border-top:1px solid var(--GO);font-family:var(--fm);font-size:10.5px;line-height:1.85;letter-spacing:.06em;color:var(--GOm);">
+        This is the pew tool. It fetches a verse and gets out of your way.<br>
+        <a href="/search.html" style="color:var(--CR);text-transform:uppercase;letter-spacing:.14em;">The Recovery Engine &rarr;</a>
+        &nbsp;Original language, manuscript witnesses, and what the lexicons actually say.
+      </div>
     </div>
   </div>
 
@@ -1244,7 +1249,7 @@
         </div>
       </div>
       <a class="rx-cta" href="/search.html">Open the Recovery Engine →</a>
-      <div class="rx-foot">Eight searches a month, free &nbsp;·&nbsp; <a href="/how-to-search.html" style="color:var(--GOl);">How to ask</a></div>
+      <div class="rx-foot">Free to use &nbsp;·&nbsp; <a href="/how-to-search.html" style="color:var(--GOl);">How to ask</a></div>
     </div>
   </div>
 
@@ -1753,7 +1758,10 @@
             result.style.display = 'block';
           })
           .catch(err => {
-            errEl.textContent = 'Reference not found — try "John 3:16" or "Romans 10:17"';
+            // A service that is down is not a reference that is wrong. Say which.
+            errEl.textContent = (err && err.name === 'TypeError')
+              ? 'The lookup service is not responding right now — try Bible Gateway.'
+              : 'Reference not found — try "John 3:16" or "Romans 10:17"';
             errEl.style.display = 'block';
           })
           .finally(() => {

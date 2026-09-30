@@ -683,6 +683,17 @@ exports.search = onRequest(
       ? `Sources that returned material for this query: ${sourceNames.join('; ')}.`
       : `No source returned material for this query.`;
 
+    // Structured so Cloud Logging can filter and export it. This log is the record of
+    // what people actually came here to ask — and the queries no source could answer
+    // are worth more than the ones that worked.
+    console.log(JSON.stringify({
+      event: "search",
+      mode,
+      term: q.trim().toLowerCase().slice(0, 120),
+      sources: sourceNames,
+      covered: sourceNames.length > 0,
+    }));
+
     const userMessage = sourceData
       ? `Query: "${q.trim()}"\nMode: ${mode}\n\n${answered}\n\n${sourceData}`
       : `Query: "${q.trim()}"\nMode: ${mode}\n\n${answered}`;
