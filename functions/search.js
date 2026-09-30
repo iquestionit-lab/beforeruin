@@ -660,6 +660,11 @@ exports.search = onRequest(
     secrets: [ANTHROPIC_API_KEY, APIBIBLE_API_KEY],
     region: "us-central1",
     timeoutSeconds: 60,
+    // The fuse. There is no auth and no rate limit on this endpoint, so the only
+    // thing standing between a scripted hammering and a four-figure bill is how
+    // many of these can run at once. At ~10s a call this caps the burn near
+    // $10/hour instead of "as fast as Google can start containers".
+    maxInstances: 5,
   },
   async (req, res) => {
     res.set("Access-Control-Allow-Origin", "*");
@@ -704,9 +709,21 @@ exports.search = onRequest(
       const message = await client.messages.create({
         model: "claude-haiku-4-5",
         max_tokens: 1500,
-        system: SYSTEM_PROMPT,
+        system: [
+          { type: "text", text: SYSTEM_PROMPT, cache_control: { type: "ephemeral" } },
+        ],
         messages: [{ role: "user", content: userMessage }],
       });
+
+      const u = message.usage || {};
+      console.log(JSON.stringify({
+        event: "usage",
+        mode,
+        input_tokens: u.input_tokens,
+        output_tokens: u.output_tokens,
+        cache_read: u.cache_read_input_tokens,
+        cache_write: u.cache_creation_input_tokens,
+      }));
 
       return res.status(200).json({
         query: q.trim(),
