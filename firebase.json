@@ -4,7 +4,11 @@
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**"
+      "**/node_modules/**",
+      "index_firstever.html",
+      "index_second.html",
+      "index__third.html",
+      "index_fourthtry.html"
     ]
   },
   "functions": {

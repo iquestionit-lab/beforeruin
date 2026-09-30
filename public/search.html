@@ -1052,7 +1052,7 @@
     <div class="mast-gold-rule"></div>
   </header>
 
-  <!-- ══ SCRIPTSEARCH — THE WHOLE PAGE ══ -->
+  <!-- ══ THE WHOLE PAGE ══ -->
   <section class="recovery-engine" id="recovery-engine">
 
     <div class="re-label-bar">
@@ -1136,85 +1136,13 @@
     <a href="/how-to-search.html">How to ask</a> &nbsp;·&nbsp; <a href="/terms.html">Terms &amp; limits</a>
   </footer>
 
-  <!-- ══ PAYWALL MODAL ══ -->
-  <div class="modal-overlay" id="paywall-modal" data-nosnippet>
-    <div class="modal">
-      <button class="modal-close" onclick="closeModal('paywall-modal')">✕</button>
-      <div class="modal-head">
-        <div class="modal-eyebrow">Search Limit Reached</div>
-        <div class="modal-title">Before <span>Ruin</span></div>
-        <div class="modal-sub">You've used your 8 free searches this month. Serious study deserves continued access.</div>
-      </div>
-      <div class="tier-cards">
-        <div class="tier-card featured" onclick="startCheckout('study')">
-          <div class="tier-badge">Most Popular</div>
-          <div class="tier-name">Study</div>
-          <div class="tier-price"><sup>$</sup>5<span>/month</span></div>
-          <ul class="tier-features">
-            <li>Unlimited searches</li>
-            <li>Early access to new terms</li>
-            <li>Newsletter &amp; notices</li>
-          </ul>
-        </div>
-        <div class="tier-card" onclick="startCheckout('embed')">
-          <div class="tier-badge">For Sites &amp; Ministries</div>
-          <div class="tier-name">Embed</div>
-          <div class="tier-price"><sup>$</sup>15<span>/month</span></div>
-          <ul class="tier-features">
-            <li>Unlimited searches</li>
-            <li>500 embedded searches/mo</li>
-            <li>API key for your site</li>
-            <li>Usage dashboard</li>
-          </ul>
-        </div>
-      </div>
-      <a class="tier-cta" href="#" onclick="startCheckout('study'); return false;">Subscribe — $5/month</a>
-      <div class="modal-free-note">
-        Already subscribed? <a href="#" onclick="openModal('auth-modal'); closeModal('paywall-modal'); return false;">Sign in</a>
-        &nbsp;·&nbsp; Continue reading definitions — <a href="#recovery-engine" onclick="closeModal('paywall-modal')">scroll up</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- ══ AUTH MODAL (Login / Sign Up) ══ -->
-  <div class="modal-overlay" id="auth-modal" data-nosnippet>
-    <div class="modal">
-      <button class="modal-close" onclick="closeModal('auth-modal')">✕</button>
-      <div class="modal-head">
-        <div class="modal-eyebrow">Your Account</div>
-        <div class="modal-title">Before <span>Ruin</span></div>
-        <div class="modal-sub">Sign in or create a free account to track your searches across devices.</div>
-      </div>
-      <div class="auth-tabs">
-        <button class="auth-tab active" onclick="switchAuthTab('login')">Sign In</button>
-        <button class="auth-tab" onclick="switchAuthTab('signup')">Create Account</button>
-      </div>
-      <form class="auth-form" id="auth-form" onsubmit="submitAuth(event)">
-        <div class="auth-field" id="name-field" style="display:none">
-          <label class="auth-label">Your Name</label>
-          <input class="auth-input" type="text" id="auth-name" placeholder="Robert">
-        </div>
-        <div class="auth-field">
-          <label class="auth-label">Email Address</label>
-          <input class="auth-input" type="email" id="auth-email" placeholder="you@example.com" required>
-        </div>
-        <div class="auth-field">
-          <label class="auth-label">Password</label>
-          <input class="auth-input" type="password" id="auth-password" placeholder="8 characters minimum" required>
-        </div>
-        <button class="auth-submit" type="submit" id="auth-submit-btn">Sign In</button>
-        <div class="auth-error" id="auth-error" style="display:none"></div>
-        <div class="auth-switch">
-          <span id="auth-switch-text">No account? <a onclick="switchAuthTab('signup')">Create one free</a></span>
-        </div>
-      </form>
-    </div>
-  </div>
 
   <script>
     // ── MODAL HELPERS ──────────────────────────────────────
-    function openModal(id)  { document.getElementById(id).classList.add('open'); }
-    function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+    // Null-safe on purpose: a modal that no longer exists must not throw and take
+    // the rest of this script block down with it.
+    function openModal(id)  { const el = document.getElementById(id); if (el) el.classList.add('open'); }
+    function closeModal(id) { const el = document.getElementById(id); if (el) el.classList.remove('open'); }
 
     // Close on overlay click
     document.querySelectorAll('.modal-overlay').forEach(el => {
@@ -1228,7 +1156,8 @@
       document.querySelectorAll('.auth-tab').forEach((t, i) => {
         t.classList.toggle('active', (mode === 'login' && i === 0) || (mode === 'signup' && i === 1));
       });
-      document.getElementById('name-field').style.display = mode === 'signup' ? 'block' : 'none';
+      const _nf = document.getElementById('name-field'); if (!_nf) return;
+      _nf.style.display = mode === 'signup' ? 'block' : 'none';
       document.getElementById('auth-submit-btn').textContent = mode === 'login' ? 'Sign In' : 'Create Account';
       document.getElementById('auth-switch-text').innerHTML = mode === 'login'
         ? 'No account? <a onclick="switchAuthTab(\'signup\')">Create one free</a>'
@@ -1237,7 +1166,9 @@
     }
 
     // ── AUTH SUBMIT ────────────────────────────────────────
-    const API = 'http://localhost:3001'; // Change to production URL when deployed
+    // No account backend is deployed. `search` is the only cloud function that exists.
+    // Leave this null until one is built — a wrong URL fails louder than no URL.
+    const API = null;
 
     async function submitAuth(e) {
       e.preventDefault();
@@ -1247,6 +1178,7 @@
       const errEl    = document.getElementById('auth-error');
       errEl.style.display = 'none';
 
+      if (!API) { errEl.textContent = 'Accounts are not available yet.'; errEl.style.display = 'block'; return; }
       const endpoint = authMode === 'login' ? '/auth/login' : '/auth/signup';
       const body = authMode === 'login' ? { email, password } : { email, password, name };
 
@@ -1271,6 +1203,7 @@
 
     // ── CHECKOUT ───────────────────────────────────────────
     async function startCheckout(plan) {
+      if (!API) return;
       const token = localStorage.getItem('br_token');
       if (!token) { openModal('auth-modal'); return; }
 
@@ -1293,7 +1226,7 @@
 
     function refreshSearchStatus() {
       const token = localStorage.getItem('br_token');
-      if (token) {
+      if (token && API) {
         fetch(API + '/search/status', { headers: { 'Authorization': 'Bearer ' + token } })
           .then(r => r.json())
           .then(data => {
@@ -1316,7 +1249,7 @@
       if (c) c.style.display = 'none';
     }
 
-    // ── SCRIPTSEARCH — AI ENGINE ───────────────────────────
+    // ── ENGINE ───────────────────────────
     const SS_ENDPOINT = 'https://us-central1-before-ruin-b3744.cloudfunctions.net/search';
 
     const MODE_MAP = {
@@ -1359,7 +1292,6 @@
         <div class="re-result-card">
           <div class="re-result-card-header">
             <img src="/favicon-192x192.png" alt="" style="width:20px;height:20px;opacity:.8;border-radius:3px;">
-            <span class="re-result-brand">SCRIPTSEARCH · ORIGINAL FREQUENCY</span>
             <button class="re-copy-btn" onclick="copyResult(this)">⎘ COPY</button>
             <button class="re-copy-btn re-print-btn" onclick="window.print()">⎙ PRINT</button>
           </div>

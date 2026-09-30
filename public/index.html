@@ -1589,7 +1589,7 @@
       if (c) c.style.display = 'none';
     }
 
-    // ── SCRIPTSEARCH — AI ENGINE ───────────────────────────
+    // ── ENGINE ───────────────────────────
     const SS_ENDPOINT = 'https://us-central1-before-ruin-b3744.cloudfunctions.net/search';
 
     const MODE_MAP = {
@@ -1623,7 +1623,6 @@
         <div class="re-result-card">
           <div class="re-result-card-header">
             <img src="/favicon-192x192.png" alt="" style="width:20px;height:20px;opacity:.8;border-radius:3px;">
-            <span class="re-result-brand">SCRIPTSEARCH · ORIGINAL FREQUENCY</span>
             <button class="re-copy-btn" onclick="copyResult(this)">⎘ COPY</button>
           </div>
           <div class="re-result-term">${query}</div>
@@ -1644,7 +1643,7 @@
       if (term) lines.push(term.textContent.trim().toUpperCase(), '');
       if (body) lines.push(body.innerText.trim(), '');
       if (sources) lines.push('Primary Sources: ' + sources.textContent.trim());
-      lines.push('', 'ScriptSearch · Original Frequency Holdings · beforeruin.app');
+      lines.push('', 'beforeruin.app');
       navigator.clipboard.writeText(lines.join('\n')).then(() => {
         btn.textContent = '✓ COPIED';
         setTimeout(() => btn.textContent = '⎘ COPY', 2000);

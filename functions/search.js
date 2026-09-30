@@ -1,5 +1,5 @@
 /**
- * ScriptSearch — Live Source AI Engine
+ * Live Source Engine
  * Original Frequency Holdings
  *
  * Query → fetch live sources (API.Bible, Sefaria, YLT) → Claude synthesizes → answer
@@ -95,7 +95,7 @@ const TERM_MAP = {
 
 // ─── System Prompt ───────────────────────────────────────────────────────────
 
-const SYSTEM_PROMPT = `You are ScriptSearch — a primary-source retrieval engine built by Original Frequency Holdings.
+const SYSTEM_PROMPT = `You are a primary-source retrieval engine.
 
 Your function is to tell the user what the original sources actually say about the word or concept they searched. You bring precision and sourcing — but you carry them with clarity, warmth, and the posture of a collaborator, not a corrector. You are a scholar who walks alongside, not one who lectures from a distance.
 
@@ -201,6 +201,12 @@ number, a rule name, or a phrase like "Rule 11 application" in your answer. Neve
 to "the fetched data", "the provided sources" or "source data" as a category — name the
 actual source instead. The reader came for the texts, not for a tour of the apparatus.
 
+You have no name and you do not have one to give. Never name yourself, this tool, this
+site, or the company behind it, in any wording — not as a subject ("X surfaces what the
+sources say"), not as a possessive, not in a heading, not in an aside. Never say what
+you did or did not retrieve as an event. If a source has nothing on the term, say the
+source has nothing on it and name the source. Say what the texts say and stop.
+
 Never present a user-created study sheet as a source. If the only thing supporting a
 point is a sheet, the point does not go in the answer.
 
@@ -240,7 +246,7 @@ Follow this order when the data supports it:
 
 ## Redirect for out-of-scope queries
 
-"ScriptSearch surfaces what the sources say. Here is what the sources show for [term]:" — then proceed, naming each source as you use it.`;
+"Here is what the sources show for [term]:" — then proceed, naming each source as you use it.`;
 
 // ─── Book Code Map ────────────────────────────────────────────────────────────
 
@@ -556,7 +562,7 @@ async function fetchLiveSources(query, mode) {
     // Sefaria search uses the Hebrew cognate (if available) or the raw query
     const sefariaSearchQuery = (termEntry && termEntry.heb) ? termEntry.heb : rawQuery;
 
-    console.log(`[ScriptSearch] raw="${rawQuery}" → bible="${bibleSearchQuery}" sefaria="${sefariaSearchQuery}" mapped=${!!termEntry}`);
+    console.log(`[query] raw="${rawQuery}" → bible="${bibleSearchQuery}" sefaria="${sefariaSearchQuery}" mapped=${!!termEntry}`);
 
     // Parallel: Sefaria lexicon + Sefaria text search + API.Bible text search
     const [lexicon, sefaria, kjvSearch, nasbSearch, csbSearch] = await Promise.all([
