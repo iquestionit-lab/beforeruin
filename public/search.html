@@ -1074,7 +1074,7 @@
         </div>
 
         <div class="re-counter" id="re-counter">
-          <span id="re-counter-text">8 free searches remaining this month</span>
+          <span id="re-counter-text"></span>
           <div class="re-counter-bar"><div class="re-counter-fill" id="re-counter-fill" style="width:100%"></div></div>
         </div>
 
@@ -1091,6 +1091,11 @@
           <div class="re-progress-bar"></div>
         </div>
         <div class="re-progress-word" id="re-progress-word">Searching the sources…</div>
+
+        <!-- Results land directly under the indicator, on purpose. When the bar stops,
+             the answer is already where the reader is looking — not three screens down
+             past the mode cards and the examples. -->
+        <div id="re-results"></div>
 
         <div style="font-family:var(--fm);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--GOm);margin:16px 0 10px;">Choose what you are asking for</div>
         <div class="re-modes">
@@ -1123,9 +1128,6 @@
           <a href="/how-to-search.html">Not sure what to ask? &nbsp;Start here &nbsp;→</a>
           <span>The hardest part of any search is knowing how to put the question. Two minutes here will save you an hour.</span>
         </div>
-
-        <!-- Results panel — the answer lands here and nothing follows it -->
-        <div id="re-results"></div>
 
       </div>
     </div>
@@ -1327,6 +1329,16 @@
       if (e.key === 'Enter') handleSearch();
     });
 
+    function revealResults() {
+      const el = document.getElementById('re-results');
+      if (!el || !el.getBoundingClientRect) return;
+      const r = el.getBoundingClientRect();
+      const offscreen = r.top < 0 || r.top > (window.innerHeight - 120);
+      if (offscreen && el.scrollIntoView) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
     function setWorking(on) {
       const bar  = document.getElementById('re-progress');
       const word = document.getElementById('re-progress-word');
@@ -1363,6 +1375,7 @@
         const data = await res.json();
         setWorking(false);
         renderResults(data, query);
+        revealResults();
         // Track successful search in Analytics
         if (window._logEvent) window._logEvent('search', { search_term: query, search_mode: mode });
       } catch (err) {
