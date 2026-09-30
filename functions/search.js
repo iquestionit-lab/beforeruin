@@ -210,6 +210,19 @@ source has nothing on it and name the source. Say what the texts say and stop.
 Never present a user-created study sheet as a source. If the only thing supporting a
 point is a sheet, the point does not go in the answer.
 
+## One source answering is not every source answering
+
+You are told which sources returned material. That list is the whole of what you have.
+A source that is not on it returned nothing, and you must not imply otherwise.
+
+If the list covers the term, answer from it and name each source as you use it.
+
+If the list does not cover the term — the sources that answered are in the wrong
+language for it, or are about something else — say so in one plain sentence, name what
+did answer and what it gave, and stop. Do not fill the gap from your own knowledge and
+do not dress the gap up. "Abbott-Smith has no entry under that spelling" is a useful
+sentence. A confident paragraph with nothing under it is not.
+
 ## Cross-language terms
 
 Never call a word in one language the "equivalent" of a word in another. A translator
@@ -491,10 +504,48 @@ async function fetchSefariaLexicon(word) {
   } catch (e) { return null; }
 }
 
+// ─── Greek lexicon (local) ───────────────────────────────────────────────────
+// TBESG — Translators Brief lexicon of Extended Strongs for Greek.
+// Tyndale House Cambridge / STEPBible.org, CC BY 4.0. Definitions from Abbott-Smith.
+// Held locally on purpose: three of the four remote source APIs changed under this
+// function once already and failed silently. A file cannot change underneath you.
+const GREEK_LEXICON = require("./data/greek-lexicon.json");
+
+function normaliseGreekKey(t) {
+  return String(t || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9\u0370-\u03ff]/g, "");
+}
+
+function lookupGreek(term) {
+  const key = normaliseGreekKey(term);
+  if (!key) return null;
+  const ids = GREEK_LEXICON.index[key];
+  if (!ids || ids.length === 0) return null;
+  const out = ids.slice(0, 3).map((id) => {
+    const e = GREEK_LEXICON.entries[id];
+    if (!e) return null;
+    return [
+      `${e.lemma} (${e.translit}) — ${e.s}`,
+      e.morph ? `Parsing: ${e.morph}` : null,
+      e.gloss ? `Gloss: ${e.gloss}` : null,
+      e.def ? `Abbott-Smith: ${e.def}` : null,
+    ].filter(Boolean).join("\n");
+  }).filter(Boolean);
+  if (out.length === 0) return null;
+  return "SOURCE: Abbott-Smith, A Manual Greek Lexicon of the New Testament, "
+       + "as edited in TBESG (Tyndale House Cambridge / STEPBible.org, CC BY 4.0)\n\n"
+       + out.join("\n\n");
+}
+
 // ─── Main Source Aggregator ───────────────────────────────────────────────────
 
 async function fetchLiveSources(query, mode) {
   const sources = [];
+  const names = [];
+  const add = (value, name) => { if (value) { sources.push(value); names.push(name); } };
 
   if (mode === 'passage_search') {
     const passageId = parsePassageRef(query);
@@ -507,16 +558,16 @@ async function fetchLiveSources(query, mode) {
         fetchYLT(query),
         fetchSefariaPassage(query),
       ]);
-      if (kjv)    sources.push(kjv);
-      if (nasb)   sources.push(nasb);
-      if (csb)    sources.push(csb);
-      if (ylt)    sources.push(ylt);
-      if (sefaria) sources.push(sefaria);
+      add(kjv, "King James Version");
+      add(nasb, "NASB 1995");
+      add(csb, "Christian Standard Bible");
+      add(ylt, "Young's Literal Translation");
+      add(sefaria, "Sefaria");
     }
     // If passage parse failed or nothing returned, fall through to Sefaria search
     if (sources.length === 0) {
       const fallback = await fetchSefaria(query);
-      if (fallback) sources.push(fallback);
+      add(fallback, "Sefaria");
     }
 
   } else {
@@ -572,11 +623,14 @@ async function fetchLiveSources(query, mode) {
       fetchApiBibleSearch(BIBLES.NASB, 'New American Standard Bible 1995 (NASB)', bibleSearchQuery, 8),
       fetchApiBibleSearch(BIBLES.CSB,  'Christian Standard Bible (CSB)',          bibleSearchQuery, 8),
     ]);
-    if (lexicon)    sources.push(lexicon);
-    if (sefaria)    sources.push(sefaria);
-    if (kjvSearch)  sources.push(kjvSearch);
-    if (nasbSearch) sources.push(nasbSearch);
-    if (csbSearch)  sources.push(csbSearch);
+    // Greek lexicon first — it is local, so it answers or it does not, with no network.
+    add(lookupGreek(primaryTerm) || lookupGreek(rawQuery),
+        "Abbott-Smith Greek lexicon (TBESG)");
+    add(lexicon, "Sefaria lexicon");
+    add(sefaria, "Sefaria");
+    add(kjvSearch, "King James Version");
+    add(nasbSearch, "NASB 1995");
+    add(csbSearch, "Christian Standard Bible");
 
     // Secondary individual-term passes for multi-word queries
     if (searchTerms.length >= 2) {
@@ -589,11 +643,14 @@ async function fetchLiveSources(query, mode) {
           fetchApiBibleSearch(BIBLES.KJV, `KJV — "${searchTerms[i]}" context`, term, 5)
         )
       );
-      secondaryResults.forEach(r => { if (r) sources.push(r); });
+      secondaryResults.forEach(r => add(r, "King James Version"));
     }
   }
 
-  return sources.length > 0 ? sources.join('\n\n' + '─'.repeat(40) + '\n\n') : null;
+  return {
+    text: sources.length > 0 ? sources.join('\n\n' + '─'.repeat(40) + '\n\n') : null,
+    names: [...new Set(names)],
+  };
 }
 
 // ─── Cloud Function ───────────────────────────────────────────────────────────
@@ -620,11 +677,15 @@ exports.search = onRequest(
       return res.status(400).json({ error: "Invalid mode." });
 
     // Fetch live sources
-    const sourceData = await fetchLiveSources(q.trim(), mode);
+    const { text: sourceData, names: sourceNames } = await fetchLiveSources(q.trim(), mode);
+
+    const answered = sourceNames.length
+      ? `Sources that returned material for this query: ${sourceNames.join('; ')}.`
+      : `No source returned material for this query.`;
 
     const userMessage = sourceData
-      ? `Query: "${q.trim()}"\nMode: ${mode}\n\nLive source data retrieved:\n\n${sourceData}`
-      : `Query: "${q.trim()}"\nMode: ${mode}\n\nNo source data was retrieved from external sources for this query.`;
+      ? `Query: "${q.trim()}"\nMode: ${mode}\n\n${answered}\n\n${sourceData}`
+      : `Query: "${q.trim()}"\nMode: ${mode}\n\n${answered}`;
 
     const client = new Anthropic({ apiKey: ANTHROPIC_API_KEY.value() });
 
@@ -640,7 +701,8 @@ exports.search = onRequest(
         query: q.trim(),
         mode,
         answer: message.content[0].text,
-        sources_fetched: sourceData ? true : false,
+        sources: sourceNames,
+        sources_fetched: sourceNames.length > 0,
       });
     } catch (err) {
       console.error("Anthropic API error:", err);
