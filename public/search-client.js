@@ -20,7 +20,7 @@ const ScriptSearch = (() => {
   const DEFAULT_ENDPOINT =
     window.SCRIPTSEARCH_ENDPOINT ||
     ("https://us-central1-before-ruin-b3744.cloudfunctions.net/search"
-      + (location.hostname.includes('--') ? '_staging' : ''));
+      + (location.hostname.includes('--') ? 'staging' : ''));
 
   // ─── DOM Selectors ────────────────────────────────────────────────────────
   // These match the element IDs expected in index.html.

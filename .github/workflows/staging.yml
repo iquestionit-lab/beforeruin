@@ -1,7 +1,7 @@
 # Staging. Runs only on the `staging` branch and never touches the live site
 # or the live `search` function.
 #
-#   push to staging  →  Hosting preview channel  +  the `search_staging` function
+#   push to staging  →  Hosting preview channel  +  the `searchstaging` function
 #   merge to main    →  live (firebase-deploy.yml)
 #
 # The preview URL contains "--", and the client uses that to pick the staging
@@ -29,7 +29,7 @@ jobs:
           projectId: before-ruin-b3744
 
   staging_function:
-    name: search_staging
+    name: searchstaging
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -47,10 +47,10 @@ jobs:
         with:
           credentials_json: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_BEFORE_RUIN_B3744 }}
 
-      # --only functions:search_staging is load-bearing. Without it this would
+      # --only functions:searchstaging is load-bearing. Without it this would
       # deploy `search` as well, and the staging branch's code would land live.
       - name: Deploy the staging function only
-        run: npx firebase-tools@15.31.0 deploy --only functions:search_staging --project before-ruin-b3744 --non-interactive
+        run: npx firebase-tools@15.31.0 deploy --only functions:searchstaging --project before-ruin-b3744 --non-interactive
 
       # One known query. Catches a dead engine in a minute instead of waiting
       # for a viewer to report it. Both faults found on 18 Sep would have tripped this.
@@ -58,7 +58,7 @@ jobs:
         run: |
           sleep 20
           BODY=$(curl -s -X POST \
-            "https://us-central1-before-ruin-b3744.cloudfunctions.net/search_staging" \
+            "https://us-central1-before-ruin-b3744.cloudfunctions.net/searchstaging" \
             -H "Content-Type: application/json" \
             -H "Origin: https://before-ruin-b3744--staging-smoke.web.app" \
             -d '{"q":"pistis","mode":"word_origin"}')

@@ -765,8 +765,8 @@ const handler = async (req, res) => {
 };
 
 // ─── Exports ──────────────────────────────────────────────────────────────────
-// Two endpoints, one handler. `search` is live; `search_staging` is what the
+// Two endpoints, one handler. `search` is live; `searchstaging` is what the
 // staging branch and Hosting preview channels talk to, so the live engine is
 // never the thing being tested. Same secrets, smaller fuse.
 exports.search = onRequest(BASE_OPTS, handler);
-exports.search_staging = onRequest({ ...BASE_OPTS, maxInstances: 2 }, handler);
+exports.searchstaging = onRequest({ ...BASE_OPTS, maxInstances: 2 }, handler);
