@@ -1252,7 +1252,9 @@
     }
 
     // ── ENGINE ───────────────────────────
-    const SS_ENDPOINT = 'https://us-central1-before-ruin-b3744.cloudfunctions.net/search';
+    // Hosting preview channels (hostname contains '--') hit the staging twin.
+    const SS_ENDPOINT = 'https://us-central1-before-ruin-b3744.cloudfunctions.net/search'
+      + (location.hostname.includes('--') ? '_staging' : '');
 
     const MODE_MAP = {
       'passage':  'passage_search',

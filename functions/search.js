@@ -655,21 +655,44 @@ async function fetchLiveSources(query, mode) {
 
 // ─── Cloud Function ───────────────────────────────────────────────────────────
 
-exports.search = onRequest(
-  {
-    secrets: [ANTHROPIC_API_KEY, APIBIBLE_API_KEY],
-    region: "us-central1",
-    timeoutSeconds: 60,
-    // The fuse. There is no auth and no rate limit on this endpoint, so the only
-    // thing standing between a scripted hammering and a four-figure bill is how
-    // many of these can run at once. At ~10s a call this caps the burn near
-    // $10/hour instead of "as fast as Google can start containers".
-    maxInstances: 5,
-  },
-  async (req, res) => {
-    res.set("Access-Control-Allow-Origin", "*");
-    res.set("Access-Control-Allow-Methods", "POST, OPTIONS");
-    res.set("Access-Control-Allow-Headers", "Content-Type");
+// ─── CORS allow-list ──────────────────────────────────────────────────────────
+// Was "*", which let any site on the internet put a search box on their page and
+// bill the answers here. CORS is enforced by the browser, not the server, so this
+// ends the easy version and does nothing against a script or a server-side proxy.
+// The real lock is App Check; this is the front door.
+const ALLOWED_EXACT = new Set([
+  "https://beforeruin.app",
+  "https://www.beforeruin.app",
+  "https://before-ruin-b3744.web.app",
+  "https://before-ruin-b3744.firebaseapp.com",
+]);
+// Hosting preview channels: before-ruin-b3744--<channel>-<hash>.web.app
+const ALLOWED_PREVIEW = /^https:\/\/before-ruin-b3744--[a-z0-9-]+\.web\.app$/;
+
+function applyCors(req, res) {
+  const origin = req.headers.origin;
+  if (origin && (ALLOWED_EXACT.has(origin) || ALLOWED_PREVIEW.test(origin))) {
+    res.set("Access-Control-Allow-Origin", origin);
+  }
+  // Without this, a shared cache can hand one origin's response to another.
+  res.set("Vary", "Origin");
+  res.set("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.set("Access-Control-Allow-Headers", "Content-Type");
+}
+
+const BASE_OPTS = {
+  secrets: [ANTHROPIC_API_KEY, APIBIBLE_API_KEY],
+  region: "us-central1",
+  timeoutSeconds: 60,
+  // The fuse. There is no auth and no rate limit on this endpoint, so the only
+  // thing standing between a scripted hammering and a four-figure bill is how
+  // many of these can run at once. At ~10s a call this caps the burn near
+  // $10/hour instead of "as fast as Google can start containers".
+  maxInstances: 5,
+};
+
+const handler = async (req, res) => {
+    applyCors(req, res);
     if (req.method === "OPTIONS") return res.status(204).send("");
     if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed. Use POST." });
 
@@ -739,5 +762,11 @@ exports.search = onRequest(
         _debug_message: err.message || String(err),
       });
     }
-  }
-);
+};
+
+// ─── Exports ──────────────────────────────────────────────────────────────────
+// Two endpoints, one handler. `search` is live; `search_staging` is what the
+// staging branch and Hosting preview channels talk to, so the live engine is
+// never the thing being tested. Same secrets, smaller fuse.
+exports.search = onRequest(BASE_OPTS, handler);
+exports.search_staging = onRequest({ ...BASE_OPTS, maxInstances: 2 }, handler);

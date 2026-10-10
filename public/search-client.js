@@ -16,9 +16,11 @@ const ScriptSearch = (() => {
   // ─── Config ──────────────────────────────────────────────────────────────
   // Replace YOUR_PROJECT_ID with your Firebase project ID.
   // This is the only value that changes between environments.
+  // Hosting preview channels (hostname contains '--') hit the staging twin.
   const DEFAULT_ENDPOINT =
     window.SCRIPTSEARCH_ENDPOINT ||
-    "https://us-central1-before-ruin-b3744.cloudfunctions.net/search";
+    ("https://us-central1-before-ruin-b3744.cloudfunctions.net/search"
+      + (location.hostname.includes('--') ? '_staging' : ''));
 
   // ─── DOM Selectors ────────────────────────────────────────────────────────
   // These match the element IDs expected in index.html.

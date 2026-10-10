@@ -5,6 +5,7 @@
  * Export all functions here. Firebase reads this file on deploy.
  */
 
-const { search } = require("./search");
+const { search, search_staging } = require("./search");
 
 exports.search = search;
+exports.search_staging = search_staging;

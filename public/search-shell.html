@@ -43,7 +43,9 @@
 <!-- Load the client (place before closing </body>) -->
 <!-- Set endpoint before loading the script -->
 <script>
+  // Hosting preview channels (hostname contains '--') hit the staging twin.
   window.SCRIPTSEARCH_ENDPOINT =
-    "https://us-central1-before-ruin-b3744.cloudfunctions.net/search";
+    "https://us-central1-before-ruin-b3744.cloudfunctions.net/search"
+    + (location.hostname.includes('--') ? '_staging' : '');
 </script>
 <script src="/search-client.js"></script>

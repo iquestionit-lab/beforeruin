@@ -1,0 +1,69 @@
+# Staging. Runs only on the `staging` branch and never touches the live site
+# or the live `search` function.
+#
+#   push to staging  →  Hosting preview channel  +  the `search_staging` function
+#   merge to main    →  live (firebase-deploy.yml)
+#
+# The preview URL contains "--", and the client uses that to pick the staging
+# endpoint, so a change can be exercised end to end before it reaches anyone.
+name: Deploy to Staging
+
+on:
+  push:
+    branches:
+      - staging
+  workflow_dispatch:
+
+jobs:
+  staging_hosting:
+    name: Preview channel
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_BEFORE_RUIN_B3744 }}
+          channelId: staging
+          expires: 30d
+          projectId: before-ruin-b3744
+
+  staging_function:
+    name: search_staging
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install function dependencies
+        working-directory: functions
+        run: npm install
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_BEFORE_RUIN_B3744 }}
+
+      # --only functions:search_staging is load-bearing. Without it this would
+      # deploy `search` as well, and the staging branch's code would land live.
+      - name: Deploy the staging function only
+        run: npx firebase-tools@15.31.0 deploy --only functions:search_staging --project before-ruin-b3744 --non-interactive
+
+      # One known query. Catches a dead engine in a minute instead of waiting
+      # for a viewer to report it. Both faults found on 18 Sep would have tripped this.
+      - name: Smoke test
+        run: |
+          sleep 20
+          BODY=$(curl -s -X POST \
+            "https://us-central1-before-ruin-b3744.cloudfunctions.net/search_staging" \
+            -H "Content-Type: application/json" \
+            -H "Origin: https://before-ruin-b3744--staging-smoke.web.app" \
+            -d '{"q":"pistis","mode":"word_origin"}')
+          echo "$BODY" | head -c 600
+          echo "$BODY" | grep -q '"answer"'         || { echo "FAIL: no answer field";  exit 1; }
+          echo "$BODY" | grep -q '"sources_fetched":true' \
+            || echo "WARN: sources_fetched is false — the source layer is not reaching live sources"
+          echo "Smoke test passed."
