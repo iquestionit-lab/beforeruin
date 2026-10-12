@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Schedule — Before Ruin</title>
+<meta name="description" content="What is airing on The Now Network, what has already aired, and where else each episode can be watched.">
+<link rel="canonical" href="https://beforeruin.app/schedule">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://beforeruin.app/schedule">
+<meta property="og:title" content="The Schedule — Before Ruin">
+<meta property="og:description" content="What is airing, what has aired, and where else to watch.">
+<meta property="og:site_name" content="Before Ruin">
+<meta property="og:image" content="https://beforeruin.app/before_ruin_og.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--P:#F8F6F0;--PD:#EDE9DF;--INK:#111;--INKs:#3A3530;--CR:#A81C1C;--GO:#C5A059;--GOm:#9E7E3F;--WH:#FFF;
+ --fd:'Cinzel Decorative',serif;--fh:'Cinzel',serif;--fs:'Playfair Display',Georgia,serif;
+ --fb:'IM Fell English',Georgia,serif;--fm:'Courier Prime',monospace;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--P);color:var(--INK);font-family:var(--fb);font-size:16px;line-height:1.7}
+a{color:var(--CR);text-decoration:none}a:hover{text-decoration:underline}
+
+.ticker{background:var(--CR);color:var(--WH);font-family:var(--fm);font-size:11px;letter-spacing:.12em;padding:7px 0;overflow:hidden}
+.ticker-row{display:flex;align-items:center;padding:0 20px;gap:10px}
+.ticker-tag{background:var(--INK);color:var(--WH);padding:1px 10px;font-weight:700;letter-spacing:.18em;flex-shrink:0;font-size:10px}
+.ticker-scroll{overflow:hidden;flex:1}
+.ticker-text{display:inline-block;animation:scroll-t 32s linear infinite;padding-left:100%;white-space:nowrap}
+@keyframes scroll-t{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+
+.masthead{background:var(--P);border-bottom:2px solid var(--INK);padding:0 20px}
+.mast-nav{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:.5px solid var(--GO);font-family:var(--fm);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--INKs)}
+.mast-nav a{color:var(--INKs);margin:0 8px}.mast-nav a:hover{color:var(--CR)}
+.mast-center{text-align:center;padding:22px 0 14px;position:relative}
+.mast-center::before,.mast-center::after{content:'❧';color:var(--GO);font-size:24px;position:absolute;top:50%;transform:translateY(-50%)}
+.mast-center::before{left:20px}.mast-center::after{right:20px;transform:translateY(-50%) scaleX(-1)}
+.mast-eyebrow{font-family:var(--fm);font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--GOm);margin-bottom:6px}
+.mast-wordmark{font-family:var(--fd);font-size:clamp(32px,6vw,68px);font-weight:900;letter-spacing:.04em;line-height:1.05}
+.mast-wordmark .ruin{color:var(--CR)}
+.mast-gold-rule{height:1px;background:linear-gradient(to right,transparent,var(--GO) 12%,var(--GO) 88%,transparent);margin:10px 0 0}
+@media(max-width:640px){.mast-nav{flex-direction:column;gap:6px;text-align:center}}
+
+.wrap{max-width:860px;margin:0 auto;padding:0 20px 70px}
+
+/* ── NEXT ON ── */
+.plate{position:relative;overflow:hidden;background:#0A0D12;color:#EBEBEB;margin:44px 0 0;
+ padding:clamp(30px,5vw,54px);border:1px solid #2A3244}
+.plate .eyebrow{font-family:var(--fm);font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#C8552F}
+.plate .rule{width:180px;height:2px;margin:18px 0 0;background:linear-gradient(90deg,rgba(214,166,74,.9),rgba(214,166,74,0))}
+.plate .when{font-family:var(--fm);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#D9AE63;margin-top:24px}
+.plate .ask{font-family:var(--fs);font-size:clamp(27px,4.6vw,44px);line-height:1.24;margin-top:10px;color:#EBEBEB}
+.plate .two{font-family:var(--fb);font-size:clamp(17px,2.4vw,22px);line-height:1.68;margin-top:18px;color:#B9C0CC}
+.plate .slot{font-family:var(--fm);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#8A90A8;margin-top:26px}
+.plate.empty .ask{color:#B9C0CC;font-style:italic}
+
+/* ── THE CALENDAR ── */
+.cal{margin-top:34px;border:1px solid rgba(0,0,0,.18);background:var(--WH)}
+.cal-head{display:flex;align-items:center;justify-content:space-between;
+ padding:14px 18px;border-bottom:1px solid var(--GO);background:var(--PD)}
+.cal-month{font-family:var(--fd);font-size:20px;font-weight:700;letter-spacing:.02em}
+.cal-nav button{font-family:var(--fm);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+ background:none;border:1px solid var(--GO);color:var(--GOm);padding:5px 12px;cursor:pointer;margin-left:6px}
+.cal-nav button:hover{background:var(--CR);border-color:var(--CR);color:var(--WH)}
+.cal-dow{display:grid;grid-template-columns:repeat(7,1fr);border-bottom:.5px solid rgba(0,0,0,.14)}
+.cal-dow span{font-family:var(--fm);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;
+ color:var(--GOm);text-align:center;padding:9px 0}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr)}
+.cal-cell{min-height:94px;border-right:.5px solid rgba(0,0,0,.09);border-bottom:.5px solid rgba(0,0,0,.09);
+ padding:7px 8px;position:relative}
+.cal-cell:nth-child(7n){border-right:none}
+.cal-cell.out{background:#F3F1EA}
+.cal-cell .num{font-family:var(--fm);font-size:12px;color:#9A9488}
+.cal-cell.today .num{color:var(--CR);font-weight:700}
+.cal-cell.today::after{content:'';position:absolute;inset:0;border:1px dashed rgba(168,28,28,.45);pointer-events:none}
+.cal-cell.has{cursor:pointer}
+.cal-cell.has:hover{background:var(--PD)}
+.cal-cell.has .num{color:var(--INK);font-weight:700}
+.cal-cell.has .mini{font-family:var(--fs);font-size:12.5px;line-height:1.3;margin-top:5px;color:var(--INKs)}
+.cal-cell.has .dot{width:7px;height:7px;border-radius:50%;background:var(--CR);
+ position:absolute;top:10px;right:9px}
+.cal-cell.has.special .dot{background:var(--GO)}
+.cal-cell.has.preempted .dot{background:#B9B3A6}
+.cal-cell.has.elsewhere .dot{background:#3F5C7A}
+.cal-cell.has.elsewhere .num{color:#2F4A66}
+.cal-cell.has.sel,.cal-cell.has.sel:hover{background:#0A0D12}
+.cal-cell.has.sel .num{color:#D9AE63}
+.cal-cell.has.sel .mini{color:#C9CFDA}
+.cal-cell.has.sel.today::after{border-color:rgba(217,174,99,.6)}
+.cal-cell.has:focus-visible{outline:2px solid var(--CR);outline-offset:-2px}
+@media(max-width:640px){
+ .cal-cell{min-height:62px;padding:5px}
+ .cal-cell .mini{display:none}
+ .cal-cell.has .num{color:var(--WH);background:var(--CR);border-radius:50%;
+  width:24px;height:24px;display:flex;align-items:center;justify-content:center}
+ .cal-cell.has .dot{display:none}}
+
+.cal-key{display:flex;gap:18px;flex-wrap:wrap;padding:11px 18px;border-top:.5px solid rgba(0,0,0,.14);
+ font-family:var(--fm);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--INKs)}
+.cal-key i{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle}
+
+/* ── THE ANNOTATION PANEL ── */
+.ann{border:1px solid rgba(0,0,0,.18);border-top:none;background:var(--PD);padding:clamp(20px,3.4vw,32px)}
+.ann .when{font-family:var(--fm);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--GOm)}
+.ann h3{font-family:var(--fd);font-size:clamp(22px,3.4vw,32px);font-weight:700;line-height:1.18;margin-top:8px}
+.ann .sub{font-family:var(--fs);font-size:18px;font-style:italic;color:var(--INKs);margin-top:8px}
+.ann .note{font-size:16.5px;line-height:1.75;margin-top:16px;border-left:3px solid var(--GO);padding-left:16px}
+.ann .meta{font-family:var(--fm);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#8A8578;margin-top:16px}
+.ann .links{margin-top:12px;font-family:var(--fm);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase}
+.ann .links a{margin-right:16px}
+.ann.none{color:var(--INKs);font-family:var(--fs);font-style:italic;font-size:18px}
+
+.kicker{font-family:var(--fm);font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--CR);margin:52px 0 10px}
+h2.h{font-family:var(--fd);font-size:clamp(24px,3.8vw,36px);font-weight:700;line-height:1.16;margin-bottom:12px}
+p.b{font-size:17px;line-height:1.75;margin-top:14px}
+.lead{font-family:var(--fs);font-size:20px;line-height:1.6;font-style:italic;color:var(--INKs);
+ border-left:3px solid var(--GO);padding-left:18px;margin-top:16px}
+
+/* ── THE LISTINGS ── */
+.listing{border-top:1px solid rgba(0,0,0,.16);margin-top:20px}
+.row{display:grid;grid-template-columns:132px 1fr auto;gap:18px;align-items:baseline;
+ padding:18px 0;border-bottom:.5px solid rgba(0,0,0,.12)}
+.row .date{font-family:var(--fm);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--GOm);white-space:nowrap}
+.row .ttl{font-family:var(--fs);font-size:20px;font-weight:700;line-height:1.3}
+.row .sub{font-family:var(--fb);font-size:15.5px;color:var(--INKs);margin-top:3px}
+.row .code{font-family:var(--fm);font-size:10.5px;letter-spacing:.14em;color:#8A8578;margin-top:6px}
+.row .tag{font-family:var(--fm);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;
+ padding:3px 9px;border:1px solid var(--GO);color:var(--GOm);white-space:nowrap}
+.row .tag.on{background:var(--CR);border-color:var(--CR);color:var(--WH)}
+.row .tag.off{border-color:#B9B3A6;color:#8A8578}
+.row .tag.el{border-color:#3F5C7A;color:#3F5C7A}
+.row .where{font-family:var(--fm);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#3F5C7A;margin-top:5px}
+.ann .where{font-family:var(--fm);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#3F5C7A;margin-top:10px}
+.row .links{margin-top:8px;font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.row .links a{margin-right:14px}
+@media(max-width:640px){.row{grid-template-columns:1fr;gap:4px}.row .tag{justify-self:start;margin-top:8px}}
+
+.note{background:var(--PD);border:1px solid var(--GO);padding:18px 20px;margin-top:26px}
+.note p{font-family:var(--fs);font-size:17px;font-style:italic;line-height:1.6}
+.note .ref{font-family:var(--fm);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--GOm);font-style:normal;margin-top:10px}
+
+.where{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:22px}
+.where div{border:1px solid rgba(0,0,0,.16);padding:16px 18px}
+.where h4{font-family:var(--fh);font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--GOm);margin-bottom:6px}
+.where p{font-size:15.5px;color:var(--INKs)}
+
+.foot{border-top:2px solid var(--INK);margin-top:58px;padding-top:18px;text-align:center;
+ font-family:var(--fm);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--INKs)}
+.foot a{color:var(--CR)}
+</style>
+<link rel="stylesheet" media="print" href="/print.css">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Before Ruin">
+<meta name="theme-color" content="#F8F6F0">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HJYZ8JBMGM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-HJYZ8JBMGM');
+</script>
+</head>
+<body>
+
+<div class="ticker"><div class="ticker-row">
+  <span class="ticker-tag">ON THE AIR</span>
+  <div class="ticker-scroll"><span class="ticker-text">
+    EVERYTHING BEFORE RUIN IS DOING, WITH ITS DATE. &nbsp;⬥&nbsp;
+    THE BROADCAST — SUNDAYS 11 PM ON THE NOW NETWORK. &nbsp;⬥&nbsp;
+    SESSIONS, WALKTHROUGHS AND APPEARANCES LISTED HERE TOO. &nbsp;⬥&nbsp;
+    SOURCES FOR EVERY CLAIM AT BEFORERUIN.APP. &nbsp;⬥&nbsp;
+    LEARN WHAT WAS WRITTEN, NOT WHAT WAS TAUGHT.
+  </span></div>
+</div></div>
+
+<header class="masthead">
+  <div class="mast-nav">
+    <div><a href="/">Home</a><a href="/schedule.html">The Schedule</a><a href="/her.html">She Is Working</a><a href="/texts.html">The Witnesses</a><a href="/method.html">The Method</a><a href="/notes.html">The Notes</a></div>
+    <div id="nav-date"></div>
+  </div>
+  <div class="mast-center">
+    <div class="mast-eyebrow">The broadcast · The sessions · Everything on</div>
+    <div class="mast-wordmark">The&nbsp;<span class="ruin">Schedule</span></div>
+  </div>
+  <div class="mast-gold-rule"></div>
+</header>
+
+<div class="wrap">
+
+  <!-- NEXT ON -->
+  <div class="plate" id="next-plate">
+    <div class="eyebrow" id="next-eyebrow">Next on the air</div>
+    <div class="rule"></div>
+    <div class="when" id="next-when"></div>
+    <div class="ask" id="next-title"></div>
+    <div class="two" id="next-sub"></div>
+    <div class="slot" id="next-slot"></div>
+  </div>
+
+  <!-- THE CALENDAR -->
+  <div class="cal">
+    <div class="cal-head">
+      <div class="cal-month" id="cal-month"></div>
+      <div class="cal-nav">
+        <button type="button" id="cal-prev">← Prev</button>
+        <button type="button" id="cal-next">Next →</button>
+      </div>
+    </div>
+    <div class="cal-dow"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div>
+    <div class="cal-grid" id="cal-grid"></div>
+    <div class="cal-key">
+      <span><i style="background:#A81C1C"></i>Episode</span>
+      <span><i style="background:#C5A059"></i>Special</span>
+      <span><i style="background:#B9B3A6"></i>Preempted</span>
+      <span><i style="background:#3F5C7A"></i>Webinar or event</span>
+      <span>Click a marked day for the full listing</span>
+    </div>
+  </div>
+  <div class="ann" id="ann"></div>
+
+  <div class="kicker">What is coming</div>
+  <h2 class="h">Listings</h2>
+  <p class="b">This is the Before Ruin calendar, not only the broadcast one. The Sunday
+  hour on The Now Network is on it, and so is everything else — a session on searching
+  scripture with the app, a walkthrough, an appearance somewhere. Dates are set a week or
+  more ahead, and when a week is given to something other than the next episode, it is
+  listed the same way so nobody has to guess.</p>
+  <div class="listing" id="upcoming"></div>
+
+  <div class="kicker">What has aired</div>
+  <h2 class="h">The Record</h2>
+  <p class="b">Everything that has already happened, with the date it happened on and
+  wherever it can still be watched.</p>
+  <div class="listing" id="aired"></div>
+
+  <div class="kicker">Beyond the broadcast</div>
+  <h2 class="h">Where Else To Watch</h2>
+  <div class="where">
+    <div><h4>The Now Network</h4><p>Sundays, 11 PM. The broadcast of record. Each episode runs 28:30 exactly.</p></div>
+    <div><h4>YouTube</h4><p>Full episodes and short cuts, posted after the broadcast date.</p></div>
+    <div><h4>beforeruin.app</h4><p>The sources behind every claim, and the search that lets you check the words yourself.</p></div>
+    <div><h4>Live sessions</h4><p>Hours spent looking words up together, online. Listed on the calendar above with a slate marker.</p></div>
+  </div>
+
+  <div class="note">
+    <p>A broadcast is a promise about a time, not about a subject. What is listed
+    here is what will be on at that hour — and when the hour is given to something
+    other than the next episode in sequence, the listing says so rather than leaving
+    the viewer to find out. The same holds for everything else on this calendar: if
+    it has a date, it is here, and if it moves, here is where it moves.</p>
+    <div class="ref">The standing rule of this page</div>
+  </div>
+
+  <div class="foot">
+    Before Ruin &nbsp;·&nbsp; Robert Langan Ministries<br>
+    The broadcast: Sundays 11 PM on The Now Network<br>
+    <a href="/">beforeruin.app</a> &nbsp;·&nbsp; <a href="/schedule.html">The Schedule</a>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════════
+   THE LISTINGS — this is the only part of the page you edit.
+
+   One line per airing. Copy a block, change the fields, save, push.
+
+     date     "2026-10-18"   the Sunday it airs. ISO, always.
+     code     "BR-001-001"   leave "" for anything that is not an episode
+     title    what it is called
+     sub      one line under the title
+     page     a link on this site, or "" for none
+     watch    [["YOUTUBE","https://…"], …]   or []  — where else it lives
+     kind     "episode"   — a Before Ruin hour on The Now Network
+              "special"   — the slot, given to something else
+              "preempted" — no episode that week, and why
+              "webinar"   — live, online, not the broadcast
+              "event"     — in person, somewhere else
+     where    "" for the broadcast. Otherwise the platform or the place:
+              "Zoom", "First Gentile Church, Danbury CT"
+     time     "" to use the 11 PM slot. Otherwise "7:00 PM ET".
+     note     the annotation — a paragraph that opens when the calendar
+              box is clicked. Say what the hour is about, or why a week
+              moved. Leave it "" and the box still works.
+
+   Order does not matter. The page sorts by date, puts anything from today
+   forward into Listings, and everything behind it into The Record.
+   ══════════════════════════════════════════════════════════════════ */
+
+var LISTINGS = [
+
+  /* ── A SESSION. Change the date, add the registration link, and it is live.
+        Delete the block if you are not running it. ── */
+  { date:"2026-11-12", code:"",
+    title:"Searching Scripture With The App",
+    sub:"An hour of looking words up together, live and on screen.",
+    page:"", watch:[],
+    kind:"webinar", where:"Zoom", time:"7:00 PM ET",
+    note:"We take one word — faith — and follow it back. Where the English came from, what the Greek carried in a courtroom, what the Hebrew underneath it meant, and how to check any of it yourself in under a minute. Bring a verse you have always been told means one thing." },
+
+
+  { date:"2026-10-18", code:"BR-001-001",
+    title:"Faith · πίστις",
+    sub:"Series I, Episode One — what the word carried before it was translated.",
+    page:"/BR-001-001.html",
+    watch:[],
+    kind:"episode",
+    note:"The hour goes back to what the word carried before anyone translated it. Pistis was a courtroom word — proof, guarantee, pledge — and the King James still renders it evidence in Hebrews 11:1. Emunah, underneath it in the Hebrew, is steadfastness: a condition of character rather than a feeling worked up. Both were experiences before they were words." },
+
+  /* ── everything below needs its real date and title filling in ──
+     Delete a block if it is wrong. An empty schedule is better than a
+     wrong one; the page handles having nothing in a section. */
+
+  { date:"2026-10-11", code:"",
+    title:"TITLE GOES HERE",
+    sub:"Replace or delete this block.",
+    page:"",
+    watch:[],
+    kind:"episode",
+    note:"" },
+
+  { date:"2026-09-20", code:"BR-002-001",
+    title:"The Lost Nursery",
+    sub:"Series II, Episode One.",
+    page:"/BR-002-001.html",
+    watch:[],
+    kind:"episode",
+    note:"" }
+
+];
+
+/* ── nothing below here needs editing ───────────────────────────── */
+(function(){
+  var MO=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var DY=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var BROADCAST={episode:1,special:1,preempted:1};
+
+  function parse(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
+  function ord(n){var s=['th','st','nd','rd'],v=n%100;return n+(s[(v-20)%10]||s[v]||s[0]);}
+  function pretty(d){return DY[d.getDay()]+' '+MO[d.getMonth()]+' '+ord(d.getDate());}
+  function shortd(d){return MO[d.getMonth()].slice(0,3).toUpperCase()+' '+ord(d.getDate());}
+  function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function key(d){return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
+
+  var today=new Date(); today.setHours(0,0,0,0);
+  var rows=LISTINGS.filter(function(r){return r&&r.date&&r.title});
+  rows.forEach(function(r){r._d=parse(r.date); r.kind=r.kind||'episode';
+                           r._el=!BROADCAST[r.kind];});
+  rows.sort(function(a,b){return a._d-b._d});
+
+  var up=rows.filter(function(r){return r._d>=today});
+  var past=rows.filter(function(r){return r._d<today}).reverse();
+
+  var byDay={};
+  rows.forEach(function(r){var k=key(r._d);(byDay[k]=byDay[k]||[]).push(r)});
+
+  /* ── NEXT ON ── broadcast only, so the plate stays honest ── */
+  var n=up[0];
+  if(n){
+    document.getElementById('next-eyebrow').textContent =
+      n.kind==='webinar' ? 'Next session'
+      : n.kind==='event' ? 'Next appearance'
+      : 'Next on the air';
+    document.getElementById('next-when').textContent=pretty(n._d)+' · '+n._d.getFullYear();
+    document.getElementById('next-title').textContent=n.title;
+    document.getElementById('next-sub').textContent=n.sub||'';
+    document.getElementById('next-slot').textContent =
+      n._el ? [n.time,n.where].filter(Boolean).join('  ·  ')
+            : 'Sundays 11 PM  ·  The Now Network  ·  28:30';
+  } else {
+    document.getElementById('next-plate').className='plate empty';
+    document.getElementById('next-eyebrow').textContent='Nothing dated yet';
+    document.getElementById('next-title').textContent='The next date is being set.';
+    document.getElementById('next-sub').textContent='The record below is complete, and everything in it can still be watched.';
+  }
+
+  /* ── THE LISTINGS ── */
+  function tagFor(r,future){
+    if(r.kind==='preempted') return '<div class="tag off">Preempted</div>';
+    if(r.kind==='webinar')   return '<div class="tag el">Webinar</div>';
+    if(r.kind==='event')     return '<div class="tag el">Event</div>';
+    if(r.kind==='special')   return '<div class="tag">Special</div>';
+    return future?'<div class="tag on">Scheduled</div>':'<div class="tag">Aired</div>';
+  }
+  function linksFor(r){
+    var L=[];
+    if(r.page) L.push('<a href="'+esc(r.page)+'">Sources</a>');
+    (r.watch||[]).forEach(function(w){L.push('<a href="'+esc(w[1])+'" rel="noopener">'+esc(w[0])+'</a>')});
+    return L;
+  }
+  function whereLine(r){
+    if(!r._el && !r.time) return '';
+    var bits=[];
+    if(r.time) bits.push(r.time);
+    if(r.where) bits.push(r.where);
+    return bits.length?bits.join(' · '):'';
+  }
+  function render(el,list,future){
+    if(!list.length){el.innerHTML='<div class="row"><div class="date">—</div><div><div class="sub">Nothing listed yet.</div></div><div></div></div>';return}
+    el.innerHTML=list.map(function(r){
+      var L=linksFor(r), w=whereLine(r);
+      return '<div class="row">'
+        + '<div class="date">'+shortd(r._d)+' '+r._d.getFullYear()+'</div>'
+        + '<div><div class="ttl">'+esc(r.title)+'</div>'
+        + (r.sub?'<div class="sub">'+esc(r.sub)+'</div>':'')
+        + (w?'<div class="where">'+esc(w)+'</div>':'')
+        + (r.code?'<div class="code">'+esc(r.code)+'</div>':'')
+        + (L.length?'<div class="links">'+L.join('')+'</div>':'')
+        + '</div>'+tagFor(r,future)+'</div>';
+    }).join('');
+  }
+  render(document.getElementById('upcoming'),up,true);
+  render(document.getElementById('aired'),past,false);
+
+  /* ── THE CALENDAR ── */
+  var grid=document.getElementById('cal-grid'),
+      mlabel=document.getElementById('cal-month'),
+      ann=document.getElementById('ann'),
+      selected=null,
+      cursor=new Date((up[0]||past[0]||{_d:today})._d);
+  cursor.setDate(1);
+
+  function annotate(r){
+    if(!r){ann.className='ann none';ann.textContent='Pick a marked day above to read what is on it.';return}
+    ann.className='ann';
+    var L=linksFor(r), w=whereLine(r);
+    var slot = r._el ? '' : 'The Now Network · 28:30';
+    ann.innerHTML =
+      '<div class="when">'+pretty(r._d)+' · '+r._d.getFullYear()+'</div>'
+      +'<h3>'+esc(r.title)+'</h3>'
+      +(r.sub?'<div class="sub">'+esc(r.sub)+'</div>':'')
+      +(w?'<div class="where">'+esc(w)+'</div>':'')
+      +(r.note?'<div class="note">'+esc(r.note)+'</div>':'')
+      +'<div class="meta">'+[r.code,slot].filter(Boolean).map(esc).join(' &nbsp;·&nbsp; ')+'</div>'
+      +(L.length?'<div class="links">'+L.join('')+'</div>':'');
+  }
+
+  function draw(){
+    mlabel.textContent=MO[cursor.getMonth()]+' '+cursor.getFullYear();
+    var first=new Date(cursor.getFullYear(),cursor.getMonth(),1);
+    var start=new Date(first); start.setDate(1-first.getDay());
+    var html='';
+    for(var i=0;i<42;i++){
+      var d=new Date(start.getFullYear(),start.getMonth(),start.getDate()+i);
+      var out=d.getMonth()!==cursor.getMonth();
+      var list=byDay[key(d)]||[];
+      var r=list[0];
+      var cls=['cal-cell'];
+      if(out)cls.push('out');
+      if(+d===+today)cls.push('today');
+      if(r){cls.push('has'); if(r._el)cls.push('elsewhere'); else if(r.kind!=='episode')cls.push(r.kind);}
+      if(selected&&r===selected)cls.push('sel');
+      html+='<div class="'+cls.join(' ')+'"'
+        + (r?' data-k="'+key(d)+'" role="button" tabindex="0" aria-label="'+esc(r.title)+'"':'')
+        + '><div class="num">'+d.getDate()+'</div>'
+        + (r?'<span class="dot"></span><div class="mini">'+esc(r.title)+(list.length>1?' +'+(list.length-1):'')+'</div>':'')
+        + '</div>';
+      if(i>=34 && new Date(start.getFullYear(),start.getMonth(),start.getDate()+i+1).getMonth()!==cursor.getMonth()) break;
+    }
+    grid.innerHTML=html;
+  }
+
+  function pick(k){
+    var list=byDay[k]; if(!list)return;
+    selected = (selected && list.indexOf(selected)>-1 && list.length>1)
+      ? list[(list.indexOf(selected)+1)%list.length] : list[0];
+    draw(); annotate(selected);
+  }
+  grid.addEventListener('click',function(e){
+    var c=e.target.closest('.cal-cell[data-k]'); if(c)pick(c.getAttribute('data-k'));
+  });
+  grid.addEventListener('keydown',function(e){
+    if(e.key!=='Enter'&&e.key!==' ')return;
+    var c=e.target.closest('.cal-cell[data-k]'); if(c){e.preventDefault();pick(c.getAttribute('data-k'));}
+  });
+  document.getElementById('cal-prev').onclick=function(){cursor.setMonth(cursor.getMonth()-1);draw()};
+  document.getElementById('cal-next').onclick=function(){cursor.setMonth(cursor.getMonth()+1);draw()};
+
+  selected = up[0] || past[0] || null;
+  draw(); annotate(selected);
+
+  var dd=new Date();
+  var days=['Sun.','Mon.','Tue.','Wed.','Thur.','Fri.','Sat.'];
+  var el=document.getElementById('nav-date');
+  if(el)el.textContent=days[dd.getDay()]+' — '+MO[dd.getMonth()]+' '+dd.getDate()+', '+dd.getFullYear();
+})();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/sw.js').catch(function () {});
+  });
+}
+</script>
+</body>
+</html>
