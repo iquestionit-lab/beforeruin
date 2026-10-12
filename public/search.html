@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Recovery Engine — Before Ruin</title>
+  <title>Scripnotes — Before Ruin</title>
 
   <!-- SEO -->
-  <meta name="description" content="Enter a verse, a word, or a question, and read what the translation was translated from. The Recovery Engine, from Before Ruin.">
+  <meta name="description" content="Enter a verse, a word, or a question, and keep the notes from what the translation was made from. Scripnotes, from Before Ruin.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://beforeruin.app">
 
@@ -1036,11 +1036,12 @@
     <div class="mast-nav">
       <div>
         <a href="/">Home</a>
-        <a href="/search.html" style="color:var(--CR);">The Recovery Engine</a>
-        <a href="/how-to-search.html">How to Ask</a>
-        <a href="/sources.html">Read With Me</a>
-        <a href="/texts.html">The Witnesses</a>
-        <a href="/her.html">She Is Working</a>
+        <a href="/search" style="color:var(--CR);">Scripnotes</a>
+        <a href="/how-to-search">How to Ask</a>
+        <a href="/sources">Read With Me</a>
+        <a href="/texts">The Witnesses</a>
+        <a href="/workbench">The Workbench</a>
+        <a href="/her">She Is Working</a>
       </div>
       <div class="live-pill"><span class="live-dot"></span>LIVE EDITION</div>
       <div id="nav-date" style="font-family:var(--fm);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--INKs);">&nbsp;</div>
@@ -1056,7 +1057,7 @@
   <section class="recovery-engine" id="recovery-engine">
 
     <div class="re-label-bar">
-      <span class="re-label-title">The Recovery Engine</span>
+      <span class="re-label-title">Scripnotes</span>
       <span class="re-label-meta">Scripture &nbsp;·&nbsp; Terms &nbsp;·&nbsp; Prepositions &nbsp;·&nbsp; Misconceptions</span>
     </div>
 
@@ -1069,8 +1070,10 @@
         </div>
 
         <div class="ss-power">
-          Every other Bible search hands you the translation.
-          <strong>This hands you what the translation was made from</strong> — and marks the places where the English moved.
+          Other searches return the translation.
+          <strong>This one takes you to the witnesses it was made from</strong> — the Greek, the Hebrew, the manuscripts —
+          and writes down what they say while you are standing there.
+          What comes back is not a verdict. It is your notes.
         </div>
 
         <div class="re-counter" id="re-counter">
@@ -1125,7 +1128,7 @@
         </div>
 
         <div class="ss-guide">
-          <a href="/how-to-search.html">Not sure what to ask? &nbsp;Start here &nbsp;→</a>
+          <a href="/how-to-search">Not sure what to ask? &nbsp;Start here &nbsp;→</a>
           <span>The hardest part of any search is knowing how to put the question. Two minutes here will save you an hour.</span>
         </div>
 
@@ -1135,7 +1138,7 @@
 
   <footer class="ss-foot">
     <a href="/">Before Ruin</a> &nbsp;·&nbsp; Robert Langan Ministries &nbsp;·&nbsp; Sundays 11 PM on The Now Network<br>
-    <a href="/how-to-search.html">How to ask</a> &nbsp;·&nbsp; <a href="/terms.html">Terms &amp; limits</a>
+    <a href="/how-to-search">How to ask</a> &nbsp;·&nbsp; <a href="/terms">Terms &amp; limits</a>
   </footer>
 
 
@@ -1281,14 +1284,18 @@
                        font-family:var(--fb);font-size:13.5px;line-height:1.5;color:rgba(248,246,240,.8);">
              <strong style="color:var(--GOl);">No live sources were reached for this one.</strong>
              What follows is drawn from attested texts but was not fetched and checked against them just now.
-             Treat it as a starting point and verify it before you rely on it.
+             Treat these notes as a starting point and check them before you rely on them.
            </div>`
         : '';
 
       const sourceChips = (data.sources && data.sources.length)
         ? `<div style="margin-top:16px;padding-top:14px;border-top:.5px solid rgba(197,160,89,.2);">
-            <div class="re-result-sources-label">⬩ Primary Sources</div>
+            <div class="re-result-sources-label">⬩ Taken from</div>
             <div class="re-result-sources-list">${data.sources.join(' · ')}</div>
+            <div style="margin-top:9px;font-family:var(--fb);font-size:12.5px;line-height:1.5;color:rgba(248,246,240,.52);">
+              Scripnotes assembled these notes from the sources named above.
+              They are a record of the consultation, not a ruling on it — go past them to the witnesses themselves.
+            </div>
            </div>`
         : '';
 
@@ -1298,6 +1305,9 @@
             <img src="/favicon-192x192.png" alt="" style="width:20px;height:20px;opacity:.8;border-radius:3px;">
             <button class="re-copy-btn" onclick="copyResult(this)">⎘ COPY</button>
             <button class="re-copy-btn re-print-btn" onclick="window.print()">⎙ PRINT</button>
+          </div>
+          <div class="re-result-sources-label" style="margin-bottom:9px;">
+            ⬩ Your notes &nbsp;·&nbsp; ${new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})}
           </div>
           <div class="re-result-term">${query}</div>
           <div class="re-result-body">${answerHtml}</div>
@@ -1318,7 +1328,8 @@
       if (term) lines.push(term.textContent.trim().toUpperCase(), '');
       if (body) lines.push(body.innerText.trim(), '');
       if (sources) lines.push('Primary Sources: ' + sources.textContent.trim());
-      lines.push('', 'The Recovery Engine · Before Ruin · beforeruin.app');
+      lines.push('', 'Notes assembled by Scripnotes from the sources listed above.',
+                 'Before Ruin · beforeruin.app');
       navigator.clipboard.writeText(lines.join('\n')).then(() => {
         btn.textContent = '✓ COPIED';
         setTimeout(() => btn.textContent = '⎘ COPY', 2000);
@@ -1360,7 +1371,7 @@
       // Show loading state
       setWorking(true);
       const resultsEl = document.getElementById('re-results');
-      resultsEl.innerHTML = `<div class="re-no-result" style="font-style:normal;font-family:var(--fm);font-size:10px;letter-spacing:.15em;">SEARCHING THE SOURCES…</div>`;
+      resultsEl.innerHTML = `<div class="re-no-result" style="font-style:normal;font-family:var(--fm);font-size:10px;letter-spacing:.15em;">GOING TO THE SOURCES…</div>`;
       resultsEl.classList.add('has-results');
       const _dp = document.getElementById('re-differs-panel');
       if (_dp) _dp.style.display = 'none';
@@ -1382,7 +1393,7 @@
         if (window._logEvent) window._logEvent('search', { search_term: query, search_mode: mode });
       } catch (err) {
         setWorking(false);
-        resultsEl.innerHTML = `<div class="re-no-result">Could not reach the search engine — please try again.</div>`;
+        resultsEl.innerHTML = `<div class="re-no-result">The sources could not be reached just now, so nothing was written down. Please try again.</div>`;
         if (window._logEvent) window._logEvent('search_error', { search_term: query, search_mode: mode });
       }
     }
@@ -1478,7 +1489,7 @@
   </script>
 
   <script>
-    // A link can arrive with a search already in it:  /search.html?q=through&mode=term
+    // A link can arrive with a search already in it:  /search?q=through&mode=term
     (function () {
       var p = new URLSearchParams(window.location.search);
       var q = p.get('q');
