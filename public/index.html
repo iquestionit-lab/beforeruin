@@ -1038,11 +1038,13 @@
   <header class="masthead">
     <div class="mast-nav">
       <div>
-        <a href="/search.html">The Recovery Engine</a>
-        <a href="/notes.html">The Notes</a>
-        <a href="/texts.html">The Witnesses</a>
-        <a href="/method.html">The Method</a>
-        <a href="/her.html">She Is Working</a>
+        <a href="/search">Scripnotes</a>
+        <a href="/notes">The Notes</a>
+        <a href="/schedule">The Schedule</a>
+        <a href="/texts">The Witnesses</a>
+        <a href="/method">The Method</a>
+        <a href="/workbench">The Workbench</a>
+        <a href="/her">She Is Working</a>
       </div>
       <div class="live-pill"><span class="live-dot"></span>LIVE EDITION</div>
       <div id="nav-date" style="font-family:var(--fm);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--INKs);">Thur. — July 30, 2026</div>
@@ -1062,6 +1064,14 @@
   <!-- HERO BAND -->
   <div class="hero-band">
     <p class="hero-claim">You already know the words. <strong>Here is what they actually mean.</strong></p>
+    <div style="margin-top:22px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px 22px;">
+      <a href="/search" style="display:inline-block;background:var(--CR);color:var(--WH);text-decoration:none;
+         padding:16px 34px;font-family:var(--fm);font-size:13px;letter-spacing:.2em;text-transform:uppercase;
+         border:1px solid var(--CR);">Open Scripnotes &rarr;</a>
+      <span style="font-family:var(--fb),Georgia,serif;font-size:16px;color:var(--INKs);">
+        Free. No account. Ask a word and keep the notes.
+      </span>
+    </div>
   </div>
 
 
@@ -1092,7 +1102,7 @@
       <div id="bl-error" style="display:none;margin-top:12px;font-family:var(--fm);font-size:10.5px;color:var(--CR);letter-spacing:.1em;text-transform:uppercase;"></div>
       <div style="margin-top:18px;padding-top:14px;border-top:1px solid var(--GO);font-family:var(--fm);font-size:10.5px;line-height:1.85;letter-spacing:.06em;color:var(--GOm);">
         This is the pew tool. It fetches a verse and gets out of your way.<br>
-        <a href="/search.html" style="color:var(--CR);text-transform:uppercase;letter-spacing:.14em;">The Recovery Engine &rarr;</a>
+        <a href="/search" style="color:var(--CR);text-transform:uppercase;letter-spacing:.14em;">Scripnotes &rarr;</a>
         &nbsp;Original language, manuscript witnesses, and what the lexicons actually say.
       </div>
     </div>
@@ -1223,14 +1233,14 @@
   </div>
 
   <!-- ═══════════════════════════════════════════════
-       THE RECOVERY ENGINE — PROMINENT, STATIC, BOTTOM
+       SCRIPNOTES — PROMINENT, STATIC, BOTTOM
   ═══════════════════════════════════════════════ -->
-  <!-- ══ THE RECOVERY ENGINE — the door, not the room ══ -->
+  <!-- ══ SCRIPNOTES — the door, not the room ══ -->
   <div class="rx-door">
     <div class="rx-inner">
-      <div class="rx-k">⬩ The Recovery Engine</div>
+      <div class="rx-k">⬩ Scripnotes</div>
       <div class="rx-h">That verse said something <em>before</em> it said this.</div>
-      <p class="rx-p">Every Bible search returns the translation. This one returns what the translation was made from — and marks the places where the English moved.</p>
+      <p class="rx-p">Other searches return the translation. This one takes you to the witnesses it was made from — the Greek, the Hebrew, the manuscripts — and writes down what they say while you are standing there. What comes back is not a verdict. It is your notes.</p>
       <div class="rx-doors">
         <div class="rx-door-card">
           <div class="rx-dc-i">§</div>
@@ -1248,8 +1258,9 @@
           <div class="rx-dc-d">Don't know the word yet? Ask it the way you'd ask a friend. It goes and finds the verse.</div>
         </div>
       </div>
-      <a class="rx-cta" href="/search.html">Open the Recovery Engine →</a>
-      <div class="rx-foot">Free to use &nbsp;·&nbsp; <a href="/how-to-search.html" style="color:var(--GOl);">How to ask</a></div>
+      <a class="rx-cta" href="/search">Open Scripnotes →</a>
+      <div class="rx-foot">Free to use &nbsp;·&nbsp; <a href="/how-to-search" style="color:var(--GOl);">How to ask</a><br>
+        <span style="opacity:.8">Scripnotes assembles your notes from the sources it names. Every one of them is listed, so you can go past the notes to the witnesses themselves.</span></div>
     </div>
   </div>
 
@@ -1358,7 +1369,7 @@
           <li><a href="#">Term Lexicon</a></li>
           <li><a href="#">Misconception Corrections</a></li>
           <li><a href="#">Connective Tissue — Prepositions</a></li>
-          <li><a href="#">Recovery Engine</a></li>
+          <li><a href="/search">Scripnotes</a></li>
           <li><a href="#">Essays</a></li>
         </ul>
       </div>
@@ -1444,7 +1455,7 @@
       <a class="tier-cta" href="#" onclick="startCheckout('study'); return false;">Subscribe — $5/month</a>
       <div class="modal-free-note">
         Already subscribed? <a href="#" onclick="openModal('auth-modal'); closeModal('paywall-modal'); return false;">Sign in</a>
-        &nbsp;·&nbsp; Or keep reading — <a href="/notes.html">the notes for every episode</a>
+        &nbsp;·&nbsp; Or keep reading — <a href="/notes">the notes for every episode</a>
       </div>
     </div>
   </div>
@@ -1777,12 +1788,12 @@
       input.addEventListener('keydown', function(e) { if (e.key === 'Enter') doLookup(); });
     })();
 
-    // Preposition cards — each one opens that word in the Recovery Engine
+    // Preposition cards — each one opens that word in Scripnotes
     document.querySelectorAll('.prep-card').forEach(function (card) {
       card.addEventListener('click', function () {
         var w = card.querySelector('.pc-english');
         if (!w) return;
-        window.location.href = '/search.html?q=' + encodeURIComponent(w.textContent.trim()) + '&mode=term';
+        window.location.href = '/search?q=' + encodeURIComponent(w.textContent.trim()) + '&mode=term';
       });
     });
 
