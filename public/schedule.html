@@ -135,6 +135,11 @@ p.b{font-size:17px;line-height:1.75;margin-top:14px}
 .row .tag.on{background:var(--CR);border-color:var(--CR);color:var(--WH)}
 .row .tag.off{border-color:#B9B3A6;color:#8A8578}
 .row .tag.el{border-color:#3F5C7A;color:#3F5C7A}
+.row .tag.rev{border-color:var(--GOm);color:var(--GOm);background:rgba(197,160,89,.1)}
+.row .revline{font-family:var(--fb),Georgia,serif;font-size:13px;line-height:1.5;color:var(--INKs);
+ margin-top:7px;padding-left:11px;border-left:2px solid var(--GO)}
+.row .revline b{font-family:var(--fm);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+ color:var(--GOm);display:block;margin-bottom:3px;font-weight:400}
 .row .where{font-family:var(--fm);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#3F5C7A;margin-top:5px}
 .ann .where{font-family:var(--fm);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#3F5C7A;margin-top:10px}
 .row .links{margin-top:8px;font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
@@ -307,12 +312,21 @@ var LISTINGS = [
 
   /* ══════════════ UPCOMING ══════════════ */
 
+  /* A REVISED CUT. Two optional fields do this:
+       rev:   one sentence on what changed in the new cut
+       first: the date it originally aired (leave off if unknown)
+     The row then reads "Revised cut" instead of "Scheduled", and carries
+     the change underneath. An episode that airs twice is not a mistake in
+     the listing — it is the record, and the second row is the one that
+     says the work got better. */
   { date:"2026-10-18", code:"BR-001-001",
     title:"Faith · πίστις",
     sub:"Series I, Episode One — what the word carried before it was translated.",
     page:"/BR-001-001.html",
     watch:[],
     kind:"episode",
+    rev:"Lower thirds and nine verse plates added. The first cut quoted scripture ten times without naming a single reference; this one puts every one of them on screen, where you can stop the picture and check it.",
+    first:"",
     note:"The hour goes back to what the word carried before anyone translated it. Pistis was a courtroom word — proof, guarantee, pledge — and the King James still renders it evidence in Hebrews 11:1. Emunah, underneath it in the Hebrew, is steadfastness: a condition of character rather than a feeling worked up. Both were experiences before they were words." },
 
 
@@ -415,6 +429,7 @@ var LISTINGS = [
     if(r.kind==='webinar')   return '<div class="tag el">Webinar</div>';
     if(r.kind==='event')     return '<div class="tag el">Event</div>';
     if(r.kind==='special')   return '<div class="tag">Special</div>';
+    if(r.rev) return future?'<div class="tag on">Revised cut</div>':'<div class="tag rev">Revised cut</div>';
     return future?'<div class="tag on">Scheduled</div>':'<div class="tag">Aired</div>';
   }
   function linksFor(r){
@@ -440,6 +455,7 @@ var LISTINGS = [
         + (r.sub?'<div class="sub">'+esc(r.sub)+'</div>':'')
         + (w?'<div class="where">'+esc(w)+'</div>':'')
         + (r.code?'<div class="code">'+esc(r.code)+'</div>':'')
+        + (r.rev?'<div class="revline"><b>'+(r.first?'First aired '+MO[parse(r.first).getMonth()]+' '+ord(parse(r.first).getDate())+', '+parse(r.first).getFullYear():'A revised cut')+'</b>'+esc(r.rev)+'</div>':'')
         + (L.length?'<div class="links">'+L.join('')+'</div>':'')
         + '</div>'+tagFor(r,future)+'</div>';
     }).join('');
