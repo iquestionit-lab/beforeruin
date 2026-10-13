@@ -327,24 +327,28 @@ var LISTINGS = [
     kind:"episode",
     rev:"Lower thirds and nine verse plates added. The first cut quoted scripture ten times without naming a single reference; this one puts every one of them on screen, where you can stop the picture and check it.",
     up:"2026-10-12",
-    first:"2026-08-30",
+    first:"2026-09-06",
     note:"The hour goes back to what the word carried before anyone translated it. Pistis was a courtroom word — proof, guarantee, pledge — and the King James still renders it evidence in Hebrews 11:1. Emunah, underneath it in the Hebrew, is steadfastness: a condition of character rather than a feeling worked up. Both were experiences before they were words." },
 
 
   /* ══════════════ THE RECORD — what has aired ══════════════
 
-     FILED BY AIR DATE.  `up` is the day it was delivered to the network.
+     FILED BY AIR DATE.  `up` = the day it was delivered.
+                         `slot` = the slot name the file went up under, when
+                                  that differs from the day it actually aired.
 
-     ⭐ AN AIRED SLOT WITH NO `up` IS A REPEAT. The network keeps delivered
-        episodes on a shelf and fills the slot from it when nothing new
-        arrives, so the missing upload date is the tell. Check this column
-        against the upload page and any gap is a week they filled for us.
+     ⚠ THE LAG. From the start of the run the network aired a week behind the
+       slot a file was named for. A file named "Sunday August 30th" went out
+       on 6 September. The gap closed on 27 September — by skipping the
+       20 September delivery on purpose, which let the schedule catch up with
+       itself. From 27 September on, slot name and air date are the same.
 
-     Air dates and upload dates below are read off the network's own upload
-     page, 13 Oct 2026 — those are hard. The Series I episode codes are
-     inferred from count and order (three files, three episodes, in sequence)
-     and the Oct 4 assignment is the one still worth confirming by opening
-     the file. See 00 ADMIN/_DELIVERY LOG.md. ── */
+     Episodes are identified from caption content, not filenames and not from
+     memory: each hour uses words no other hour uses. Faith carries pistis and
+     emunah; The Lost Nursery carries nursery, pneuma and rachaph; She Never
+     Left carries Rizpah, Abigail and Nabal; The Frameworks carries framework,
+     the acorn and the room full of weight. See 00 ADMIN/_WHERE THE MASTERS
+     ARE.md, which lists the counts and the file each came from. ── */
 
   { date:"2026-10-11", code:"BR-002-003", up:"2026-10-04",
     title:"The Frameworks",
@@ -363,25 +367,19 @@ var LISTINGS = [
     page:"/BR-002-001.html", watch:[], kind:"episode",
     note:"The series opens by naming what went missing. The Holy Spirit has been present and working from the second verse of scripture to its last page, in a manner scripture itself describes in maternal terms. She was never hidden. What was lost was the household word for her, and with it the ability to recognise her voice." },
 
-  /* ⭐ NO `up` — nothing was delivered for this Sunday. The network filled
-     it from the shelf. This is the row that proves the column works. */
-  { date:"2026-09-20", code:"BR-001-003",
-    title:"Faith · Episode Three",
-    sub:"Series I, Episode Three.",
-    page:"", watch:[], kind:"repeat",
-    of:"Nothing was delivered for this Sunday, so the network ran an episode again from what it already held." },
-
-  { date:"2026-09-13", code:"BR-001-003", up:"2026-09-06",
+  /* The last three of the lag. `slot` is the name the file carried; `date` is
+     the night it went out. */
+  { date:"2026-09-20", code:"BR-001-003", up:"2026-09-06", slot:"Sunday September 13th",
     title:"Faith · Episode Three",
     sub:"Series I, Episode Three — the close of the Faith run.",
     page:"", watch:[], kind:"episode", note:"" },
 
-  { date:"2026-09-06", code:"BR-001-002", up:"2026-08-31",
+  { date:"2026-09-13", code:"BR-001-002", up:"2026-08-31", slot:"Sunday September 6th",
     title:"Faith · Episode Two",
     sub:"Series I, Episode Two.",
     page:"", watch:[], kind:"episode", note:"" },
 
-  { date:"2026-08-30", code:"BR-001-001", up:"2026-08-24",
+  { date:"2026-09-06", code:"BR-001-001", up:"2026-08-24", slot:"Sunday August 30th",
     title:"Faith · πίστις",
     sub:"Series I, Episode One — first airing.",
     page:"/BR-001-001.html", watch:[], kind:"episode", note:"" }
