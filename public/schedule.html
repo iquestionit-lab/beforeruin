@@ -326,38 +326,65 @@ var LISTINGS = [
     watch:[],
     kind:"episode",
     rev:"Lower thirds and nine verse plates added. The first cut quoted scripture ten times without naming a single reference; this one puts every one of them on screen, where you can stop the picture and check it.",
-    first:"",
+    up:"2026-10-12",
+    first:"2026-08-30",
     note:"The hour goes back to what the word carried before anyone translated it. Pistis was a courtroom word — proof, guarantee, pledge — and the King James still renders it evidence in Hebrews 11:1. Emunah, underneath it in the Hebrew, is steadfastness: a condition of character rather than a feeling worked up. Both were experiences before they were words." },
 
 
   /* ══════════════ THE RECORD — what has aired ══════════════
-     Newest first is handled by the page; order here does not matter.
-     Only confirmed airings are live. See the block at the bottom for
-     the ones still waiting on a date. ── */
 
-  { date:"2026-10-11", code:"BR-002-003",
+     FILED BY AIR DATE.  `up` is the day it was delivered to the network.
+
+     ⭐ AN AIRED SLOT WITH NO `up` IS A REPEAT. The network keeps delivered
+        episodes on a shelf and fills the slot from it when nothing new
+        arrives, so the missing upload date is the tell. Check this column
+        against the upload page and any gap is a week they filled for us.
+
+     Air dates and upload dates below are read off the network's own upload
+     page, 13 Oct 2026 — those are hard. The Series I episode codes are
+     inferred from count and order (three files, three episodes, in sequence)
+     and the Oct 4 assignment is the one still worth confirming by opening
+     the file. See 00 ADMIN/_DELIVERY LOG.md. ── */
+
+  { date:"2026-10-11", code:"BR-002-003", up:"2026-10-04",
     title:"The Frameworks",
     sub:"Series II, Episode Three — the way things work whether anybody believes them or not.",
-    page:"",
-    watch:[],
-    kind:"episode",
+    page:"", watch:[], kind:"episode",
     note:"A framework holds whether or not you know it is there. A house has one, a seed has one, and so does the way instruction actually reaches a person — not in a thunderclap, but here a little and there a little, until a verse read a hundred times goes through you as though it had been written that morning. Nothing changed about the sentence. What changed was whether there was anywhere in you for it to land. The hour turns on a boy in a room full of other people's broken appliances, who had every tool and nobody to teach him." },
 
-  { date:"2026-09-27", code:"BR-002-001",
+  { date:"2026-10-04", code:"BR-002-002", up:"2026-09-28",
+    title:"She Never Left",
+    sub:"Series II, Episode Two.",
+    page:"", watch:[], kind:"episode", note:"" },
+
+  { date:"2026-09-27", code:"BR-002-001", up:"2026-09-15",
     title:"The Lost Nursery",
     sub:"Series II, Episode One — Bringing Ima Out of Exile.",
-    page:"/BR-002-001.html",
-    watch:[],
-    kind:"episode",
+    page:"/BR-002-001.html", watch:[], kind:"episode",
     note:"The series opens by naming what went missing. The Holy Spirit has been present and working from the second verse of scripture to its last page, in a manner scripture itself describes in maternal terms. She was never hidden. What was lost was the household word for her, and with it the ability to recognise her voice." },
 
+  /* ⭐ NO `up` — nothing was delivered for this Sunday. The network filled
+     it from the shelf. This is the row that proves the column works. */
   { date:"2026-09-20", code:"BR-001-003",
     title:"Faith · Episode Three",
+    sub:"Series I, Episode Three.",
+    page:"", watch:[], kind:"repeat",
+    of:"Nothing was delivered for this Sunday, so the network ran an episode again from what it already held." },
+
+  { date:"2026-09-13", code:"BR-001-003", up:"2026-09-06",
+    title:"Faith · Episode Three",
     sub:"Series I, Episode Three — the close of the Faith run.",
-    page:"",
-    watch:[],
-    kind:"episode",
-    note:"" }
+    page:"", watch:[], kind:"episode", note:"" },
+
+  { date:"2026-09-06", code:"BR-001-002", up:"2026-08-31",
+    title:"Faith · Episode Two",
+    sub:"Series I, Episode Two.",
+    page:"", watch:[], kind:"episode", note:"" },
+
+  { date:"2026-08-30", code:"BR-001-001", up:"2026-08-24",
+    title:"Faith · πίστις",
+    sub:"Series I, Episode One — first airing.",
+    page:"/BR-001-001.html", watch:[], kind:"episode", note:"" }
 
 ];
 
@@ -444,6 +471,7 @@ var LISTINGS = [
     if(r.kind==='event')     return '<div class="tag el">Event</div>';
     if(r.kind==='special')   return '<div class="tag">Special</div>';
     if(r.rev) return future?'<div class="tag on">Revised cut</div>':'<div class="tag rev">Revised cut</div>';
+    if(r.kind==='repeat') return '<div class="tag off">Repeat</div>';
     return future?'<div class="tag on">Scheduled</div>':'<div class="tag">Aired</div>';
   }
   function linksFor(r){
@@ -469,6 +497,7 @@ var LISTINGS = [
         + (r.sub?'<div class="sub">'+esc(r.sub)+'</div>':'')
         + (w?'<div class="where">'+esc(w)+'</div>':'')
         + (r.code?'<div class="code">'+esc(r.code)+'</div>':'')
+        + (r.kind==='repeat'&&r.of?'<div class="revline"><b>Repeat</b>'+esc(r.of)+'</div>':'')
         + (r.rev?'<div class="revline"><b>'+(r.first?'First aired '+MO[parse(r.first).getMonth()]+' '+ord(parse(r.first).getDate())+', '+parse(r.first).getFullYear():'A revised cut')+'</b>'+esc(r.rev)+'</div>':'')
         + (L.length?'<div class="links">'+L.join('')+'</div>':'')
         + '</div>'+tagFor(r,future)+'</div>';
