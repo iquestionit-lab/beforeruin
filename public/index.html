@@ -1098,6 +1098,7 @@
         <div id="bl-ref" style="font-family:var(--fm);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--GOm);margin-bottom:7px;"></div>
         <div id="bl-text" style="font-family:Georgia,serif;font-size:16px;line-height:1.75;color:var(--INK);font-style:italic;"></div>
         <a id="bl-bglink" href="#" target="_blank" rel="noopener" style="display:inline-block;margin-top:10px;font-family:var(--fm);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--CR);">Open in Bible Gateway →</a>
+        <a id="bl-blblink" href="#" target="_blank" rel="noopener" style="display:none;margin-top:10px;margin-left:18px;font-family:var(--fm);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--CR);">See the original →</a>
       </div>
       <div id="bl-error" style="display:none;margin-top:12px;font-family:var(--fm);font-size:10.5px;color:var(--CR);letter-spacing:.1em;text-transform:uppercase;"></div>
       <div style="margin-top:18px;padding-top:14px;border-top:1px solid var(--GO);font-family:var(--fm);font-size:10.5px;line-height:1.85;letter-spacing:.06em;color:var(--GOm);">
@@ -1745,10 +1746,32 @@
       const refEl   = document.getElementById('bl-ref');
       const textEl  = document.getElementById('bl-text');
       const bgLink  = document.getElementById('bl-bglink');
+      const blbLink = document.getElementById('bl-blblink');
       const errEl   = document.getElementById('bl-error');
       if (!btn) return;
 
       const BG_VERSION_MAP = { kjv:'KJV', ylt:'YLT', web:'WEB', darby:'DARBY', bbe:'BBE' };
+
+      // "See the original" — the same verse on Blue Letter Bible, every word tagged with its Strong's number.
+      // New Testament opens in the Textus Receptus (the Greek behind the KJV); Old Testament in the
+      // Westminster Leningrad Codex (Hebrew). Keys are bible-api.com's book_id; values are BLB's book codes.
+      const BLB_BOOK = {
+        GEN:'gen',EXO:'exo',LEV:'lev',NUM:'num',DEU:'deu',JOS:'jos',JDG:'jdg',RUT:'rth','1SA':'1sa','2SA':'2sa',
+        '1KI':'1ki','2KI':'2ki','1CH':'1ch','2CH':'2ch',EZR:'ezr',NEH:'neh',EST:'est',JOB:'job',PSA:'psa',PRO:'pro',
+        ECC:'ecc',SNG:'sng',ISA:'isa',JER:'jer',LAM:'lam',EZK:'eze',DAN:'dan',HOS:'hos',JOL:'joe',AMO:'amo',
+        OBA:'oba',JON:'jon',MIC:'mic',NAM:'nah',HAB:'hab',ZEP:'zep',HAG:'hag',ZEC:'zec',MAL:'mal',
+        MAT:'mat',MRK:'mar',LUK:'luk',JHN:'jhn',ACT:'act',ROM:'rom','1CO':'1co','2CO':'2co',GAL:'gal',EPH:'eph',
+        PHP:'phl',COL:'col','1TH':'1th','2TH':'2th','1TI':'1ti','2TI':'2ti',TIT:'tit',PHM:'phm',HEB:'heb',
+        JAS:'jas','1PE':'1pe','2PE':'2pe','1JN':'1jo','2JN':'2jo','3JN':'3jo',JUD:'jde',REV:'rev'
+      };
+      const NT_START = Object.keys(BLB_BOOK).indexOf('MAT');
+
+      function blbUrl(v) {
+        const code = v && BLB_BOOK[v.book_id];
+        if (!code) return null;
+        const text = Object.keys(BLB_BOOK).indexOf(v.book_id) >= NT_START ? 'tr' : 'wlc';
+        return 'https://www.blueletterbible.org/' + text + '/' + code + '/' + v.chapter + '/' + v.verse + '/';
+      }
 
       function doLookup() {
         const ref = input.value.trim();
@@ -1769,6 +1792,9 @@
             const bgRef = encodeURIComponent(data.reference);
             const bgVer = BG_VERSION_MAP[version] || 'KJV';
             bgLink.href = 'https://www.biblegateway.com/passage/?search=' + bgRef + '&version=' + bgVer;
+            const orig = blbUrl(data.verses && data.verses[0]);
+            if (orig) { blbLink.href = orig; blbLink.style.display = 'inline-block'; }
+            else { blbLink.style.display = 'none'; }
             result.style.display = 'block';
           })
           .catch(err => {
