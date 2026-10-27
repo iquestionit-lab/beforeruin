@@ -677,6 +677,9 @@ async function fetchLiveSources(query, mode) {
       'greek','hebrew','latin','english','original','language','translation',
       'say','says','said','speak','spoken','written','write','appears',
       'appear','found','book','books','chapter','chapters','about',
+      // How people frame a claim ("I submit that…", "being saved is shown as…")
+      'submit','suggest','propose','argue','claim','think','wonder','being',
+      'there','shown','really','actually','true','false','agree','disagree',
     ]);
 
     const searchTerms = query
@@ -686,6 +689,13 @@ async function fetchLiveSources(query, mode) {
       .filter(w => w.length > 2 && !STOP_WORDS.has(w))
       // The reference was handled above; "john" is a book here, not a word to define.
       .filter(w => !passage || (!BOOK_CODES[w] && !/^\d+$/.test(w)));
+
+    // The subject is the word the engine knows, not the first word left standing.
+    // "I submit that salvation…" used to search and define "submit". A TERM_MAP word
+    // (pistis, yeshuah) or one TERM_MAP pairs with (faith, salvation, saved) goes
+    // first; the rest keep the order they were typed in. Array sort is stable.
+    const isSubject = (w) => !!TERM_MAP[w] || termMapKeysFor(w).length > 0;
+    searchTerms.sort((a, b) => isSubject(b) - isSubject(a));
 
     // Nothing left but the reference ("what was John 5:29 about"): the passage text
     // is the answer's material, and a word search on leftovers would only add noise.
