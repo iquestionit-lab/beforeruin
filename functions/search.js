@@ -843,9 +843,14 @@ const handler = async (req, res) => {
     const client = new Anthropic({ apiKey: ANTHROPIC_API_KEY.value() });
 
     try {
+      // Sonnet 5.5: Haiku 4.5 followed the eleven rules some of the time, not reliably.
+      // It thinks before answering (adaptive), so the reply opens with a thinking block
+      // and the answer is the text blocks, not content[0]. max_tokens covers thinking
+      // plus the answer; at 1500 some Haiku answers were cut off mid-sentence.
       const message = await client.messages.create({
-        model: "claude-haiku-4-5",
-        max_tokens: 1500,
+        model: "claude-sonnet-5-5",
+        max_tokens: 8000,
+        output_config: { effort: "medium" },
         system: [
           { type: "text", text: SYSTEM_PROMPT, cache_control: { type: "ephemeral" } },
         ],
@@ -856,16 +861,23 @@ const handler = async (req, res) => {
       console.log(JSON.stringify({
         event: "usage",
         mode,
+        model: message.model,
+        stop_reason: message.stop_reason,
         input_tokens: u.input_tokens,
         output_tokens: u.output_tokens,
         cache_read: u.cache_read_input_tokens,
         cache_write: u.cache_creation_input_tokens,
       }));
 
+      const answer = message.content
+        .filter((b) => b.type === "text")
+        .map((b) => b.text)
+        .join("\n\n");
+
       return res.status(200).json({
         query: q.trim(),
         mode,
-        answer: message.content[0].text,
+        answer,
         sources: sourceNames,
         sources_fetched: sourceNames.length > 0,
       });
