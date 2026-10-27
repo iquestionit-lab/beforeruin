@@ -104,7 +104,7 @@ Your function is to tell the user what the original sources actually say about t
 You will receive live-fetched source data as context. This may include:
 - Multiple Bible translations (KJV, NASB, CSB, YLT) for passage comparison
 - Sefaria results: Hebrew Bible text, Talmud, and major commentaries
-- Lexical data from research sources
+- Lexical data: Brown-Driver-Briggs (Hebrew) and Abbott-Smith (Greek) entries with Strong's numbers, root, parsing, and sense range
 
 Your answer is built from this fetched data. If a claim is not traceable to the provided sources, you do not make it. Your hermeneutical filters (Rules 8-10) are applied to what the data shows — they do not generate content beyond what was fetched.
 
@@ -519,11 +519,42 @@ function normaliseGreekKey(t) {
     .replace(/[^a-z0-9\u0370-\u03ff]/g, "");
 }
 
+// ─── English → lexicon entries ──────────────────────────────────────────────
+// The lexicon indexes only Greek and Hebrew spellings, so "what is salvation" used to
+// find nothing and the engine fell back to whatever Sefaria's full-text search turned
+// up — liturgy. The glosses are English, so index them: "salvation" → G4991, H3444.
+// "to save" is indexed as "save"; "deliverance: salvation" under both halves.
+function buildGlossIndex(lexicon) {
+  const idx = {};
+  for (const e of Object.values(lexicon.entries)) {
+    for (const part of String(e.gloss || "").toLowerCase().split(/[:;,]/)) {
+      const p = part.trim().replace(/^to /, "");
+      if (p) (idx[p] || (idx[p] = [])).push(e.s);
+    }
+  }
+  return idx;
+}
+
+// English → the transliterations TERM_MAP already pairs with it ("faith" → pistis, emunah).
+// Catches what the glosses miss: H0530's gloss is "faithfulness", not "faith".
+function termMapKeysFor(english) {
+  return Object.keys(TERM_MAP).filter((k) => TERM_MAP[k].en.split(" ").includes(english));
+}
+
+function lexiconIds(lexicon, glossIndex, normalise, term) {
+  const direct = lexicon.index[normalise(term)];
+  if (direct && direct.length) return direct;
+  const english = String(term || "").toLowerCase().trim();
+  // Each mapped key and its Hebrew cognate: "grace" → charis → chesed.
+  const viaMap = termMapKeysFor(english)
+    .flatMap((k) => [k, TERM_MAP[k].heb])
+    .flatMap((k) => (k && lexicon.index[normalise(k)]) || []);
+  return [...new Set([...viaMap, ...(glossIndex[english] || [])])];
+}
+
 function lookupGreek(term) {
-  const key = normaliseGreekKey(term);
-  if (!key) return null;
-  const ids = GREEK_LEXICON.index[key];
-  if (!ids || ids.length === 0) return null;
+  const ids = lexiconIds(GREEK_LEXICON, GREEK_GLOSSES, normaliseGreekKey, term);
+  if (ids.length === 0) return null;
   const out = ids.slice(0, 3).map((id) => {
     const e = GREEK_LEXICON.entries[id];
     if (!e) return null;
@@ -537,6 +568,41 @@ function lookupGreek(term) {
   if (out.length === 0) return null;
   return "SOURCE: Abbott-Smith, A Manual Greek Lexicon of the New Testament, "
        + "as edited in TBESG (Tyndale House Cambridge / STEPBible.org, CC BY 4.0)\n\n"
+       + out.join("\n\n");
+}
+
+// ─── Hebrew lexicon (local) ──────────────────────────────────────────────────
+// TBESH — Translators Brief lexicon of Extended Strongs for Hebrew.
+// Tyndale House Cambridge / STEPBible.org, CC BY 4.0. Definitions abridged from BDB.
+// Built by tools/build-hebrew-lexicon.js. Local for the same reason as the Greek:
+// Sefaria's word API returned nothing for most queries and said so silently.
+const HEBREW_LEXICON = require("./data/hebrew-lexicon.json");
+const GREEK_GLOSSES  = buildGlossIndex(GREEK_LEXICON);
+const HEBREW_GLOSSES = buildGlossIndex(HEBREW_LEXICON);
+
+function normaliseHebrewKey(t) {
+  const s = String(t || "");
+  // Pointed or unpointed Hebrew → bare consonants; otherwise a Latin transliteration.
+  if (/[א-ת]/.test(s)) return s.replace(/[^א-ת]/g, "");
+  return s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]/g, "");
+}
+
+function lookupHebrew(term) {
+  const ids = lexiconIds(HEBREW_LEXICON, HEBREW_GLOSSES, normaliseHebrewKey, term);
+  if (ids.length === 0) return null;
+  const out = ids.slice(0, 3).map((id) => {
+    const e = HEBREW_LEXICON.entries[id];
+    if (!e) return null;
+    return [
+      `${e.lemma} (${e.translit}) — Strong's ${e.s}`,
+      e.morph ? `Parsing: ${e.morph}` : null,
+      e.gloss ? `Gloss: ${e.gloss}` : null,
+      e.def ? `BDB (abridged): ${e.def}` : null,
+    ].filter(Boolean).join("\n");
+  }).filter(Boolean);
+  if (out.length === 0) return null;
+  return "SOURCE: Brown-Driver-Briggs Hebrew lexicon, abridged in TBESH "
+       + "(Tyndale House Cambridge / STEPBible.org, CC BY 4.0)\n\n"
        + out.join("\n\n");
 }
 
@@ -623,7 +689,11 @@ async function fetchLiveSources(query, mode) {
       fetchApiBibleSearch(BIBLES.NASB, 'New American Standard Bible 1995 (NASB)', bibleSearchQuery, 8),
       fetchApiBibleSearch(BIBLES.CSB,  'Christian Standard Bible (CSB)',          bibleSearchQuery, 8),
     ]);
-    // Greek lexicon first — it is local, so it answers or it does not, with no network.
+    // Lexicons first — they are local, so they answer or they do not, with no network.
+    // A mapped Greek term also carries its Hebrew cognate (pistis → emunah).
+    add(lookupHebrew(primaryTerm) || lookupHebrew(rawQuery)
+          || (termEntry && termEntry.heb ? lookupHebrew(termEntry.heb) : null),
+        "Brown-Driver-Briggs Hebrew lexicon (TBESH)");
     add(lookupGreek(primaryTerm) || lookupGreek(rawQuery),
         "Abbott-Smith Greek lexicon (TBESG)");
     add(lexicon, "Sefaria lexicon");
