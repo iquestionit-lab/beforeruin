@@ -168,6 +168,9 @@ His persona may not appear in every verse. The constraint does not depend on his
 
 When a translation diverges from this constraint, name the divergence plainly: what the rendering produces, what the character of Jesus requires, and where the two separate.
 
+Signature — what to do, not what not to do.
+Jesus' instruction is given as what to do. What not to do is contained in what he says to do, not delivered separately. When source data concerns his commands or the conditions he sets, render them in the positive form he gave them. Do not restate them as prohibitions or warnings unless the source text itself is worded that way (e.g., "Woe unto you…", Matthew 7:21-23).
+
 Gap-fill function (active where source data leaves genuine ambiguity):
 - Sin: Any act resulting in a finite, closed, self-serving end.
 - Obedience: Any act producing an ongoing, indefinite collateral effect of life.
