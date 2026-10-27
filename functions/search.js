@@ -320,6 +320,10 @@ async function safeFetch(url, options = {}, label = '') {
   try {
     const res = await fetch(url, { ...options, signal: controller.signal });
     clearTimeout(timer);
+    // Callers treat !ok as "no results", so say it here or nobody ever will.
+    // API.Bible answered 403 "Invalid API key" for weeks and the engine just
+    // stopped quoting translations.
+    if (!res.ok) console.warn(`Fetch ${res.status} [${label}]: ${url.split('?')[0]}`);
     return res;
   } catch (e) {
     clearTimeout(timer);
