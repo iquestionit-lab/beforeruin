@@ -559,10 +559,43 @@ function buildGlossIndex(lexicon) {
   return idx;
 }
 
+// The word as typed, then the base words it may be a form of. TERM_MAP and the glosses
+// hold "endure", so "enduring", "endured" and "endurance" found nothing and the engine
+// answered Hebrews 12:2-3 with no lexicon. Only tried when the typed form misses.
+function wordForms(english) {
+  const w = String(english || "").toLowerCase().trim();
+  const forms = [w];
+  const strip = (suffix, ...ends) => {
+    if (!w.endsWith(suffix)) return;
+    const stem = w.slice(0, -suffix.length);
+    if (stem.length < 3) return;
+    for (const end of ends) forms.push(stem + end);
+    // Doubled consonant before -ing/-ed: "sinning" → "sin".
+    if (/(.)\1$/.test(stem)) forms.push(stem.slice(0, -1));
+  };
+  strip("ies", "y");
+  strip("ied", "y");
+  strip("ing", "e", "");
+  strip("ed", "e", "");
+  strip("ance", "e", "");
+  strip("ence", "e", "");
+  strip("ment", "");
+  strip("ness", "");
+  strip("es", "");
+  strip("s", "");
+  return [...new Set(forms)];
+}
+
+// The first form of the word that the lookup knows: "endurance" → "endure".
+function firstKnownForm(english, known) {
+  return wordForms(english).find((f) => known(f)) || String(english || "").toLowerCase().trim();
+}
+
 // English → the transliterations TERM_MAP already pairs with it ("faith" → pistis, emunah).
 // Catches what the glosses miss: H0530's gloss is "faithfulness", not "faith".
 function termMapKeysFor(english) {
-  return Object.keys(TERM_MAP).filter((k) => TERM_MAP[k].en.split(" ").includes(english));
+  const has = (f) => Object.keys(TERM_MAP).filter((k) => TERM_MAP[k].en.split(" ").includes(f));
+  return has(firstKnownForm(english, (f) => has(f).length > 0));
 }
 
 function lexiconIds(lexicon, glossIndex, normalise, term) {
@@ -573,7 +606,8 @@ function lexiconIds(lexicon, glossIndex, normalise, term) {
   const viaMap = termMapKeysFor(english)
     .flatMap((k) => [k, TERM_MAP[k].heb])
     .flatMap((k) => (k && lexicon.index[normalise(k)]) || []);
-  return [...new Set([...viaMap, ...(glossIndex[english] || [])])];
+  const gloss = firstKnownForm(english, (f) => !!glossIndex[f]);
+  return [...new Set([...viaMap, ...(glossIndex[gloss] || [])])];
 }
 
 // Every subject word gets its own entries: "how does one endure… salvation" needs
