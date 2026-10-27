@@ -31,6 +31,7 @@ const TERM_MAP = {
   'pneuma':       { en: 'spirit',             heb: 'ruach' },
   'charis':       { en: 'grace',              heb: 'chesed' },
   'sozo':         { en: 'saved',              heb: null },
+  'hypomeno':     { en: 'endure persevere',   heb: 'qavah' },
   'soteria':      { en: 'salvation',          heb: 'yeshuah' },
   'dikaiosyne':   { en: 'righteousness',      heb: 'tsedaqah' },
   'hamartia':     { en: 'sin',                heb: 'chet' },
@@ -536,18 +537,21 @@ function normaliseGreekKey(t) {
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase()
-    .replace(/[^a-z0-9\u0370-\u03ff]/g, "");
+    .replace(/[^a-z0-9\u0370-\u03ff]/g, "")
+    // TBESG writes upsilon as u: people type hypomeno, dikaiosyne, psyche.
+    .replace(/y/g, "u");
 }
 
 // ─── English → lexicon entries ──────────────────────────────────────────────
 // The lexicon indexes only Greek and Hebrew spellings, so "what is salvation" used to
 // find nothing and the engine fell back to whatever Sefaria's full-text search turned
 // up — liturgy. The glosses are English, so index them: "salvation" → G4991, H3444.
-// "to save" is indexed as "save"; "deliverance: salvation" under both halves.
+// "to save" is indexed as "save"; "deliverance: salvation" under both halves, and
+// "to remain/endure" (hypomenō) under both — without the slash "endure" never found it.
 function buildGlossIndex(lexicon) {
   const idx = {};
   for (const e of Object.values(lexicon.entries)) {
-    for (const part of String(e.gloss || "").toLowerCase().split(/[:;,]/)) {
+    for (const part of String(e.gloss || "").toLowerCase().split(/[:;,/]/)) {
       const p = part.trim().replace(/^to /, "");
       if (p) (idx[p] || (idx[p] = [])).push(e.s);
     }
@@ -572,10 +576,20 @@ function lexiconIds(lexicon, glossIndex, normalise, term) {
   return [...new Set([...viaMap, ...(glossIndex[english] || [])])];
 }
 
-function lookupGreek(term) {
-  const ids = lexiconIds(GREEK_LEXICON, GREEK_GLOSSES, normaliseGreekKey, term);
+// Every subject word gets its own entries: "how does one endure… salvation" needs
+// hypomenō as well as sōtēria, and used to get only the first word the engine knew.
+// Two apiece when there are several, so one word cannot crowd out the rest.
+function lexiconIdsFor(lexicon, glossIndex, normalise, terms) {
+  const list = [].concat(terms).filter(Boolean);
+  const each = list.length > 1 ? 2 : 3;
+  const ids = list.flatMap((t) => lexiconIds(lexicon, glossIndex, normalise, t).slice(0, each));
+  return [...new Set(ids)].slice(0, 6);
+}
+
+function lookupGreek(terms) {
+  const ids = lexiconIdsFor(GREEK_LEXICON, GREEK_GLOSSES, normaliseGreekKey, terms);
   if (ids.length === 0) return null;
-  const out = ids.slice(0, 3).map((id) => {
+  const out = ids.map((id) => {
     const e = GREEK_LEXICON.entries[id];
     if (!e) return null;
     return [
@@ -607,10 +621,10 @@ function normaliseHebrewKey(t) {
   return s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]/g, "");
 }
 
-function lookupHebrew(term) {
-  const ids = lexiconIds(HEBREW_LEXICON, HEBREW_GLOSSES, normaliseHebrewKey, term);
+function lookupHebrew(terms) {
+  const ids = lexiconIdsFor(HEBREW_LEXICON, HEBREW_GLOSSES, normaliseHebrewKey, terms);
   if (ids.length === 0) return null;
-  const out = ids.slice(0, 3).map((id) => {
+  const out = ids.map((id) => {
     const e = HEBREW_LEXICON.entries[id];
     if (!e) return null;
     return [
@@ -735,10 +749,13 @@ async function fetchLiveSources(query, mode) {
     ]);
     // Lexicons first — they are local, so they answer or they do not, with no network.
     // A mapped Greek term also carries its Hebrew cognate (pistis → emunah).
-    add(lookupHebrew(primaryTerm) || lookupHebrew(rawQuery)
+    // Every word the engine recognises as a subject, up to three, not just the first.
+    const subjects = searchTerms.filter(isSubject).slice(0, 3);
+    const lexTerms = subjects.length ? subjects : [primaryTerm];
+    add(lookupHebrew(lexTerms) || lookupHebrew(rawQuery)
           || (termEntry && termEntry.heb ? lookupHebrew(termEntry.heb) : null),
         "Brown-Driver-Briggs Hebrew lexicon (TBESH)");
-    add(lookupGreek(primaryTerm) || lookupGreek(rawQuery),
+    add(lookupGreek(lexTerms) || lookupGreek(rawQuery),
         "Abbott-Smith Greek lexicon (TBESG)");
     add(lexicon, "Sefaria lexicon");
     add(sefaria, "Sefaria");
