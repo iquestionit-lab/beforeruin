@@ -332,20 +332,32 @@ async function safeFetch(url, options = {}, label = '') {
   }
 }
 
+// Finds a reference anywhere in the query, not only when the query is nothing else.
+// It used to be anchored at both ends, so "what was John 5:29 about" was not a
+// reference at all and the verse was never fetched. Find the chapter:verse first,
+// then read the book name backwards from it, longest name first ("song of solomon").
+// Returns { id: "JHN.5.29", ref: "John 5:29" } — API.Bible wants the id, YLT and
+// Sefaria want a plain reference.
 function parsePassageRef(query) {
-  const q = query.trim();
-  // Match: Book Chapter:Verse or Book Chapter.Verse (with optional verse range)
-  const match = q.match(/^((?:\d\s)?[a-zA-Z]+(?:\s+[a-zA-Z]+)?)\s+(\d+)[:\.](\d+)(?:\s*[-]\s*(\d+))?$/i);
-  if (!match) return null;
-  const bookRaw = match[1].toLowerCase().trim();
-  const chapter = match[2];
-  const verseStart = match[3];
-  const verseEnd = match[4];
-  const code = BOOK_CODES[bookRaw];
-  if (!code) return null;
-  return verseEnd
-    ? `${code}.${chapter}.${verseStart}-${code}.${chapter}.${verseEnd}`
-    : `${code}.${chapter}.${verseStart}`;
+  const cv = /(\d+)\s*[:.]\s*(\d+)(?:\s*[-–]\s*(\d+))?/g;
+  let m;
+  while ((m = cv.exec(query)) !== null) {
+    const [, chapter, verseStart, verseEnd] = m;
+    const before = query.slice(0, m.index).toLowerCase().replace(/[^a-z0-9\s]/g, " ").trim().split(/\s+/);
+    for (let n = Math.min(3, before.length); n >= 1; n--) {
+      const words = before.slice(-n);
+      const code = BOOK_CODES[words.join(" ")] || BOOK_CODES[words.join("")];
+      if (!code) continue;
+      const book = words.map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+      return {
+        id: verseEnd
+          ? `${code}.${chapter}.${verseStart}-${code}.${chapter}.${verseEnd}`
+          : `${code}.${chapter}.${verseStart}`,
+        ref: `${book} ${chapter}:${verseStart}${verseEnd ? "-" + verseEnd : ""}`,
+      };
+    }
+  }
+  return null;
 }
 
 // ─── Source Fetchers ──────────────────────────────────────────────────────────
@@ -617,23 +629,26 @@ async function fetchLiveSources(query, mode) {
   const names = [];
   const add = (value, name) => { if (value) { sources.push(value); names.push(name); } };
 
+  // A reference anywhere in the query gets its text fetched, whatever the mode:
+  // "what was John 5:29 about" is a question about a passage, so it needs the passage.
+  const passage = parsePassageRef(query);
+  if (passage) {
+    // Parallel fetch: 3 API.Bible translations + YLT + Sefaria
+    const [kjv, nasb, csb, ylt, sefaria] = await Promise.all([
+      fetchApiBible(BIBLES.KJV,  passage.id, 'King James Version (KJV)'),
+      fetchApiBible(BIBLES.NASB, passage.id, 'New American Standard Bible 1995 (NASB)'),
+      fetchApiBible(BIBLES.CSB,  passage.id, 'Christian Standard Bible (CSB)'),
+      fetchYLT(passage.ref),
+      fetchSefariaPassage(passage.ref),
+    ]);
+    add(kjv, "King James Version");
+    add(nasb, "NASB 1995");
+    add(csb, "Christian Standard Bible");
+    add(ylt, "Young's Literal Translation");
+    add(sefaria, "Sefaria");
+  }
+
   if (mode === 'passage_search') {
-    const passageId = parsePassageRef(query);
-    if (passageId) {
-      // Parallel fetch: 3 API.Bible translations + YLT + Sefaria
-      const [kjv, nasb, csb, ylt, sefaria] = await Promise.all([
-        fetchApiBible(BIBLES.KJV,  passageId, 'King James Version (KJV)'),
-        fetchApiBible(BIBLES.NASB, passageId, 'New American Standard Bible 1995 (NASB)'),
-        fetchApiBible(BIBLES.CSB,  passageId, 'Christian Standard Bible (CSB)'),
-        fetchYLT(query),
-        fetchSefariaPassage(query),
-      ]);
-      add(kjv, "King James Version");
-      add(nasb, "NASB 1995");
-      add(csb, "Christian Standard Bible");
-      add(ylt, "Young's Literal Translation");
-      add(sefaria, "Sefaria");
-    }
     // If passage parse failed or nothing returned, fall through to Sefaria search
     if (sources.length === 0) {
       const fallback = await fetchSefaria(query);
@@ -661,14 +676,25 @@ async function fetchLiveSources(query, mode) {
       'new','old','testament','bible','scripture','scriptures','biblical',
       'greek','hebrew','latin','english','original','language','translation',
       'say','says','said','speak','spoken','written','write','appears',
-      'appear','found','book','books','chapter','chapters',
+      'appear','found','book','books','chapter','chapters','about',
     ]);
 
     const searchTerms = query
       .toLowerCase()
       .replace(/[?.,!;:'"]/g, ' ')
       .split(/\s+/)
-      .filter(w => w.length > 2 && !STOP_WORDS.has(w));
+      .filter(w => w.length > 2 && !STOP_WORDS.has(w))
+      // The reference was handled above; "john" is a book here, not a word to define.
+      .filter(w => !passage || (!BOOK_CODES[w] && !/^\d+$/.test(w)));
+
+    // Nothing left but the reference ("what was John 5:29 about"): the passage text
+    // is the answer's material, and a word search on leftovers would only add noise.
+    if (passage && searchTerms.length === 0) {
+      return {
+        text: sources.length > 0 ? sources.join('\n\n' + '─'.repeat(40) + '\n\n') : null,
+        names: [...new Set(names)],
+      };
+    }
 
     // Raw extracted query (e.g. "pistis" from "what is pistis")
     const rawQuery = searchTerms.slice(0, 2).join(' ') || query.trim().toLowerCase();
