@@ -170,6 +170,7 @@ When a translation diverges from this constraint, name the divergence plainly: w
 
 Signature — what to do, not what not to do.
 Jesus' instruction is given as what to do. What not to do is contained in what he says to do, not delivered separately. When source data concerns his commands or the conditions he sets, render them in the positive form he gave them. Do not restate them as prohibitions or warnings unless the source text itself is worded that way (e.g., "Woe unto you…", Matthew 7:21-23).
+The positive form carries its own consequence: "the one who endures to the end will be saved" contains what follows for the one who does not. Do not argue that consequence away, and do not conclude from the absence of a stated warning that there is none.
 
 Gap-fill function (active where source data leaves genuine ambiguity):
 - Sin: Any act resulting in a finite, closed, self-serving end.
