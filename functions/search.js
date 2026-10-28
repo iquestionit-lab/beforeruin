@@ -734,13 +734,15 @@ async function fetchLiveSources(query, mode) {
       'there','shown','really','actually','true','false','agree','disagree',
     ]);
 
-    const searchTerms = query
+    // Each word once. "saved … saved … saved … emunah" used to fill all three lexicon
+    // slots with "saved" and never look up emunah at all.
+    const searchTerms = [...new Set(query
       .toLowerCase()
       .replace(/[?.,!;:'"]/g, ' ')
       .split(/\s+/)
       .filter(w => w.length > 2 && !STOP_WORDS.has(w))
       // The reference was handled above; "john" is a book here, not a word to define.
-      .filter(w => !passage || (!BOOK_CODES[w] && !/^\d+$/.test(w)));
+      .filter(w => !passage || (!BOOK_CODES[w] && !/^\d+$/.test(w))))];
 
     // The subject is the word the engine knows, not the first word left standing.
     // "I submit that salvation…" used to search and define "submit". A TERM_MAP word
@@ -768,14 +770,17 @@ async function fetchLiveSources(query, mode) {
     // Bible text search uses the English equivalent if the term is Greek/Hebrew
     const bibleSearchQuery = termEntry ? termEntry.en : rawQuery;
 
-    // Sefaria search uses the Hebrew cognate (if available) or the raw query
-    const sefariaSearchQuery = (termEntry && termEntry.heb) ? termEntry.heb : rawQuery;
+    // Sefaria gets the original-language word wherever it sits in the question, not only
+    // when it comes first: "saved … like the word emunah" sent Sefaria "saved saved".
+    const originalTerm = searchTerms.find((w) => TERM_MAP[w]);
+    const sefariaTerm = originalTerm ? (TERM_MAP[originalTerm].heb || originalTerm) : null;
+    const sefariaSearchQuery = sefariaTerm || rawQuery;
 
     console.log(`[query] raw="${rawQuery}" → bible="${bibleSearchQuery}" sefaria="${sefariaSearchQuery}" mapped=${!!termEntry}`);
 
     // Parallel: Sefaria lexicon + Sefaria text search + API.Bible text search
     const [lexicon, sefaria, kjvSearch, nasbSearch, csbSearch] = await Promise.all([
-      termEntry ? fetchSefariaLexicon(termEntry.heb || primaryTerm) : Promise.resolve(null),
+      sefariaTerm ? fetchSefariaLexicon(sefariaTerm) : Promise.resolve(null),
       fetchSefaria(sefariaSearchQuery),
       fetchApiBibleSearch(BIBLES.KJV,  'King James Version (KJV)',                bibleSearchQuery, 8),
       fetchApiBibleSearch(BIBLES.NASB, 'New American Standard Bible 1995 (NASB)', bibleSearchQuery, 8),
