@@ -6,7 +6,7 @@
   <title>Scripnotes — Before Ruin</title>
 
   <!-- SEO -->
-  <meta name="description" content="Enter a verse, a word, or a question, and keep the notes from what the translation was made from. Scripnotes, from Before Ruin.">
+  <meta name="description" content="Enter a verse, a word, or a question, and keep the notes from what the translation was made from. Scripnotes, used by Before Ruin under license.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://beforeruin.app">
 
@@ -1138,7 +1138,8 @@
 
   <footer class="ss-foot">
     <a href="/">Before Ruin</a> &nbsp;·&nbsp; Robert Langan Ministries &nbsp;·&nbsp; Sundays 11 PM on The Now Network<br>
-    <a href="/how-to-search">How to ask</a> &nbsp;·&nbsp; <a href="/terms">Terms &amp; limits</a>
+    <a href="/how-to-search">How to ask</a> &nbsp;·&nbsp; <a href="/terms">Terms &amp; limits</a><br>
+    Scripnotes is a separate product, used by Before Ruin under license
   </footer>
 
 
@@ -1329,7 +1330,7 @@
       if (body) lines.push(body.innerText.trim(), '');
       if (sources) lines.push('Primary Sources: ' + sources.textContent.trim());
       lines.push('', 'Notes assembled by Scripnotes from the sources listed above.',
-                 'Before Ruin · beforeruin.app');
+                 'Scripnotes, used by Before Ruin under license · beforeruin.app');
       navigator.clipboard.writeText(lines.join('\n')).then(() => {
         btn.textContent = '✓ COPIED';
         setTimeout(() => btn.textContent = '⎘ COPY', 2000);
